@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #6c8f8e;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SupplierController">
+   <children>
+      <Pane layoutX="4.0" layoutY="4.0" prefHeight="336.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
+         <children>
+            <VBox layoutX="7.0" layoutY="7.0" prefHeight="320.0" prefWidth="310.0">
+               <children>
+                  <JFXTextField fx:id="txtSupplierId" editable="false" labelFloat="true" onKeyReleased="#gotoSupplierTable" promptText="Id">
+                     <VBox.margin>
+                        <Insets bottom="10.0" right="150.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtName" labelFloat="true" promptText="Name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXDatePicker fx:id="dpJoinDate" promptText="Join Date">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXDatePicker>
+                  <JFXTextField fx:id="txtAddressId" editable="false" labelFloat="true" onKeyReleased="#loadAddressManager" promptText="Address Id">
+                     <VBox.margin>
+                        <Insets bottom="10.0" right="150.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextArea fx:id="tfAddress" editable="false" promptText="Address">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextArea>
+               </children>
+            </VBox>
+            <VBox layoutX="342.0" layoutY="7.0" prefHeight="320.0" prefWidth="270.0">
+               <children>
+                  <JFXTextField fx:id="txtContactId" editable="false" labelFloat="true" onKeyReleased="#loadContactManager" promptText="Contact Id">
+                     <VBox.margin>
+                        <Insets bottom="10.0" right="100.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextArea fx:id="txtContact" editable="false" prefHeight="116.0" prefWidth="270.0" promptText="Contact">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextArea>
+                  <JFXComboBox fx:id="cmbStatus" labelFloat="true" prefHeight="28.0" prefWidth="180.0" promptText="Status">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
+            <VBox layoutX="636.0" prefHeight="259.0" prefWidth="346.0">
+               <children>
+                  <JFXComboBox fx:id="cmbType" prefHeight="29.0" prefWidth="150.0" promptText="Supplier Type">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <HBox prefHeight="41.0" prefWidth="270.0">
+                     <children>
+                        <JFXComboBox fx:id="cmbCompany" editable="true" onHidden="#searchCompanyDetailByName" onKeyReleased="#cmbCompanyOnKey" prefHeight="31.0" prefWidth="247.0" promptText="Compay">
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                        <JFXButton fx:id="btnAddCompany" alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="87.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Add">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tblCompany" onKeyReleased="#removeCompany" prefHeight="159.0" prefWidth="270.0">
+                    <columns>
+                      <TableColumn fx:id="tcCompanyId" prefWidth="70.0" resizable="false" text="Id" />
+                      <TableColumn fx:id="tcCompanyName" editable="false" prefWidth="235.0" resizable="false" text="Company" />
+                        <TableColumn fx:id="tcPartner" prefWidth="40.0" text="#" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <HBox layoutX="728.0" layoutY="271.0">
+               <children>
+                  <JFXButton fx:id="btnSave" alignment="CENTER_RIGHT" onAction="#saveSupplier" onKeyReleased="#saveSupplierKey" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btnUpdate" alignment="CENTER_RIGHT" onAction="#updateSupplier" onKeyReleased="#updateSupplierKey" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane layoutX="4.0" layoutY="344.0" prefHeight="352.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
+         <children>
+            <TableView fx:id="tblSupplier" layoutY="66.0" onKeyReleased="#selectSupplierByIdKey" onMouseClicked="#selectSupplierById" prefHeight="286.0" prefWidth="992.0">
+              <columns>
+                <TableColumn fx:id="tcId" editable="false" prefWidth="100.0" resizable="false" text="Id" />
+                <TableColumn fx:id="tcName" editable="false" prefWidth="300.0" resizable="false" text="Name" />
+                  <TableColumn fx:id="tcAddress" editable="false" prefWidth="392.0" resizable="false" text="Address" />
+                  <TableColumn fx:id="tcType" editable="false" prefWidth="100.0" resizable="false" text="Type" />
+                  <TableColumn fx:id="tcStatus" editable="false" prefWidth="100.0" resizable="false" text="Status" />
+              </columns>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TableView>
+            <JFXTextField fx:id="txtSearcSupplier" labelFloat="true" layoutX="729.0" layoutY="25.0" onKeyReleased="#filterSupplierTableByName" prefHeight="31.0" prefWidth="260.0" promptText="Type Name to Search" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

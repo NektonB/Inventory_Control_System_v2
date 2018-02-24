@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #6c8f8e;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddressController">
+   <children>
+      <Pane layoutX="4.0" layoutY="4.0" prefHeight="196.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
+         <children>
+            <VBox layoutX="14.0" layoutY="14.0" prefHeight="159.0" prefWidth="250.0">
+               <children>
+                  <JFXTextField fx:id="txtId" editable="false" labelFloat="true" onKeyReleased="#txtIdKeyReleased" promptText="Id">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtNumber" labelFloat="true" promptText="Number">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtLine01" labelFloat="true" promptText="Line 01">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+               </children>
+            </VBox>
+            <VBox layoutX="358.0" layoutY="14.0" prefHeight="109.0" prefWidth="250.0">
+               <children>
+                  <JFXTextField fx:id="txtLine02" labelFloat="true" promptText="Line 02">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtCity" labelFloat="true" promptText="City">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+               </children>
+            </VBox>
+            <VBox layoutX="700.0" layoutY="14.0" prefHeight="109.0" prefWidth="250.0">
+               <children>
+                  <JFXTextField fx:id="txtCountry" labelFloat="true" promptText="Country" text="Sri Lanka">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtPostalCode" labelFloat="true" promptText="Postal Code">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+               </children>
+            </VBox>
+            <HBox layoutX="727.0" layoutY="131.0">
+               <children>
+                  <JFXButton fx:id="btnSave" alignment="CENTER_RIGHT" onAction="#saveAddress" onKeyReleased="#saveAddressKey" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btnUpdate" alignment="CENTER_RIGHT" onAction="#updateAddress" onKeyReleased="#updateAddressKey" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane layoutX="4.0" layoutY="204.0" prefHeight="392.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
+         <children>
+            <TableView fx:id="tblAddress" onKeyReleased="#getSelectedAddressKey" onMouseClicked="#getSelectedAddress" prefHeight="392.0" prefWidth="992.0" style="-fx-background-color: rgba(150,184,212,0.69);">
+              <columns>
+                <TableColumn fx:id="tcId" editable="false" prefWidth="92.0" resizable="false" text="Id" />
+                <TableColumn fx:id="tcNumber" editable="false" prefWidth="150.0" resizable="false" text="Number" />
+                  <TableColumn fx:id="tcLine01" editable="false" prefWidth="150.0" resizable="false" text="Line 01" />
+                  <TableColumn fx:id="tcLine02" editable="false" prefWidth="150.0" resizable="false" text="Line 02" />
+                  <TableColumn fx:id="tcCity" editable="false" prefWidth="150.0" resizable="false" text="City" />
+                  <TableColumn fx:id="tcCountry" editable="false" prefWidth="150.0" resizable="false" text="Country" />
+                  <TableColumn fx:id="tcPostalCode" editable="false" prefWidth="150.0" resizable="false" text="Postal Code" />
+              </columns>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
