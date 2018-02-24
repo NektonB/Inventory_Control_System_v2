@@ -373,7 +373,7 @@ public class SupplierController implements Initializable {
     }
 
     /**
-     * Save Supplier list table bata to database.using loop
+     * Save Supplier list table data to database.using loop
      */
     public int saveCompanyList() {
         int saveCompanyList = 0;
