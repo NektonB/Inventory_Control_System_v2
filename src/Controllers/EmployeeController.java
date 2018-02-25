@@ -113,7 +113,6 @@ public class EmployeeController implements Initializable {
     public void loadAddressManager(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             try {
-
                 /*
                  * Set txtAddressId and tfAddress to ComponentSwitcher
                  * */
