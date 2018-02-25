@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="961.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeController">
+   <children>
+      <JFXTextField fx:id="txt_Employee_Id" labelFloat="true" layoutX="29.0" layoutY="33.0" prefHeight="29.0" prefWidth="247.0" promptText="User ID" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="33.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txt_First_Name" labelFloat="true" layoutX="29.0" layoutY="83.0" prefHeight="29.0" prefWidth="247.0" promptText="First Name" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="83.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txt_Middle_Name" labelFloat="true" layoutX="29.0" layoutY="133.0" prefHeight="29.0" prefWidth="247.0" promptText="Middle Name" AnchorPane.topAnchor="133.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txt_Last_Name" labelFloat="true" layoutX="29.0" layoutY="183.0" prefHeight="29.0" prefWidth="247.0" promptText="Last Name" AnchorPane.topAnchor="183.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txt_NIC_No" labelFloat="true" layoutX="29.0" layoutY="283.0" prefHeight="29.0" prefWidth="247.0" promptText="NIC No" AnchorPane.topAnchor="283.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txt_Contact_Id" labelFloat="true" layoutX="620.0" layoutY="33.0" prefHeight="29.0" prefWidth="257.0" promptText="Contact ID" AnchorPane.topAnchor="33.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btn_Save" layoutX="618.0" layoutY="221.0" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: skyblue;" text="Save Employee" />
+      <JFXButton fx:id="btn_Update" layoutX="754.0" layoutY="221.0" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: skyblue;" text="Update Employee" />
+      <Separator layoutY="330.0" prefHeight="2.0" prefWidth="961.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <JFXDatePicker fx:id="dp_date_of_birth" layoutX="29.0" layoutY="241.0" prefHeight="25.0" prefWidth="247.0" promptText="Date Of Birth" />
+      <JFXComboBox fx:id="cmb_Activation_status" layoutX="326.0" layoutY="286.0" prefHeight="25.0" prefWidth="257.0" promptText="Activation Status" />
+      <ScrollPane layoutY="338.0" prefHeight="284.0" prefWidth="961.0" AnchorPane.leftAnchor="0.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="269.0" prefWidth="1077.0">
+               <children>
+                  <TableView fx:id="tbl_employee" prefHeight="310.0" prefWidth="1276.0">
+                     <columns>
+                        <TableColumn prefWidth="95.0" text="User ID" />
+                        <TableColumn prefWidth="223.0" text="Name" />
+                        <TableColumn minWidth="0.0" prefWidth="170.0" text="Date Of Birth" />
+                        <TableColumn prefWidth="168.0" text="NIC NO" />
+                        <TableColumn prefWidth="129.0" text="Join Date" />
+                        <TableColumn prefWidth="169.0" text="Activation status" />
+                     </columns>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <JFXDatePicker fx:id="dp_join_date" layoutX="326.0" layoutY="35.0" prefHeight="25.0" prefWidth="257.0" />
+      <JFXTextArea fx:id="ta_address" labelFloat="true" layoutX="326.0" layoutY="142.0" prefHeight="83.0" prefWidth="257.0" promptText="Address" />
+      <JFXTextField fx:id="txt_AddressId" layoutX="326.0" layoutY="86.0" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="257.0" promptText="Address ID" />
+      <JFXTextArea fx:id="ta_Contact" labelFloat="true" layoutX="620.0" layoutY="106.0" prefHeight="83.0" prefWidth="257.0" promptText="Contact" />
+   </children>
+</AnchorPane>

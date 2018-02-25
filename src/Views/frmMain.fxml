@@ -52,6 +52,7 @@
                         <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                   <MenuItem mnemonicParsing="false" text="Server Cnfiguratin" />
+                  <MenuItem fx:id="mi_employee_manegment" mnemonicParsing="false" onAction="#loadEmployeeManagement" text="Employee Managment" />
               </items>
             </Menu>
             </menus>

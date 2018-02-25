@@ -37,6 +37,9 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem miProductRegistration;
 
+    @FXML
+    private MenuItem mi_employee_manegment;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -100,6 +103,22 @@ public class MainController implements Initializable {
             Stage productsStage = new Stage();
             Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmProducts.fxml"));
             productsStage.setTitle("Products Management");
+            Scene scene = new Scene(frmUser);
+            productsStage.setScene(scene);
+            productsStage.initStyle(StageStyle.UTILITY);
+            productsStage.setResizable(false);
+            productsStage.initModality(Modality.APPLICATION_MODAL);
+            productsStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadEmployeeManagement() {
+        try {
+            Stage productsStage = new Stage();
+            Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmEmployee.fxml"));
+            productsStage.setTitle("Employee Management");
             Scene scene = new Scene(frmUser);
             productsStage.setScene(scene);
             productsStage.initStyle(StageStyle.UTILITY);
