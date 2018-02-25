@@ -25,6 +25,7 @@ public class ObjectGenerator {
     private static Partnership partnership;
     private static SupplierType supplierType;
     private static CompanyList companyList;
+    private static Employee employee;
 
     public static synchronized void readyAll() {
         try {
@@ -171,5 +172,13 @@ public class ObjectGenerator {
             companyList = new CompanyList();
         }
         return companyList;
+    }
+
+    public static Employee getEmployee(){
+        if (employee == null) {
+            employee = new Employee();
+        }
+        return employee;
+
     }
 }
