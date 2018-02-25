@@ -28,6 +28,7 @@ public class DataWriter {
     Partnership partnership;
     Supplier supplier;
     SupplierType supplierType;
+    Employee employee;
 
     /**
      * Load Supporting classes by thread
@@ -483,6 +484,37 @@ public class DataWriter {
             }
         }
         return updateDone;
+    }
+
+    public int saveEmployee() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO employee(fname, mname, lname, dob, nic, join_date, address_id,contact_id,ad_status_id) VALUES(?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, employee.getFirstName());
+            pst.setString(2, employee.getMiddleName());
+            pst.setString(3, employee.getLastName());
+            pst.setString(4, employee.getDob());
+            pst.setString(5, employee.getNic());
+            pst.setString(6, employee.getJoinDate());
+            pst.setInt(7, address.getId());
+            pst.setInt(8, contact.getId());
+            pst.setInt(9, adStatus.getId());
+
+            saveDone = pst.executeUpdate();
+            // saveDone = Statement.RETURN_GENERATED_KEYS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+
     }
 
 }
