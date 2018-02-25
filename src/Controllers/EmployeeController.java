@@ -120,15 +120,41 @@ public class EmployeeController implements Initializable {
                 switcher.setTxta01(ta_address);
 
                 Stage addressStage = new Stage();
-                Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmAddress.fxml"));
+                Parent frmAddress = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmAddress.fxml"));
                 addressStage.setTitle("Address Management");
-                Scene scene = new Scene(frmUser);
+                Scene scene = new Scene(frmAddress);
                 addressStage.setScene(scene);
                 addressStage.initStyle(StageStyle.UTILITY);
                 addressStage.setResizable(false);
                 addressStage.initModality(Modality.APPLICATION_MODAL);
                 addressStage.show();
                 txt_Contact_Id.requestFocus();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    /**
+     * Load Contact Manager
+     */
+    public void loadContactManager(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            try {
+                switcher.setTxt01(txt_Contact_Id);
+                switcher.setTxta01(ta_Contact);
+
+                Stage addressStage = new Stage();
+                Parent frmContact = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmContact.fxml"));
+                addressStage.setTitle("Contact Management");
+                Scene scene = new Scene(frmContact);
+                addressStage.setScene(scene);
+                addressStage.initStyle(StageStyle.UTILITY);
+                addressStage.setResizable(false);
+                addressStage.initModality(Modality.APPLICATION_MODAL);
+                addressStage.show();
+                cmb_Activation_status.requestFocus();
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);

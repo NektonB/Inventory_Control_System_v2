@@ -5,51 +5,89 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="961.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeController">
    <children>
-      <JFXTextField fx:id="txt_Employee_Id" labelFloat="true" layoutX="29.0" layoutY="33.0" prefHeight="29.0" prefWidth="247.0" promptText="User ID" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="33.0">
+      <VBox layoutX="29.0" layoutY="33.0">
+         <children>
+            <JFXTextField fx:id="txt_Employee_Id" labelFloat="true" prefHeight="29.0" prefWidth="247.0" promptText="User ID">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_First_Name" labelFloat="true" prefHeight="29.0" prefWidth="247.0" promptText="First Name">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_Middle_Name" labelFloat="true" prefHeight="29.0" prefWidth="247.0" promptText="Middle Name">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_Last_Name" labelFloat="true" prefHeight="29.0" prefWidth="247.0" promptText="Last Name">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_NIC_No" labelFloat="true" prefHeight="29.0" prefWidth="247.0" promptText="NIC No">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXDatePicker fx:id="dp_date_of_birth" prefHeight="25.0" prefWidth="247.0" promptText="Date Of Birth">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </JFXDatePicker>
+         </children>
+      </VBox>
+      <JFXTextField fx:id="txt_Contact_Id" labelFloat="true" layoutX="620.0" layoutY="33.0" onKeyReleased="#loadContactManager" prefHeight="29.0" prefWidth="257.0" promptText="Contact ID" AnchorPane.topAnchor="33.0">
          <font>
             <Font size="13.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txt_First_Name" labelFloat="true" layoutX="29.0" layoutY="83.0" prefHeight="29.0" prefWidth="247.0" promptText="First Name" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="83.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txt_Middle_Name" labelFloat="true" layoutX="29.0" layoutY="133.0" prefHeight="29.0" prefWidth="247.0" promptText="Middle Name" AnchorPane.topAnchor="133.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txt_Last_Name" labelFloat="true" layoutX="29.0" layoutY="183.0" prefHeight="29.0" prefWidth="247.0" promptText="Last Name" AnchorPane.topAnchor="183.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txt_NIC_No" labelFloat="true" layoutX="29.0" layoutY="283.0" prefHeight="29.0" prefWidth="247.0" promptText="NIC No" AnchorPane.topAnchor="283.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txt_Contact_Id" labelFloat="true" layoutX="620.0" layoutY="33.0" prefHeight="29.0" prefWidth="257.0" promptText="Contact ID" AnchorPane.topAnchor="33.0">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </JFXTextField>
-      <JFXButton fx:id="btn_Save" layoutX="618.0" layoutY="221.0" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: skyblue;" text="Save Employee" />
-      <JFXButton fx:id="btn_Update" layoutX="754.0" layoutY="221.0" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: skyblue;" text="Update Employee" />
+      <HBox layoutX="681.0" layoutY="224.0">
+         <children>
+            <JFXButton fx:id="btn_Save" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: skyblue;" text="Save Employee">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="btn_Update" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: skyblue;" text="Update Employee">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
       <Separator layoutY="330.0" prefHeight="2.0" prefWidth="961.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <JFXDatePicker fx:id="dp_date_of_birth" layoutX="29.0" layoutY="241.0" prefHeight="25.0" prefWidth="247.0" promptText="Date Of Birth" />
-      <JFXComboBox fx:id="cmb_Activation_status" layoutX="326.0" layoutY="286.0" prefHeight="25.0" prefWidth="257.0" promptText="Activation Status" />
+      <JFXComboBox fx:id="cmb_Activation_status" labelFloat="true" layoutX="326.0" layoutY="286.0" prefHeight="25.0" prefWidth="257.0" promptText="Activation Status" />
       <ScrollPane layoutY="338.0" prefHeight="284.0" prefWidth="961.0" AnchorPane.leftAnchor="0.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="269.0" prefWidth="1077.0">
@@ -71,7 +109,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <JFXDatePicker fx:id="dp_join_date" layoutX="326.0" layoutY="35.0" prefHeight="25.0" prefWidth="257.0" />
+      <JFXDatePicker fx:id="dp_join_date" layoutX="326.0" layoutY="35.0" prefHeight="25.0" prefWidth="257.0" promptText="Join Date" />
       <JFXTextArea fx:id="ta_address" labelFloat="true" layoutX="326.0" layoutY="142.0" prefHeight="83.0" prefWidth="257.0" promptText="Address" />
       <JFXTextField fx:id="txt_AddressId" layoutX="326.0" layoutY="86.0" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="257.0" promptText="Address ID" />
       <JFXTextArea fx:id="ta_Contact" labelFloat="true" layoutX="620.0" layoutY="106.0" prefHeight="83.0" prefWidth="257.0" promptText="Contact" />
