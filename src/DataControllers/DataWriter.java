@@ -51,6 +51,7 @@ public class DataWriter {
                 partnership = ObjectGenerator.getPartnership();
                 supplier = ObjectGenerator.getSupplier();
                 supplierType = ObjectGenerator.getSupplierType();
+                employee=ObjectGenerator.getEmployee();
             });
             readyData.setName("Data Writer");
             readyData.start();
@@ -489,7 +490,7 @@ public class DataWriter {
     public int saveEmployee() {
         int saveDone = 0;
         try {
-            pst = conn.prepareStatement("INSERT INTO employee(fname, mname, lname, dob, nic, join_date, address_id,contact_id,ad_status_id) VALUES(?,?,?,?,?,?,?,?,?)");
+            pst = conn.prepareStatement("INSERT INTO employee(fname, mname, lname, dob, nic, join_date, address_id, contact_id, ad_status_id) VALUES(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, employee.getFirstName());
             pst.setString(2, employee.getMiddleName());
             pst.setString(3, employee.getLastName());

@@ -74,7 +74,7 @@
       </JFXTextField>
       <HBox layoutX="681.0" layoutY="224.0">
          <children>
-            <JFXButton fx:id="btn_Save" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: skyblue;" text="Save Employee">
+            <JFXButton fx:id="btn_Save" onAction="#saveEmployee" onKeyReleased="#saveEmployeeKey" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: skyblue;" text="Save Employee">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                </HBox.margin>
@@ -94,12 +94,12 @@
                <children>
                   <TableView fx:id="tbl_employee" prefHeight="310.0" prefWidth="1276.0">
                      <columns>
-                        <TableColumn prefWidth="95.0" text="User ID" />
-                        <TableColumn prefWidth="223.0" text="Name" />
-                        <TableColumn minWidth="0.0" prefWidth="170.0" text="Date Of Birth" />
-                        <TableColumn prefWidth="168.0" text="NIC NO" />
-                        <TableColumn prefWidth="129.0" text="Join Date" />
-                        <TableColumn prefWidth="169.0" text="Activation status" />
+                        <TableColumn fx:id="tc_id" prefWidth="95.0" text="User ID" />
+                        <TableColumn fx:id="tc_name" prefWidth="223.0" text="Name" />
+                        <TableColumn fx:id="tc_dob" minWidth="0.0" prefWidth="170.0" text="Date Of Birth" />
+                        <TableColumn fx:id="tc_nic" prefWidth="168.0" text="NIC NO" />
+                        <TableColumn fx:id="tc_join_date" prefWidth="129.0" text="Join Date" />
+                        <TableColumn fx:id="tc_status" prefWidth="169.0" text="Activation status" />
                      </columns>
                      <effect>
                         <Blend />

@@ -889,4 +889,32 @@ public class DataReader {
         return already;
     }
 
+    public void fillEmployeeTable(TableView tblEmployee) {
+        ResultSet rs = null;
+        ObservableList<EmployeeController.EmployeeList> employeeList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT employee.id,employee.fname,employee.mname,employee.lname,employee.dob,employee.nic,employee.join_date,ad_status.status FROM employee INNER JOIN ad_status ON employee.ad_status_id = ad_status.id");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                //userType.resetAll();
+            }
+            while (rs.next()) {
+                String name = rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4);
+                employeeList.add(new EmployeeController.EmployeeList(rs.getInt(1),name, rs.getString(5), rs.getString(6),rs.getString(7), rs.getString(8)));
+            }
+            tblEmployee.setItems(employeeList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
 }

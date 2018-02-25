@@ -10,7 +10,7 @@ public class Employee {
     private String nic;
     private String joinDate;
     private String address;
-    private int contactNO;
+    private String contactNO;
     private String activatonStatus;
 
     public void resetAll() {
@@ -22,7 +22,7 @@ public class Employee {
         nic = "";
         joinDate = "";
         address = "";
-        contactNO = 0;
+        contactNO = "";
         activatonStatus = "";
     }
 
@@ -90,11 +90,11 @@ public class Employee {
         this.address = address;
     }
 
-    public int getContactNO() {
+    public String getContactNO() {
         return contactNO;
     }
 
-    public void setContactNO(int contactNO) {
+    public void setContactNO(String contactNO) {
         this.contactNO = contactNO;
     }
 
