@@ -32,6 +32,7 @@ public class DataReader {
     Contact contact;
     CompanyPartner companyPartner;
     CompanyList companyList;
+    Employee employee;
 
     public DataReader() {
         try {
@@ -50,6 +51,7 @@ public class DataReader {
                 contact = ObjectGenerator.getContact();
                 companyPartner = ObjectGenerator.getCompanyPartner();
                 companyList = ObjectGenerator.getCompanyList();
+                employee = ObjectGenerator.getEmployee();
             });
             readyData.setName("DataReader");
             readyData.start();
@@ -899,8 +901,8 @@ public class DataReader {
                 //userType.resetAll();
             }
             while (rs.next()) {
-                String name = rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4);
-                employeeList.add(new EmployeeController.EmployeeList(rs.getInt(1),name, rs.getString(5), rs.getString(6),rs.getString(7), rs.getString(8)));
+                String name = rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4);
+                employeeList.add(new EmployeeController.EmployeeList(rs.getInt(1), name, rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
             }
             tblEmployee.setItems(employeeList);
         } catch (Exception e) {
@@ -917,4 +919,52 @@ public class DataReader {
         }
     }
 
+    public void getEmployeeByEmployeeId() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT employee.id,employee.fname,employee.mname,employee.lname,employee.dob,employee.nic,employee.join_date,address.id,address.number,address.line_01,address.line_02,address.city,address.country,address.postal_code,contact.id,contact.mobile,contact.land,contact.fax,contact.email,contact.web,ad_status.id,ad_status.status FROM employee INNER JOIN address ON employee.address_id = address.id INNER JOIN contact ON employee.contact_id = contact.id INNER JOIN ad_status ON employee.ad_status_id = ad_status.id WHERE employee.id = ?");
+            pst.setInt(1, employee.getId());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                employee.resetAll();
+            }
+            while (rs.next()) {
+                employee.setId(rs.getInt(1));
+                employee.setFirstName(rs.getString(2));
+                employee.setMiddleName(rs.getString(3));
+                employee.setLastName(rs.getString(4));
+                employee.setDob(rs.getString(5));
+                employee.setNic(rs.getString(6));
+                employee.setJoinDate(rs.getString(7));
+
+                address.setId(rs.getInt(8));
+                address.setNumber(rs.getString(9));
+                address.setLine01(rs.getString(10));
+                address.setLine02(rs.getString(11));
+                address.setCity(rs.getString(12));
+                address.setCountry(rs.getString(13));
+                address.setPostalCode(rs.getString(14));
+
+                contact.setId(rs.getInt(15));
+                contact.setMobile(rs.getString(16));
+                contact.setLand(rs.getString(17));
+                contact.setFax(rs.getString(18));
+                contact.setEmail(rs.getString(19));
+                contact.setWeb(rs.getString(20));
+
+                adStatus.setId(rs.getInt(21));
+                adStatus.setStatus(rs.getString(22));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

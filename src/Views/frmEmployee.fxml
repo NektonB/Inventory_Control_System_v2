@@ -92,7 +92,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="269.0" prefWidth="1077.0">
                <children>
-                  <TableView fx:id="tbl_employee" prefHeight="310.0" prefWidth="1276.0">
+                  <TableView fx:id="tbl_employee" onKeyReleased="#selectEmloyeeKey" onMouseClicked="#selectEmloyee" prefHeight="310.0" prefWidth="1276.0">
                      <columns>
                         <TableColumn fx:id="tc_id" prefWidth="95.0" text="User ID" />
                         <TableColumn fx:id="tc_name" prefWidth="223.0" text="Name" />
