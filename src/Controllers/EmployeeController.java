@@ -92,6 +92,12 @@ public class EmployeeController implements Initializable {
     @FXML
     private JFXTextArea ta_Contact;
 
+    @FXML
+    private JFXTextField txt_type_id;
+
+    @FXML
+    private JFXTextField txt_type_name;
+
     DataWriter dataWriter;
     DataReader dataReader;
     Alerts alerts;
