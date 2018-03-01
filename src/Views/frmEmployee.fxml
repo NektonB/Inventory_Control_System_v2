@@ -120,7 +120,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btn_Update" layoutX="783.0" layoutY="231.0" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update Employee">
+      <JFXButton fx:id="btn_Update" layoutX="783.0" layoutY="231.0" onAction="#updateEmployee" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update Employee">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -133,7 +133,7 @@
          </font>
       </JFXButton>
       <Separator layoutY="330.0" prefHeight="2.0" prefWidth="961.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <JFXTextField fx:id="txt_type_name" labelFloat="true" layoutX="763.0" layoutY="358.0" prefHeight="25.0" prefWidth="189.0" promptText="Type Name To Search" AnchorPane.topAnchor="358.0">
+      <JFXTextField fx:id="txt_type_name" labelFloat="true" layoutX="763.0" layoutY="358.0" onKeyReleased="#filterEmployeeTableByName" prefHeight="25.0" prefWidth="189.0" promptText="Type Name To Search" AnchorPane.topAnchor="358.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -151,7 +151,7 @@
             <Blend />
          </effect>
       </TableView>
-      <JFXTextField fx:id="txt_type_id" labelFloat="true" layoutX="558.0" layoutY="358.0" prefHeight="25.0" prefWidth="189.0" promptText="Type ID To Search" AnchorPane.topAnchor="358.0">
+      <JFXTextField fx:id="txt_type_nic" labelFloat="true" layoutX="560.0" layoutY="358.0" onKeyReleased="#filterEmployeeTableByNic" prefHeight="25.0" prefWidth="189.0" promptText="Type ID To Search" AnchorPane.topAnchor="358.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
