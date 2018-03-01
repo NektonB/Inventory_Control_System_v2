@@ -151,7 +151,7 @@
             <Blend />
          </effect>
       </TableView>
-      <JFXTextField fx:id="txt_type_id" labelFloat="true" layoutX="558.0" layoutY="358.0" prefHeight="25.0" prefWidth="189.0" promptText="Type ID To Search" AnchorPane.topAnchor="358.0">
+      <JFXTextField fx:id="txt_type_id" labelFloat="true" layoutX="560.0" layoutY="371.0" onKeyReleased="#filterEmployeeTableByNic" prefHeight="25.0" prefWidth="189.0" promptText="Type ID To Search" AnchorPane.topAnchor="371.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

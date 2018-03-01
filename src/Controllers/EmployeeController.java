@@ -95,8 +95,6 @@ public class EmployeeController implements Initializable {
     @FXML
     private JFXTextField txt_type_id;
 
-    @FXML
-    private JFXTextField txt_type_name;
 
     DataWriter dataWriter;
     DataReader dataReader;
@@ -257,6 +255,72 @@ public class EmployeeController implements Initializable {
         }
     }
 
+    public void selectEmloyee() {
+        try {
+            if (!tbl_employee.getSelectionModel().isEmpty()) {
+
+                EmployeeList employeeList = tbl_employee.getSelectionModel().getSelectedItem();
+
+                employee.setId(employeeList.id.get());
+                dataReader.getEmployeeByEmployeeId();
+
+                txt_Employee_Id.setText(Integer.toString(employee.getId()));
+                txt_First_Name.setText((employee.getFirstName()));
+                txt_Middle_Name.setText((employee.getMiddleName()));
+                txt_Last_Name.setText((employee.getLastName()));
+                dp_date_of_birth.setValue(LocalDate.parse(employee.getDob()));
+                txt_NIC_No.setText((employee.getNic()));
+                dp_join_date.setValue(LocalDate.parse(employee.getJoinDate()));
+
+                txt_AddressId.setText(Integer.toString(address.getId()));
+                String address01 = address.getNumber() + "" +
+                        ",\n" + address.getLine01() + "" +
+                        ",\n" + address.getLine02() + "" +
+                        ",\n" + address.getCity() + "" +
+                        ",\n" + address.getCountry() + "" +
+                        ",\n" + address.getPostalCode() + ".";
+                ta_address.setText(address01);
+
+                txt_Contact_Id.setText(Integer.toString(contact.getId()));
+                String contact01 = "" +
+                        "Mobile.............." + contact.getMobile() + "\n" +
+                        "Land.................." + contact.getLand() + "\n" +
+                        "Fax....................." + contact.getFax() + "\n" +
+                        "Email................." + contact.getEmail() + "\n" +
+                        "Web.................." + contact.getWeb();
+                ta_Contact.setText(contact01);
+
+                cmb_Activation_status.setValue(adStatus.getStatus());
+
+
+                address.resetAll();
+                contact.resetAll();
+                adStatus.resetAll();
+                employee.resetAll();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void selectEmloyeeKey(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.UP) | event.getCode().equals(KeyCode.DOWN)) {
+            selectEmloyee();
+        }
+    }
+
+    public void filterEmployeeTableByNic(KeyEvent event) {
+        try {
+            employee.setNic(txt_type_id.getText());
+            dataReader.filterEmployeeTableByNic(tbl_employee);
+            employee.resetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
     public static class EmployeeList {
         SimpleIntegerProperty id;
         SimpleStringProperty name;
@@ -344,61 +408,6 @@ public class EmployeeController implements Initializable {
 
         public void setStatus(String status) {
             this.status.set(status);
-        }
-    }
-
-    public void selectEmloyee() {
-        try {
-            if (!tbl_employee.getSelectionModel().isEmpty()) {
-
-                EmployeeList employeeList = tbl_employee.getSelectionModel().getSelectedItem();
-
-                employee.setId(employeeList.id.get());
-                dataReader.getEmployeeByEmployeeId();
-
-                txt_Employee_Id.setText(Integer.toString(employee.getId()));
-                txt_First_Name.setText((employee.getFirstName()));
-                txt_Middle_Name.setText((employee.getMiddleName()));
-                txt_Last_Name.setText((employee.getLastName()));
-                dp_date_of_birth.setValue(LocalDate.parse(employee.getDob()));
-                txt_NIC_No.setText((employee.getNic()));
-                dp_join_date.setValue(LocalDate.parse(employee.getJoinDate()));
-
-                txt_AddressId.setText(Integer.toString(address.getId()));
-                String address01 = address.getNumber() + "" +
-                        ",\n" + address.getLine01() + "" +
-                        ",\n" + address.getLine02() + "" +
-                        ",\n" + address.getCity() + "" +
-                        ",\n" + address.getCountry() + "" +
-                        ",\n" + address.getPostalCode() + ".";
-                ta_address.setText(address01);
-
-                txt_Contact_Id.setText(Integer.toString(contact.getId()));
-                String contact01 = "" +
-                        "Mobile.............." + contact.getMobile() + "\n" +
-                        "Land.................." + contact.getLand() + "\n" +
-                        "Fax....................." + contact.getFax() + "\n" +
-                        "Email................." + contact.getEmail() + "\n" +
-                        "Web.................." + contact.getWeb();
-                ta_Contact.setText(contact01);
-
-                cmb_Activation_status.setValue(adStatus.getStatus());
-
-
-                address.resetAll();
-                contact.resetAll();
-                adStatus.resetAll();
-                employee.resetAll();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void selectEmloyeeKey(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.UP) | event.getCode().equals(KeyCode.DOWN)) {
-            selectEmloyee();
         }
     }
 }
