@@ -36,6 +36,7 @@ public class DataReader {
     Category category;
     Unit unit;
     CustomerType customerType;
+    Customer customer;
 
     public DataReader() {
         try {
@@ -58,6 +59,7 @@ public class DataReader {
                 category = ObjectGenerator.getCategory();
                 unit = ObjectGenerator.getUnit();
                 customerType = ObjectGenerator.getCustomerType();
+                customer=ObjectGenerator.getCustomer();
             });
             readyData.setName("DataReader");
             readyData.start();
@@ -1326,7 +1328,7 @@ public class DataReader {
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
                 customerType.resetAll();
-        }
+            }
             while (rs.next()) {
                 cmbCustomerType.getItems().add(rs.getString(1));
             }
@@ -1372,16 +1374,16 @@ public class DataReader {
         ResultSet rs = null;
         ObservableList<CustomerController.CustomerList> customerLists = FXCollections.observableArrayList();
         try {
-            pst = conn.prepareStatement("SELECT customer.id,customer.fname,customer.mname,customer.lname,customer.nic,customer.join_date,ad_status.status FROM employee INNER JOIN ad_status ON employee.ad_status_id = ad_status.id");
+            pst = conn.prepareStatement("SELECT customer.id,customer.fname,customer.mname,customer.lname,customer.nic,customer.join_date,customer_type.type,ad_status.status FROM customer INNER JOIN customer_type ON customer.customer_type_id=customer_type.id INNER JOIN ad_status ON customer.ad_status_id = ad_status.id");
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
                 //userType.resetAll();
             }
             while (rs.next()) {
                 String name = rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4);
-                employeeList.add(new EmployeeController.EmployeeList(rs.getInt(1), name, rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                customerLists.add(new CustomerController.CustomerList(rs.getInt(1),name, rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8)));
             }
-            tblEmployee.setItems(employeeList);
+            tblCustomer.setItems(customerLists);
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
