@@ -35,6 +35,7 @@ public class DataReader {
     Employee employee;
     Category category;
     Unit unit;
+    CustomerType customerType;
 
     public DataReader() {
         try {
@@ -1310,6 +1311,30 @@ public class DataReader {
             try {
                 pst.close();
                 rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void fillCustomerTypeCombo(JFXComboBox cmbCustomerType) {
+        ResultSet rs = null;
+        cmbCustomerType.getItems().clear();
+        try {
+            pst = conn.prepareStatement("SELECT type FROM  customer_type");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                customerType.resetAll();
+        }
+            while (rs.next()) {
+                cmbCustomerType.getItems().add(rs.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }

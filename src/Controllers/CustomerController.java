@@ -56,7 +56,7 @@ public class CustomerController implements Initializable {
     private JFXDatePicker dp_join_date;
 
     @FXML
-    private JFXComboBox<?> txt_customer_type;
+    private JFXComboBox<String> cmb_customer_type;
 
     @FXML
     private JFXComboBox<String> cmb_activation_status;
@@ -126,12 +126,13 @@ public class CustomerController implements Initializable {
 
                 dateFormatConverter.convert(dp_join_date, "yyyy-MM-dd");
                 dataReader.fillStatusCombo(cmb_activation_status);
-                //dataReader.fillCustomerTable(tbl_customer);
+                dataReader.fillCustomerTypeCombo(cmb_customer_type);
             });
             readyData.setName("Customer Controller");
             readyData.start();
             redyCustomerTable();
             cmb_activation_status.setValue("ACTIVE");
+            cmb_customer_type.setValue("NORMAL");
         } catch (Exception e) {
             e.printStackTrace();
         }

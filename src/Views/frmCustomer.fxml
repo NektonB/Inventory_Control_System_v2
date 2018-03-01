@@ -22,7 +22,7 @@
    <children>
       <VBox layoutX="22.0" layoutY="14.0" AnchorPane.topAnchor="14.0">
          <children>
-            <JFXTextField fx:id="txt_customer_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Custommer ID">
+            <JFXTextField fx:id="txt_customer_id" editable="false" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Custommer ID">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
@@ -54,7 +54,7 @@
       </VBox>
       <VBox layoutX="292.0" layoutY="25.0" AnchorPane.topAnchor="13.0">
          <children>
-            <JFXTextField fx:id="txt_address_id" labelFloat="true" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="218.0" promptText="Address ID">
+            <JFXTextField fx:id="txt_address_id" editable="false" labelFloat="true" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="218.0" promptText="Address ID">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
@@ -62,12 +62,12 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextArea fx:id="ta_address" labelFloat="true" prefHeight="63.0" prefWidth="202.0" promptText="Address">
+            <JFXTextArea fx:id="ta_address" editable="false" labelFloat="true" prefHeight="63.0" prefWidth="202.0" promptText="Address">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXTextArea>
-            <JFXTextField fx:id="txt_contact_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Contact ID">
+            <JFXTextField fx:id="txt_contact_id" editable="false" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Contact ID">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
@@ -75,7 +75,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextArea fx:id="ta_contact" labelFloat="true" prefHeight="63.0" prefWidth="218.0" promptText="Contact">
+            <JFXTextArea fx:id="ta_contact" editable="false" labelFloat="true" prefHeight="63.0" prefWidth="218.0" promptText="Contact">
                <padding>
                   <Insets bottom="10.0" />
                </padding>
@@ -95,7 +95,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXDatePicker>
-            <JFXComboBox fx:id="txt_customer_type" prefHeight="25.0" prefWidth="218.0" promptText="Customer Type">
+            <JFXComboBox fx:id="cmb_customer_type" prefHeight="25.0" prefWidth="218.0" promptText="Customer Type">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
