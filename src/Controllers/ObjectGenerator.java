@@ -222,7 +222,7 @@ public class ObjectGenerator {
 
         return customerType;
     }
-    
+
     public static Product getProduct() {
         if (product == null) {
             product = new Product();
