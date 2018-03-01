@@ -1194,4 +1194,36 @@ public class DataReader {
             }
         }
     }
+
+    /**
+     * Get Unit Details using Category Name.
+     * Search
+     */
+    public void getUnitByUnit() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT * FROM unit  WHERE  unit = ?");
+            pst.setString(1, unit.getUnit());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                unit.resetAll();
+            }
+            while (rs.next()) {
+                unit.setId(rs.getInt(1));
+                unit.setUnit(rs.getString(2));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
 }

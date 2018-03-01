@@ -207,4 +207,14 @@ public class ProductController implements Initializable {
             }
         }
     }
+
+    public void getUnitByName() {
+        try {
+            unit.setUnit(cmbUnit.getValue());
+            dataReader.getUnitByUnit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
 }
