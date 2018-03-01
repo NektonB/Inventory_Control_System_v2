@@ -308,4 +308,15 @@ public class ProductController implements Initializable {
         saveCompany(event);
         updateCompany(event);
     }
+
+    public void cmbSupplierKey(KeyEvent event){
+        try {
+            if (event.isControlDown() & event.getCode().equals(KeyCode.S)) {
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
 }

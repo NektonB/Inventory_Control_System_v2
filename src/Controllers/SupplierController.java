@@ -575,7 +575,7 @@ public class SupplierController implements Initializable {
             int updateCompanyList = updateCompanyList();
             if (updateCompanyList > 0) {
                 supplier.setId(Integer.parseInt(txtSupplierId.getText()));
-                supplier.setName(txtSupplierId.getText());
+                supplier.setName(txtName.getText());
                 supplier.setJoinDate(dpJoinDate.getValue().toString());
                 address.setId(Integer.parseInt(txtAddressId.getText()));
                 contact.setId(Integer.parseInt(txtContactId.getText()));
