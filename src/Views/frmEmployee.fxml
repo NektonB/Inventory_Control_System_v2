@@ -13,19 +13,21 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1000.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeController">
    <children>
-      <VBox layoutX="29.0" layoutY="33.0" AnchorPane.topAnchor="35.0">
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="325.0" prefWidth="343.0" AnchorPane.topAnchor="14.0">
          <children>
-            <JFXTextField fx:id="txt_Employee_Id" labelFloat="true" prefHeight="29.0" prefWidth="247.0" promptText="User ID">
+            <JFXTextField fx:id="txt_Employee_Id" editable="false" labelFloat="true" prefHeight="29.0" prefWidth="247.0" promptText="Employee ID">
                <font>
                   <Font size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" right="200.0" top="10.0" />
                </VBox.margin>
             </JFXTextField>
             <JFXTextField fx:id="txt_First_Name" labelFloat="true" prefHeight="29.0" prefWidth="247.0" promptText="First Name">
@@ -57,7 +59,7 @@
                   <Font size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" right="100.0" top="10.0" />
                </VBox.margin>
             </JFXTextField>
             <JFXDatePicker fx:id="dp_date_of_birth" prefHeight="25.0" prefWidth="247.0" promptText="Date Of Birth">
@@ -67,7 +69,7 @@
             </JFXDatePicker>
          </children>
       </VBox>
-      <VBox layoutX="326.0" layoutY="35.0" prefHeight="284.0" prefWidth="257.0" AnchorPane.topAnchor="35.0">
+      <VBox layoutX="390.0" layoutY="14.0" prefHeight="264.0" prefWidth="257.0" AnchorPane.topAnchor="14.0">
          <children>
             <JFXDatePicker fx:id="dp_join_date" prefHeight="25.0" prefWidth="257.0" promptText="Join Date">
                <VBox.margin>
@@ -79,20 +81,20 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextArea fx:id="ta_address" labelFloat="true" prefHeight="83.0" prefWidth="257.0" promptText="Address">
+            <JFXTextArea fx:id="ta_address" labelFloat="true" prefHeight="132.0" prefWidth="257.0" promptText="Address">
                <VBox.margin>
-                  <Insets top="18.0" />
+                  <Insets bottom="10.0" top="18.0" />
                </VBox.margin>
             </JFXTextArea>
-            <JFXComboBox fx:id="cmb_Activation_status" labelFloat="true" prefHeight="25.0" prefWidth="257.0" promptText="Activation Status">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </JFXComboBox>
          </children>
       </VBox>
-      <VBox layoutX="620.0" layoutY="33.0" prefHeight="166.0" prefWidth="257.0">
+      <VBox layoutX="675.0" layoutY="14.0" prefHeight="264.0" prefWidth="257.0">
          <children>
+            <JFXComboBox fx:id="cmb_Activation_status" labelFloat="true" prefHeight="25.0" prefWidth="257.0" promptText="Activation Status">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </VBox.margin>
+            </JFXComboBox>
             <JFXTextField fx:id="txt_Contact_Id" labelFloat="true" onKeyReleased="#loadContactManager" prefHeight="29.0" prefWidth="257.0" promptText="Contact ID">
                <font>
                   <Font size="13.0" />
@@ -101,60 +103,84 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextArea fx:id="ta_Contact" labelFloat="true" prefHeight="83.0" prefWidth="257.0" promptText="Contact">
+            <JFXTextArea fx:id="ta_Contact" labelFloat="true" prefHeight="125.0" prefWidth="257.0" promptText="Contact">
                <VBox.margin>
                   <Insets top="25.0" />
                </VBox.margin>
             </JFXTextArea>
          </children>
       </VBox>
-      <JFXButton fx:id="btn_Save" layoutX="620.0" layoutY="231.0" onAction="#saveEmployee" onKeyReleased="#saveEmployeeKey" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save Employee">
-         <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Graphics/AddUser32.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="btn_Update" layoutX="783.0" layoutY="231.0" onAction="#updateEmployee" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update Employee">
-         <graphic>
-            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Graphics/UpdateUser32.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </JFXButton>
-      <Separator layoutY="330.0" prefHeight="2.0" prefWidth="961.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <JFXTextField fx:id="txt_type_name" labelFloat="true" layoutX="763.0" layoutY="358.0" onKeyReleased="#filterEmployeeTableByName" prefHeight="25.0" prefWidth="189.0" promptText="Type Name To Search" AnchorPane.topAnchor="358.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </JFXTextField>
-      <TableView fx:id="tbl_employee" layoutX="-18.0" layoutY="397.0" onKeyReleased="#selectEmloyeeKey" onMouseClicked="#selectEmloyee" prefHeight="274.0" prefWidth="1018.0">
-         <columns>
-            <TableColumn fx:id="tc_id" prefWidth="95.0" text="User ID" />
-            <TableColumn fx:id="tc_name" prefWidth="223.0" text="Name" />
-            <TableColumn fx:id="tc_dob" minWidth="0.0" prefWidth="170.0" text="Date Of Birth" />
-            <TableColumn fx:id="tc_nic" prefWidth="168.0" text="NIC NO" />
-            <TableColumn fx:id="tc_join_date" prefWidth="129.0" text="Join Date" />
-            <TableColumn fx:id="tc_status" prefWidth="169.0" text="Activation status" />
-         </columns>
-         <effect>
-            <Blend />
-         </effect>
-      </TableView>
-      <JFXTextField fx:id="txt_type_nic" labelFloat="true" layoutX="560.0" layoutY="358.0" onKeyReleased="#filterEmployeeTableByNic" prefHeight="25.0" prefWidth="189.0" promptText="Type ID To Search" AnchorPane.topAnchor="358.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </JFXTextField>
+      <HBox layoutX="657.0" layoutY="278.0">
+         <children>
+            <JFXButton fx:id="btn_Save" onAction="#saveEmployee" onKeyReleased="#saveEmployeeKey" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save Employee">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Graphics/AddUser32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="btn_Update" onAction="#updateEmployee" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update Employee">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Graphics/UpdateUser32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
+      <Separator layoutY="333.0" prefHeight="0.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Pane layoutY="335.0" prefHeight="334.0" prefWidth="1000.0">
+         <children>
+            <HBox layoutX="608.0" prefHeight="45.0" prefWidth="412.0">
+               <children>
+                  <JFXTextField fx:id="txt_type_nic" labelFloat="true" onKeyReleased="#filterEmployeeTableByNic" prefHeight="25.0" prefWidth="189.0" promptText="Type ID To Search">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txt_type_name" labelFloat="true" onKeyReleased="#filterEmployeeTableByName" prefHeight="25.0" prefWidth="189.0" promptText="Type Name To Search">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+            </HBox>
+            <TableView fx:id="tbl_employee" layoutY="45.0" onKeyReleased="#selectEmloyeeKey" onMouseClicked="#selectEmloyee" prefHeight="295.0" prefWidth="1000.0">
+               <columns>
+                  <TableColumn fx:id="tc_id" prefWidth="100.0" text="User ID" />
+                  <TableColumn fx:id="tc_name" prefWidth="267.0" text="Name" />
+                  <TableColumn fx:id="tc_dob" minWidth="0.0" prefWidth="170.0" text="Date Of Birth" />
+                  <TableColumn fx:id="tc_nic" prefWidth="168.0" text="NIC NO" />
+                  <TableColumn fx:id="tc_join_date" prefWidth="129.0" text="Join Date" />
+                  <TableColumn fx:id="tc_status" prefWidth="169.0" text="Status" />
+               </columns>
+               <effect>
+                  <Blend />
+               </effect>
+            </TableView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
