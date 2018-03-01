@@ -1128,4 +1128,38 @@ public class DataReader {
             }
         }
     }
+
+    /**
+     * Check Unit is already
+     * if already return true.else false
+     */
+    public boolean checkUnitAlready(String unit) {
+        boolean already = false;
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT * FROM unit WHERE unit = ?");
+            pst.setString(1, unit);
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                company.resetAll();
+                already = false;
+            }
+            if (rs.next()) {
+                already = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return already;
+    }
 }

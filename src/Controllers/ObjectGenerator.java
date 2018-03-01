@@ -27,6 +27,7 @@ public class ObjectGenerator {
     private static CompanyList companyList;
     private static Employee employee;
     private static Category category;
+    private static Unit unit;
 
     public static synchronized void readyAll() {
         try {
@@ -175,7 +176,7 @@ public class ObjectGenerator {
         return companyList;
     }
 
-    public static Employee getEmployee(){
+    public static Employee getEmployee() {
         if (employee == null) {
             employee = new Employee();
         }
@@ -187,5 +188,12 @@ public class ObjectGenerator {
             category = new Category();
         }
         return category;
+    }
+
+    public static Unit getUnit() {
+        if (unit == null) {
+            unit = new Unit();
+        }
+        return unit;
     }
 }

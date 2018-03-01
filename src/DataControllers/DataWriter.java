@@ -609,4 +609,31 @@ public class DataWriter {
         return saveDone;
 
     }
+
+    /**
+     * Save all input data in Unit Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveUnit() {
+        int saveDone = 0;
+        //ResultSet rs;
+        try {
+            pst = conn.prepareStatement("INSERT INTO category(name) VALUES(?)");
+            pst.setString(1, category.getName());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
 }

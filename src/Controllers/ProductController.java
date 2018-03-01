@@ -2,10 +2,7 @@ package Controllers;
 
 import DataControllers.DataReader;
 import DataControllers.DataWriter;
-import Modules.Address;
-import Modules.Category;
-import Modules.Company;
-import Modules.ComponentSwitcher;
+import Modules.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -98,6 +95,7 @@ public class ProductController implements Initializable {
     DateFormatConverter dateFormatConverter;
     Company company;
     Category category;
+    Unit unit;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -115,6 +113,7 @@ public class ProductController implements Initializable {
                 company = ObjectGenerator.getCompany();
                 dateFormatConverter = ObjectGenerator.getDateFormatConverter();
                 category = ObjectGenerator.getCategory();
+                unit = ObjectGenerator.getUnit();
 
                 dataReader.fillCompanyCombo(cmbCompany);
                 dataReader.fillStatusCombo(cmbStatus);
@@ -183,5 +182,28 @@ public class ProductController implements Initializable {
     public void cmbCategoryKey(KeyEvent event) {
         saveCategory(event);
         updateCategory(event);
+    }
+
+    public void saveUnit(KeyEvent event) {
+        if (event.isControlDown() & event.getCode().equals(KeyCode.S)) {
+            try {
+                boolean unitAlready = dataReader.checkUnitAlready(cmbUnit.getValue());
+                if (unitAlready) {
+                    unit.resetAll();
+                    alerts.getWarningAlert("Warning", "Data Duplication", "Sorry Chief..! Unit is you entered.already in my database.Please try another..");
+                } else {
+                    unit.setUnit(cmbUnit.getValue());
+                    int saveCategory = dataWriter.saveUnit();
+                    if (saveCategory > 0) {
+                        category.resetAll();
+                        dataReader.fillCategoryCombo(cmbCategory);
+                        alerts.getInformationAlert("Information", "Category Save", "Congratulation Chief..!\nCategory save successful");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
     }
 }
