@@ -4,14 +4,25 @@ import DataControllers.DataReader;
 import DataControllers.DataWriter;
 import Modules.*;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,16 +60,16 @@ public class ProductController implements Initializable {
     private JFXButton btnAddSupplier;
 
     @FXML
-    private TableView<?> tblSupplier;
+    private TableView<SupplierList> tblSupplier;
 
     @FXML
-    private TableColumn<?, ?> tcCompanyId;
+    private TableColumn<SupplierList, Integer> tcSupplierId;
 
     @FXML
-    private TableColumn<?, ?> tcCompanyName;
+    private TableColumn<SupplierList, String> tcSupplierName;
 
     @FXML
-    private TableColumn<?, ?> tcPartner;
+    private TableColumn<SupplierList, JFXCheckBox> tcPartner;
 
     @FXML
     private JFXButton btnSave;
@@ -96,6 +107,7 @@ public class ProductController implements Initializable {
     Company company;
     Category category;
     Unit unit;
+    Supplier supplier;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -114,6 +126,7 @@ public class ProductController implements Initializable {
                 dateFormatConverter = ObjectGenerator.getDateFormatConverter();
                 category = ObjectGenerator.getCategory();
                 unit = ObjectGenerator.getUnit();
+                supplier = ObjectGenerator.getSupplier();
 
                 dataReader.fillCompanyCombo(cmbCompany);
                 dataReader.fillStatusCombo(cmbStatus);
@@ -125,9 +138,16 @@ public class ProductController implements Initializable {
             readyData.setName("Product Controller");
             readyData.start();
             cmbStatus.setValue("ACTIVE");
+            readyCompanyTable();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void readyCompanyTable() {
+        tcSupplierId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tcSupplierName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tcPartner.setCellValueFactory(new PropertyValueFactory<>("cbSelect"));
     }
 
     /**
@@ -309,14 +329,126 @@ public class ProductController implements Initializable {
         updateCompany(event);
     }
 
-    public void cmbSupplierKey(KeyEvent event){
+    public void cmbSupplierKey(KeyEvent event) {
         try {
             if (event.isControlDown() & event.getCode().equals(KeyCode.S)) {
-                
+                Stage supplierStage = new Stage();
+                Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmSupplier.fxml"));
+                supplierStage.setTitle("Supplier Management");
+                Scene scene = new Scene(frmUser);
+                supplierStage.setScene(scene);
+                supplierStage.initStyle(StageStyle.UTILITY);
+                supplierStage.setResizable(false);
+                supplierStage.initModality(Modality.APPLICATION_MODAL);
+                supplierStage.show();
+            }
+            addCompanyToList(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    /**
+     * Search Supplier details by Name when combo box hiding
+     */
+    public void searchCompanyDetailByName() {
+        try {
+            if (!cmbSupplier.getValue().isEmpty()) {
+                supplier.setName(cmbSupplier.getValue());
+                dataReader.getSupplierByName();
             }
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
+        }
+    }
+
+    /**
+     * Add company to company table using enter key
+     */
+    public void addCompanyToList(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            try {
+                boolean already = false;
+                ObservableList<? extends TableColumn<?, ?>> columns = tblSupplier.getColumns();
+
+                /*
+                 * Search duplicates in the company table*/
+                if (!tblSupplier.getItems().isEmpty()) {
+                    for (int i = 0; i < tblSupplier.getItems().size(); ++i) {
+                        if (columns.get(1).getCellObservableValue(i).getValue().equals(cmbSupplier.getValue())) {
+                            JFXCheckBox cb = (JFXCheckBox) columns.get(2).getCellObservableValue(i).getValue();
+                            if (cb.isSelected()) {
+                                System.out.println("Ok");
+                            }
+                            already = true;
+                            if (already) {
+                                break;
+                            }
+                        } else {
+                            already = false;
+                        }
+                    }
+                }
+
+                if (!already) {
+                    ObservableList<SupplierList> companyList = tblSupplier.getItems();
+                    JFXCheckBox cbSelect = new JFXCheckBox();
+                    cbSelect.setSelected(true);
+                    companyList.add(new SupplierList(supplier.getId(), supplier.getName(), cbSelect));
+                    company.resetAll();
+                } else {
+                    alerts.getWarningNotify("Warning", "This company already in the table.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    public static class SupplierList {
+        SimpleIntegerProperty id;
+        SimpleStringProperty name;
+        JFXCheckBox cbSelect;
+
+        public SupplierList(int id, String name, JFXCheckBox cbSelect) {
+            this.id = new SimpleIntegerProperty(id);
+            this.name = new SimpleStringProperty(name);
+            this.cbSelect = cbSelect;
+        }
+
+        public int getId() {
+            return id.get();
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id.set(id);
+        }
+
+        public String getName() {
+            return name.get();
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name.set(name);
+        }
+
+        public JFXCheckBox getCbSelect() {
+            return cbSelect;
+        }
+
+        public void setCbSelect(JFXCheckBox cbSelect) {
+            this.cbSelect = cbSelect;
         }
     }
 }

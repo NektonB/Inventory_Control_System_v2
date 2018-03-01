@@ -1257,4 +1257,63 @@ public class DataReader {
         }
     }
 
+    /**
+     * Get Supplier Details using Supplier Name.
+     * Search
+     */
+    public void getSupplierByName() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT supplier.id,supplier.namel,supplier.join_date,a.id,a.number,a.line_01,a.line_02,a.city,a.country,a.postal_code,ct.id,ct.mobile,ct.land,ct.fax,ct.email,ct.web,st.id,st.type,ad.id,ad.status,supplier.partner_id FROM supplier INNER JOIN address a ON supplier.address_id = a.id INNER JOIN contact ct ON supplier.contact_id = ct.id INNER JOIN ad_status ad ON supplier.ad_status_id = ad.id INNER JOIN supplier_type st ON supplier.type_id = st.id WHERE  supplier.namel = ?");
+            pst.setString(1, supplier.getName());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                supplier.resetAll();
+                address.resetAll();
+                contact.resetAll();
+                supplierType.resetAll();
+                adStatus.resetAll();
+                companyPartner.resetAll();
+            }
+            if (rs.next()) {
+                supplier.setId(rs.getInt(1));
+                supplier.setName(rs.getString(2));
+                supplier.setJoinDate(rs.getString(3));
+
+                address.setId(rs.getInt(4));
+                address.setNumber(rs.getString(5));
+                address.setLine01(rs.getString(6));
+                address.setLine02(rs.getString(7));
+                address.setCity(rs.getString(8));
+                address.setCountry(rs.getString(9));
+                address.setPostalCode(rs.getString(10));
+
+                contact.setId(rs.getInt(11));
+                contact.setMobile(rs.getString(12));
+                contact.setLand(rs.getString(13));
+                contact.setFax(rs.getString(14));
+                contact.setEmail(rs.getString(15));
+                contact.setWeb(rs.getString(16));
+
+                supplierType.setId(rs.getInt(17));
+                supplierType.setType(rs.getString(18));
+
+                adStatus.setId(rs.getInt(19));
+                adStatus.setStatus(rs.getString(20));
+
+                companyPartner.setId(rs.getInt(21));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

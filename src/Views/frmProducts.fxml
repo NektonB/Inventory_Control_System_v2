@@ -69,7 +69,7 @@
                   </JFXTextField>
                   <HBox prefHeight="41.0" prefWidth="270.0">
                      <children>
-                        <JFXComboBox fx:id="cmbSupplier" editable="true" prefHeight="31.0" prefWidth="247.0" promptText="Supplier">
+                        <JFXComboBox fx:id="cmbSupplier" editable="true" labelFloat="true" onHidden="#searchCompanyDetailByName" onKeyReleased="#cmbSupplierKey" prefHeight="31.0" prefWidth="247.0" promptText="Supplier">
                            <HBox.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </HBox.margin>
@@ -86,8 +86,8 @@
                   </HBox>
                   <TableView fx:id="tblSupplier" prefHeight="167.0" prefWidth="346.0">
                      <columns>
-                        <TableColumn fx:id="tcCompanyId" prefWidth="70.0" resizable="false" text="Id" />
-                        <TableColumn fx:id="tcCompanyName" editable="false" prefWidth="235.0" resizable="false" text="Supplier" />
+                        <TableColumn fx:id="tcSupplierId" prefWidth="70.0" resizable="false" text="Id" />
+                        <TableColumn fx:id="tcSupplierName" editable="false" prefWidth="235.0" resizable="false" text="Supplier" />
                         <TableColumn fx:id="tcPartner" prefWidth="40.0" text="#" />
                      </columns>
                   </TableView>

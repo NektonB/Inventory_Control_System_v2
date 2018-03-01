@@ -9,9 +9,7 @@ public class Employee {
     private String dob;
     private String nic;
     private String joinDate;
-    private String address;
-    private String contactNO;
-    private String activatonStatus;
+
 
     public void resetAll() {
         id = 0;
@@ -21,9 +19,6 @@ public class Employee {
         dob = "";
         nic = "";
         joinDate = "";
-        address = "";
-        contactNO = "";
-        activatonStatus = "";
     }
 
     public int getId() {
@@ -82,27 +77,4 @@ public class Employee {
         this.joinDate = joinDate;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getContactNO() {
-        return contactNO;
-    }
-
-    public void setContactNO(String contactNO) {
-        this.contactNO = contactNO;
-    }
-
-    public String getActivatonStatus() {
-        return activatonStatus;
-    }
-
-    public void setActivatonStatus(String activatonStatus) {
-        this.activatonStatus = activatonStatus;
-    }
 }

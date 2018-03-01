@@ -439,6 +439,7 @@ public class SupplierController implements Initializable {
                     supplier.resetAll();
                     resetText();
                     //dataReader.fillCompanyCombo(cmbCompany);
+                    dataReader.fillSupplierTable(tblSupplier);
                     alerts.getInformationAlert("Information", "Supplier Registration", "Congratulation Chief..!\nSupplier registration successful");
                 }
             }
