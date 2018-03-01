@@ -243,6 +243,7 @@ public class EmployeeController implements Initializable {
                 address.resetAll();
 
                 resetText();
+                dataReader.fillEmployeeTable(tbl_employee);
                 alerts.getInformationAlert("Information", "Employee Registration", "Congratulation Chief..!\nEmployee registration successful");
             }
         } catch (Exception e) {
@@ -329,6 +330,38 @@ public class EmployeeController implements Initializable {
             employee.setNic(txt_type_name.getText());
             dataReader.filterEmployeeTableByName(tbl_employee);
             employee.resetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void updateEmployee() {
+        try {
+            employee.setId(Integer.parseInt(txt_Employee_Id.getText()));
+            employee.setFirstName(txt_First_Name.getText());
+            employee.setMiddleName(txt_Middle_Name.getText());
+            employee.setLastName(txt_Last_Name.getText());
+            employee.setDob(dp_date_of_birth.getValue().toString());
+            employee.setNic(txt_NIC_No.getText());
+            employee.setJoinDate(dp_join_date.getValue().toString());
+            address.setId(Integer.parseInt(txt_AddressId.getText()));
+            contact.setId(Integer.parseInt(txt_Contact_Id.getText()));
+
+            adStatus.setStatus(cmb_Activation_status.getValue());
+            dataReader.getStatusDetailsByStatus();
+
+            int updateEmployee = dataWriter.updateEmployee();
+            if (updateEmployee > 0) {
+                employee.resetAll();
+                contact.resetAll();
+                adStatus.resetAll();
+                address.resetAll();
+
+                resetText();
+                dataReader.fillEmployeeTable(tbl_employee);
+                alerts.getInformationAlert("Information", "Employee Update modification", "Congratulation Chief..!\nEmployee registration successful");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);

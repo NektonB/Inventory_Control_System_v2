@@ -120,7 +120,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btn_Update" layoutX="783.0" layoutY="231.0" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update Employee">
+      <JFXButton fx:id="btn_Update" layoutX="783.0" layoutY="231.0" onAction="#updateEmployee" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update Employee">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
