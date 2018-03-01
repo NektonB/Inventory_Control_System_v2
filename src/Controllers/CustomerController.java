@@ -71,22 +71,22 @@ public class CustomerController implements Initializable {
     private TableView<?> tbl_customer;
 
     @FXML
-    private TableColumn<?, ?> tc_id;
+    private TableColumn<CustomerList, Integer> tc_id;
 
     @FXML
-    private TableColumn<?, ?> tc_name;
+    private TableColumn<CustomerList, String> tc_name;
 
     @FXML
-    private TableColumn<?, ?> tc_nic;
+    private TableColumn<CustomerList, String> tc_nic;
 
     @FXML
-    private TableColumn<?, ?> tc_joindate;
+    private TableColumn<CustomerList, String> tc_joindate;
 
     @FXML
-    private TableColumn<?, ?> tc_cutomer_type;
+    private TableColumn<CustomerList, String> tc_cutomer_type;
 
     @FXML
-    private TableColumn<?, ?> tc_avtivation_status;
+    private TableColumn<CustomerList, String> tc_avtivation_status;
 
     @FXML
     private JFXTextField txt_type_nic;
@@ -130,6 +130,7 @@ public class CustomerController implements Initializable {
                 dateFormatConverter.convert(dp_join_date, "yyyy-MM-dd");
                 dataReader.fillStatusCombo(cmb_activation_status);
                 dataReader.fillCustomerTypeCombo(cmb_customer_type);
+                dataReader.fillCustomerTable(tbl_customer);
             });
             readyData.setName("Customer Controller");
             readyData.start();
@@ -241,12 +242,19 @@ public class CustomerController implements Initializable {
                 address.resetAll();
 
                 resetText();
-                // dataReader.fillEmployeeTable(tbl_customer);
+                dataReader.fillCustomerTable(tbl_customer);
                 alerts.getInformationAlert("Information", "Customer Registration", "Congratulation Chief..!\nEmployee registration successful");
             }
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
+        }
+    }
+
+    public void saveCustomerKey(KeyEvent event) {
+
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            saveCustomer();
         }
     }
 

@@ -109,7 +109,7 @@
       <Separator layoutX="8.0" layoutY="322.0" prefHeight="3.0" prefWidth="868.0" />
       <HBox layoutX="519.0" layoutY="329.0">
          <children>
-            <JFXButton fx:id="btn_Save" onAction="#saveCustomer" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
+            <JFXButton fx:id="btn_Save" onAction="#saveCustomer" onKeyReleased="#saveCustomerKey" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
