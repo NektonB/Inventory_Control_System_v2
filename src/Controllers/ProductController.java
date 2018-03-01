@@ -87,13 +87,14 @@ public class ProductController implements Initializable {
     private TableColumn<ProductList, String> tcName;
 
     @FXML
-    private TableColumn<ProductList, String> tcAddress;
+    private TableColumn<ProductList, String> tcCategory;
 
     @FXML
-    private TableColumn<ProductList, String> tcType;
+    private TableColumn<ProductList, String> tcUnit;
 
     @FXML
     private TableColumn<ProductList, String> tcStatus;
+
 
     @FXML
     private JFXTextField txtSearcProducts;
@@ -147,6 +148,7 @@ public class ProductController implements Initializable {
             readyData.start();
             cmbStatus.setValue("ACTIVE");
             readyCompanyTable();
+            readyProductTable();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,6 +172,14 @@ public class ProductController implements Initializable {
         tcSupplierId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcSupplierName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcPartner.setCellValueFactory(new PropertyValueFactory<>("cbSelect"));
+    }
+
+    public void readyProductTable() {
+        tcCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tcCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        tcUnit.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        tcStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     /**
