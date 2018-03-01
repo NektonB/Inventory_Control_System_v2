@@ -31,7 +31,6 @@ public class UserController implements Initializable {
 
     @FXML
     private JFXTextField txtPassword;
-
     @FXML
     private JFXTextField txtEmail;
 
