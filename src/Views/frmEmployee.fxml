@@ -64,16 +64,16 @@
             </JFXTextField>
             <JFXDatePicker fx:id="dp_date_of_birth" prefHeight="25.0" prefWidth="247.0" promptText="Date Of Birth">
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" right="150.0" top="10.0" />
                </VBox.margin>
             </JFXDatePicker>
          </children>
       </VBox>
-      <VBox layoutX="390.0" layoutY="14.0" prefHeight="264.0" prefWidth="257.0" AnchorPane.topAnchor="14.0">
+      <VBox layoutX="405.0" layoutY="14.0" prefHeight="264.0" prefWidth="257.0" AnchorPane.topAnchor="14.0">
          <children>
             <JFXDatePicker fx:id="dp_join_date" prefHeight="25.0" prefWidth="257.0" promptText="Join Date">
                <VBox.margin>
-                  <Insets top="13.0" />
+                  <Insets right="60.0" top="13.0" />
                </VBox.margin>
             </JFXDatePicker>
             <JFXTextField fx:id="txt_AddressId" labelFloat="true" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="257.0" promptText="Address ID">
@@ -88,7 +88,7 @@
             </JFXTextArea>
          </children>
       </VBox>
-      <VBox layoutX="675.0" layoutY="14.0" prefHeight="264.0" prefWidth="257.0">
+      <VBox layoutX="705.0" layoutY="14.0" prefHeight="264.0" prefWidth="257.0">
          <children>
             <JFXComboBox fx:id="cmb_Activation_status" labelFloat="true" prefHeight="25.0" prefWidth="257.0" promptText="Activation Status">
                <VBox.margin>
@@ -147,7 +147,7 @@
       <Separator layoutY="333.0" prefHeight="0.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Pane layoutY="335.0" prefHeight="334.0" prefWidth="1000.0">
          <children>
-            <HBox layoutX="608.0" prefHeight="45.0" prefWidth="412.0">
+            <HBox layoutX="588.0" prefHeight="45.0" prefWidth="412.0">
                <children>
                   <JFXTextField fx:id="txt_type_nic" labelFloat="true" onKeyReleased="#filterEmployeeTableByNic" prefHeight="25.0" prefWidth="189.0" promptText="Type ID To Search">
                      <font>
