@@ -129,6 +129,9 @@ public class ProductController implements Initializable {
         }
     }
 
+    /**
+     * Save new category using Ctrl+S
+     */
     public void saveCategory(KeyEvent event) {
         if (event.isControlDown() & event.getCode().equals(KeyCode.S)) {
             try {
@@ -152,6 +155,9 @@ public class ProductController implements Initializable {
         }
     }
 
+    /**
+     * Search Category details using combo box on hiding
+     */
     public void getCategoryByName() {
         try {
             category.setName(cmbCategory.getValue());
@@ -163,6 +169,10 @@ public class ProductController implements Initializable {
         }
     }
 
+    /**
+     * Update already saved Category
+     * Ctrl+U
+     */
     public void updateCategory(KeyEvent event) {
         if (event.isControlDown() & event.getCode().equals(KeyCode.U)) {
             try {
@@ -180,6 +190,8 @@ public class ProductController implements Initializable {
         }
     }
 
+    /**
+     * */
     public void cmbCategoryKey(KeyEvent event) {
         saveCategory(event);
         updateCategory(event);
@@ -236,8 +248,63 @@ public class ProductController implements Initializable {
         }
     }
 
-    public void cmbUnitKey(KeyEvent event){
+    public void cmbUnitKey(KeyEvent event) {
         saveUnit(event);
         updateUnit(event);
+    }
+
+    public void saveCompany(KeyEvent event) {
+        if (event.isControlDown() & event.getCode().equals(KeyCode.S)) {
+            try {
+                boolean companyAlready = dataReader.checkCompanyAlready(cmbCompany.getValue());
+                if (companyAlready) {
+                    company.resetAll();
+                    alerts.getWarningAlert("Warning", "Data Duplication", "Sorry Chief..! Company is you entered.already in my database.Please try another..");
+                } else {
+                    company.setName(cmbCompany.getValue());
+                    int saveCompany = dataWriter.saveCompany();
+                    if (saveCompany > 0) {
+                        company.resetAll();
+                        dataReader.fillCompanyCombo(cmbCompany);
+                        alerts.getInformationAlert("Information", "Company Save", "Congratulation Chief..!\nCompany save successful");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    public void getCompanyByName() {
+        try {
+            company.setName(cmbCompany.getValue());
+            dataReader.getCompanyByName();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void updateCompany(KeyEvent event) {
+        if (event.isControlDown() & event.getCode().equals(KeyCode.U)) {
+            try {
+                company.setName(cmbCompany.getValue());
+                int updateCompany = dataWriter.updateCompany();
+                if (updateCompany > 0) {
+                    company.resetAll();
+                    dataReader.fillCompanyCombo(cmbCompany);
+                    alerts.getInformationAlert("Information", "Company Modification", "Congratulation Chief..!\nCompany modification successful");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    public void companyComboKey(KeyEvent event) {
+        saveCompany(event);
+        updateCompany(event);
     }
 }

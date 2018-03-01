@@ -48,7 +48,7 @@
                         <Insets bottom="10.0" top="20.0" />
                      </VBox.margin>
                   </JFXComboBox>
-                  <JFXComboBox fx:id="cmbCompany" labelFloat="true" prefHeight="31.0" prefWidth="285.0" promptText="Company">
+                  <JFXComboBox fx:id="cmbCompany" editable="true" labelFloat="true" onHidden="#getCompanyByName" onKeyReleased="#companyComboKey" prefHeight="31.0" prefWidth="285.0" promptText="Company">
                      <VBox.margin>
                         <Insets bottom="10.0" top="20.0" />
                      </VBox.margin>
