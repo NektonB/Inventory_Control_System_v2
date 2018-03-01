@@ -119,6 +119,7 @@ public class ProductController implements Initializable {
                 dataReader.fillStatusCombo(cmbStatus);
                 dataReader.fillCategoryCombo(cmbCategory);
                 dataReader.fillUnitCombo(cmbUnit);
+                dataReader.fillSupplierCombo(cmbSupplier);
                 //dataReader.fillSupplierTable(tblSupplier);
             });
             readyData.setName("Product Controller");

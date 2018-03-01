@@ -1227,4 +1227,34 @@ public class DataReader {
         }
     }
 
+    /**
+     * Fill Supplier combo using Unit table
+     */
+    public void fillSupplierCombo(JFXComboBox cmbSupplier) {
+        ResultSet rs = null;
+        cmbSupplier.getItems().clear();
+        try {
+            pst = conn.prepareStatement("SELECT namel FROM supplier");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                supplier.resetAll();
+            }
+            while (rs.next()) {
+                cmbSupplier.getItems().add(rs.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+
+            }
+        }
+    }
+
 }
