@@ -30,6 +30,7 @@ public class DataWriter {
     SupplierType supplierType;
     Employee employee;
     Category category;
+    Unit unit;
 
 
     /**
@@ -55,6 +56,7 @@ public class DataWriter {
                 supplierType = ObjectGenerator.getSupplierType();
                 employee = ObjectGenerator.getEmployee();
                 category = ObjectGenerator.getCategory();
+                unit = ObjectGenerator.getUnit();
 
             });
             readyData.setName("Data Writer");
@@ -619,8 +621,8 @@ public class DataWriter {
         int saveDone = 0;
         //ResultSet rs;
         try {
-            pst = conn.prepareStatement("INSERT INTO category(name) VALUES(?)");
-            pst.setString(1, category.getName());
+            pst = conn.prepareStatement("INSERT INTO unit(unit) VALUES(?)");
+            pst.setString(1, unit.getUnit());
 
             saveDone = pst.executeUpdate();
         } catch (Exception e) {

@@ -34,6 +34,7 @@ public class DataReader {
     CompanyList companyList;
     Employee employee;
     Category category;
+    Unit unit;
 
     public DataReader() {
         try {
@@ -54,6 +55,7 @@ public class DataReader {
                 companyList = ObjectGenerator.getCompanyList();
                 employee = ObjectGenerator.getEmployee();
                 category = ObjectGenerator.getCategory();
+                unit = ObjectGenerator.getUnit();
             });
             readyData.setName("DataReader");
             readyData.start();
@@ -1161,5 +1163,35 @@ public class DataReader {
             }
         }
         return already;
+    }
+
+    /**
+     * Fill Unit combo using Unit table
+     */
+    public void fillUnitCombo(JFXComboBox cmbUnit) {
+        ResultSet rs = null;
+        cmbUnit.getItems().clear();
+        try {
+            pst = conn.prepareStatement("SELECT unit FROM unit");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                unit.resetAll();
+            }
+            while (rs.next()) {
+                cmbUnit.getItems().add(rs.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+
+            }
+        }
     }
 }

@@ -118,6 +118,7 @@ public class ProductController implements Initializable {
                 dataReader.fillCompanyCombo(cmbCompany);
                 dataReader.fillStatusCombo(cmbStatus);
                 dataReader.fillCategoryCombo(cmbCategory);
+                dataReader.fillUnitCombo(cmbUnit);
                 //dataReader.fillSupplierTable(tblSupplier);
             });
             readyData.setName("Product Controller");
@@ -193,11 +194,11 @@ public class ProductController implements Initializable {
                     alerts.getWarningAlert("Warning", "Data Duplication", "Sorry Chief..! Unit is you entered.already in my database.Please try another..");
                 } else {
                     unit.setUnit(cmbUnit.getValue());
-                    int saveCategory = dataWriter.saveUnit();
-                    if (saveCategory > 0) {
-                        category.resetAll();
-                        dataReader.fillCategoryCombo(cmbCategory);
-                        alerts.getInformationAlert("Information", "Category Save", "Congratulation Chief..!\nCategory save successful");
+                    int saveUnit = dataWriter.saveUnit();
+                    if (saveUnit > 0) {
+                        unit.resetAll();
+                        dataReader.fillUnitCombo(cmbUnit);
+                        alerts.getInformationAlert("Information", "Unit Save", "Congratulation Chief..!\nUnit save successful");
                     }
                 }
             } catch (Exception e) {
