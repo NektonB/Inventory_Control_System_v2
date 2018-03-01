@@ -420,6 +420,7 @@ public class SupplierController implements Initializable {
                 supplier.setName(txtName.getText());
                 supplier.setJoinDate(dpJoinDate.getValue().toString());
                 address.setId(Integer.parseInt(txtAddressId.getText()));
+
                 contact.setId(Integer.parseInt(txtContactId.getText()));
 
                 adStatus.setStatus(cmbStatus.getValue());

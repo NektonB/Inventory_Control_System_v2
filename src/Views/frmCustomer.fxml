@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="876.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerController">
    <children>
       <VBox layoutX="22.0" layoutY="14.0" AnchorPane.topAnchor="14.0">
@@ -67,7 +66,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXTextArea>
-            <JFXTextField fx:id="txt_contact_id" editable="false" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Contact ID">
+            <JFXTextField fx:id="txt_contact_id" editable="false" labelFloat="true" onKeyReleased="#loadContactManager" prefHeight="25.0" prefWidth="218.0" promptText="Contact ID">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
@@ -110,7 +109,7 @@
       <Separator layoutX="8.0" layoutY="322.0" prefHeight="3.0" prefWidth="868.0" />
       <HBox layoutX="519.0" layoutY="329.0">
          <children>
-            <JFXButton fx:id="btn_Save" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
+            <JFXButton fx:id="btn_Save" onAction="#saveCustomer" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>

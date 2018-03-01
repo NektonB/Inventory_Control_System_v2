@@ -102,7 +102,9 @@ public class CustomerController implements Initializable {
     DateFormatConverter dateFormatConverter;
     Modules.Contact contact;
     ADStatus adStatus;
-   Customer customer;
+    Customer customer;
+    CustomerType customerType;
+
     @Override
 
 
@@ -123,6 +125,7 @@ public class CustomerController implements Initializable {
                 contact = ObjectGenerator.getContact();
                 adStatus = ObjectGenerator.getAdStatus();
                 customer = ObjectGenerator.getCustomer();
+                customerType = ObjectGenerator.getCustomerType();
 
                 dateFormatConverter.convert(dp_join_date, "yyyy-MM-dd");
                 dataReader.fillStatusCombo(cmb_activation_status);
@@ -133,6 +136,7 @@ public class CustomerController implements Initializable {
             redyCustomerTable();
             cmb_activation_status.setValue("ACTIVE");
             cmb_customer_type.setValue("NORMAL");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -186,6 +190,63 @@ public class CustomerController implements Initializable {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
             }
+        }
+    }
+
+    public void loadContactManager(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            try {
+                switcher.setTxt01(txt_contact_id);
+                switcher.setTxta01(ta_contact);
+
+                Stage addressStage = new Stage();
+                Parent frmContact = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmContact.fxml"));
+                addressStage.setTitle("Contact Management");
+                Scene scene = new Scene(frmContact);
+                addressStage.setScene(scene);
+                addressStage.initStyle(StageStyle.UTILITY);
+                addressStage.setResizable(false);
+                addressStage.initModality(Modality.APPLICATION_MODAL);
+                addressStage.show();
+                dp_join_date.requestFocus();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    public void saveCustomer() {
+        try {
+            customer.setFirstName(txt_fname.getText());
+            customer.setMiddleName(txt_mname.getText());
+            customer.setLastName(txt_lname.getText());
+            customer.setNic(txt_nic.getText());
+            customer.setJoinDate(dp_join_date.getValue().toString());
+
+            customerType.setType(cmb_customer_type.getValue());
+            dataReader.getCustomerDetailsByCustomerType();
+
+            address.setId(Integer.parseInt(txt_address_id.getText()));
+            contact.setId(Integer.parseInt(txt_contact_id.getText()));
+
+            adStatus.setStatus(cmb_activation_status.getValue());
+            dataReader.getStatusDetailsByStatus();
+
+            int saveCustomer = dataWriter.saveCustomer();
+            if (saveCustomer > 0) {
+                customer.resetAll();
+                contact.resetAll();
+                adStatus.resetAll();
+                address.resetAll();
+
+                resetText();
+                // dataReader.fillEmployeeTable(tbl_customer);
+                alerts.getInformationAlert("Information", "Customer Registration", "Congratulation Chief..!\nEmployee registration successful");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
         }
     }
 
@@ -278,4 +339,6 @@ public class CustomerController implements Initializable {
             this.activationstatus.set(activationstatus);
         }
     }
+
+
 }
