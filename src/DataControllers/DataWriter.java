@@ -522,7 +522,6 @@ public class DataWriter {
 
     }
 
-<<<<<<< HEAD
     /**
      * Save all input data in Category Module to database
      * Return 0 not save any record
@@ -536,25 +535,6 @@ public class DataWriter {
             pst.setString(1, category.getName());
 
             saveDone = pst.executeUpdate();
-=======
-    public int updateEmployee() {
-        int saveDone = 0;
-        try {
-            pst = conn.prepareStatement("UPDATE employee SET fname = ?, mname = ?, lname = ?, dob = ?, nic = ?, join_date = ?, address_id = ?, contact_id = ?, ad_status_id = ? WHERE id = ?");
-            pst.setString(1, employee.getFirstName());
-            pst.setString(2, employee.getMiddleName());
-            pst.setString(3, employee.getLastName());
-            pst.setString(4, employee.getDob());
-            pst.setString(5, employee.getNic());
-            pst.setString(6, employee.getJoinDate());
-            pst.setInt(7, address.getId());
-            pst.setInt(8, contact.getId());
-            pst.setInt(9, adStatus.getId());
-            pst.setInt(10, employee.getId());
-
-            saveDone = pst.executeUpdate();
-            // saveDone = Statement.RETURN_GENERATED_KEYS;
->>>>>>> 041e2410890e2de74e974f570e19d38ef44ddf9e
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
@@ -567,10 +547,8 @@ public class DataWriter {
             }
         }
         return saveDone;
-
     }
 
-<<<<<<< HEAD
     /**
      * Update all input data in Category Module to database
      * Return 0 not update any record
@@ -600,6 +578,35 @@ public class DataWriter {
 
     }
 
-=======
->>>>>>> 041e2410890e2de74e974f570e19d38ef44ddf9e
+    public int updateEmployee() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("UPDATE employee SET fname = ?, mname = ?, lname = ?, dob = ?, nic = ?, join_date = ?, address_id = ?, contact_id = ?, ad_status_id = ? WHERE id = ?");
+            pst.setString(1, employee.getFirstName());
+            pst.setString(2, employee.getMiddleName());
+            pst.setString(3, employee.getLastName());
+            pst.setString(4, employee.getDob());
+            pst.setString(5, employee.getNic());
+            pst.setString(6, employee.getJoinDate());
+            pst.setInt(7, address.getId());
+            pst.setInt(8, contact.getId());
+            pst.setInt(9, adStatus.getId());
+            pst.setInt(10, employee.getId());
+
+            saveDone = pst.executeUpdate();
+            // saveDone = Statement.RETURN_GENERATED_KEYS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+
+    }
 }

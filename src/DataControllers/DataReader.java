@@ -973,7 +973,6 @@ public class DataReader {
         }
     }
 
-<<<<<<< HEAD
     /**
      * Check Category is already
      * if already return true.else false
@@ -1009,7 +1008,8 @@ public class DataReader {
     }
 
     /**
-     * Fill category combo using category table*/
+     * Fill category combo using category table
+     */
     public void fillCategoryCombo(JFXComboBox cmbCategory) {
         ResultSet rs = null;
         cmbCategory.getItems().clear();
@@ -1032,13 +1032,17 @@ public class DataReader {
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
-=======
+
+            }
+        }
+    }
+
     public void filterEmployeeTableByNic(TableView tblEmployee) {
         ResultSet rs = null;
         ObservableList<EmployeeController.EmployeeList> employeeLists = FXCollections.observableArrayList();
         try {
             pst = conn.prepareStatement("SELECT employee.id,employee.fname,employee.mname,employee.lname,employee.dob,employee.nic,employee.join_date,address.id,address.number,address.line_01,address.line_02,address.city,address.country,address.postal_code,contact.id,contact.mobile,contact.land,contact.fax,contact.email,contact.web,ad_status.id,ad_status.status FROM employee INNER JOIN address ON employee.address_id = address.id INNER JOIN contact ON employee.contact_id = contact.id INNER JOIN ad_status ON employee.ad_status_id = ad_status.id WHERE employee.nic LIKE ?");
-            pst.setString(1, employee.getNic()+"%");
+            pst.setString(1, employee.getNic() + "%");
             rs = pst.executeQuery();
 
 
@@ -1047,23 +1051,23 @@ public class DataReader {
             }
             while (rs.next()) {
                 String name = rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4);
-                employeeLists.add(new EmployeeController.EmployeeList(rs.getInt(1),name, rs.getString(5), rs.getString(6),rs.getString(7),rs.getString(22)));
+                employeeLists.add(new EmployeeController.EmployeeList(rs.getInt(1), name, rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(22)));
             }
             tblEmployee.setItems(employeeLists);
         } catch (Exception e) {
             e.printStackTrace();
+            alerts.getErrorAlert(e);
         } finally {
             try {
                 pst.close();
                 rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
->>>>>>> 041e2410890e2de74e974f570e19d38ef44ddf9e
+                alerts.getErrorAlert(e);
             }
         }
     }
 
-<<<<<<< HEAD
     /**
      * Get Category Details using Category Name.
      * Search
@@ -1082,13 +1086,26 @@ public class DataReader {
                 category.setId(rs.getInt(1));
                 category.setName(rs.getString(2));
             }
-=======
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
     public void filterEmployeeTableByName(TableView tblEmployee) {
         ResultSet rs = null;
         ObservableList<EmployeeController.EmployeeList> employeeLists = FXCollections.observableArrayList();
         try {
             pst = conn.prepareStatement("SELECT employee.id,employee.fname,employee.mname,employee.lname,employee.dob,employee.nic,employee.join_date,address.id,address.number,address.line_01,address.line_02,address.city,address.country,address.postal_code,contact.id,contact.mobile,contact.land,contact.fax,contact.email,contact.web,ad_status.id,ad_status.status FROM employee INNER JOIN address ON employee.address_id = address.id INNER JOIN contact ON employee.contact_id = contact.id INNER JOIN ad_status ON employee.ad_status_id = ad_status.id WHERE employee.fname LIKE ?");
-            pst.setString(1, employee.getNic()+"%");
+            pst.setString(1, employee.getNic() + "%");
             rs = pst.executeQuery();
 
 
@@ -1097,10 +1114,9 @@ public class DataReader {
             }
             while (rs.next()) {
                 String name = rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4);
-                employeeLists.add(new EmployeeController.EmployeeList(rs.getInt(1),name, rs.getString(5), rs.getString(6),rs.getString(7),rs.getString(22)));
+                employeeLists.add(new EmployeeController.EmployeeList(rs.getInt(1), name, rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(22)));
             }
             tblEmployee.setItems(employeeLists);
->>>>>>> 041e2410890e2de74e974f570e19d38ef44ddf9e
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -1112,9 +1128,4 @@ public class DataReader {
             }
         }
     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 041e2410890e2de74e974f570e19d38ef44ddf9e
 }

@@ -156,6 +156,7 @@ public class ProductController implements Initializable {
         try {
             category.setName(cmbCategory.getValue());
             dataReader.getCategoryByName();
+            System.out.println(category.getId());
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
