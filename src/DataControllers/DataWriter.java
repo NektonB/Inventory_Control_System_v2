@@ -31,6 +31,7 @@ public class DataWriter {
     Employee employee;
     Category category;
     Unit unit;
+    SupplierPartner supplierPartner;
 
 
     /**
@@ -57,6 +58,7 @@ public class DataWriter {
                 employee = ObjectGenerator.getEmployee();
                 category = ObjectGenerator.getCategory();
                 unit = ObjectGenerator.getUnit();
+                supplierPartner = ObjectGenerator.getSupplierPartner();
 
             });
             readyData.setName("Data Writer");
@@ -666,5 +668,65 @@ public class DataWriter {
         }
         return updateDone;
 
+    }
+
+    /**
+     * Save all input data in CompanyPartner Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveSupplierPartner() {
+        ResultSet rs = null;
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO supplier_partner(partner) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, supplierPartner.getPartner());
+
+            saveDone = pst.executeUpdate();
+            rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                supplierPartner.setId(rs.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in CompanyPartner Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveSupplierList() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO supplier_list(supplier_id,supplier_partner_id, partnership_id) VALUES(?,?,?)");
+            pst.setInt(1, supplier.getId());
+            pst.setInt(2, supplierPartner.getId());
+            pst.setInt(3, partnership.getId());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
     }
 }

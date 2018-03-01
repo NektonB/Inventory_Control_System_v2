@@ -95,7 +95,7 @@
             </VBox>
             <HBox layoutX="728.0" layoutY="271.0">
                <children>
-                  <JFXButton fx:id="btnSave" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save" textAlignment="RIGHT">
+                  <JFXButton fx:id="btnSave" alignment="CENTER_RIGHT" onAction="#saveProduct" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save" textAlignment="RIGHT">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>

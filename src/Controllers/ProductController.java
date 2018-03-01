@@ -108,6 +108,8 @@ public class ProductController implements Initializable {
     Category category;
     Unit unit;
     Supplier supplier;
+    SupplierPartner supplierPartner;
+    Partnership partnership;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -127,6 +129,8 @@ public class ProductController implements Initializable {
                 category = ObjectGenerator.getCategory();
                 unit = ObjectGenerator.getUnit();
                 supplier = ObjectGenerator.getSupplier();
+                supplierPartner = ObjectGenerator.getSupplierPartner();
+                partnership = ObjectGenerator.getPartnership();
 
                 dataReader.fillCompanyCombo(cmbCompany);
                 dataReader.fillStatusCombo(cmbStatus);
@@ -405,6 +409,54 @@ public class ProductController implements Initializable {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
             }
+        }
+    }
+
+    /**
+     * Save Supplier list table data to database.using loop
+     */
+    public int saveSupplierList() {
+        int saveSupplierList = 0;
+        try {
+            if (!tblSupplier.getItems().isEmpty()) {
+                supplierPartner.setPartner(txtName.getText());
+
+                int saveSupplierPartner = dataWriter.saveSupplierPartner();
+
+                if (saveSupplierPartner > 0) {
+
+                    ObservableList<? extends TableColumn<?, ?>> columns = tblSupplier.getColumns();
+
+                    for (int i = 0; i < tblSupplier.getItems().size(); ++i) {
+                        supplier.setId(Integer.parseInt(columns.get(0).getCellObservableValue(i).getValue().toString()));
+                        JFXCheckBox cb = (JFXCheckBox) columns.get(2).getCellObservableValue(i).getValue();
+                        if (cb.isSelected()) {
+                            partnership.setId(1);
+                        } else {
+                            partnership.setId(2);
+                        }
+                        saveSupplierList = dataWriter.saveSupplierList();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+
+        return saveSupplierList;
+    }
+
+    public void saveProduct(){
+        try {
+            int saveSupplierList = saveSupplierList();
+
+            if (saveSupplierList > 0) {
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
         }
     }
 
