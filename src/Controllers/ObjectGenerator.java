@@ -222,11 +222,7 @@ public class ObjectGenerator {
 
         return customerType;
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> e157ce89ba5fdec668b6011223fc4ab72fc4c3e6
     public static Product getProduct() {
         if (product == null) {
             product = new Product();
