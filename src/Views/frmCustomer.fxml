@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="876.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="22.0" layoutY="14.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <JFXTextField fx:id="txt_customer_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Custommer ID">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_fname" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="First Name">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_mname" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Middle Name">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_lname" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Last Name">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="txt_nic" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="NIC No">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+            </JFXTextField>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="273.0" layoutY="40.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <JFXTextField fx:id="txt_customer_type_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Customer Type ID">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXComboBox fx:id="txt_customer_type" prefHeight="25.0" prefWidth="218.0" promptText="Customer Type">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="18.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <JFXTextField fx:id="txt_address_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Address ID">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextArea fx:id="ta_address" labelFloat="true" prefHeight="63.0" prefWidth="202.0" promptText="Address">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="16.0" />
+               </VBox.margin>
+            </JFXTextArea>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="526.0" layoutY="25.0" AnchorPane.leftAnchor="600.0">
+         <children>
+            <JFXTextField fx:id="txt_contact_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Contact ID">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextArea fx:id="ta_contact" labelFloat="true" prefHeight="63.0" prefWidth="218.0" promptText="Contact">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </JFXTextArea>
+            <JFXDatePicker fx:id="dp_join_date" prefHeight="25.0" prefWidth="218.0" promptText="Join Date">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+            </JFXDatePicker>
+            <JFXTextField fx:id="cmb_activation_status" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Activation Status">
+               <padding>
+                  <Insets bottom="10.0" top="25.0" />
+               </padding>
+            </JFXTextField>
+         </children>
+      </VBox>
+      <Separator layoutY="362.0" prefHeight="0.0" prefWidth="876.0" />
+      <HBox layoutX="519.0" layoutY="300.0">
+         <children>
+            <JFXButton fx:id="btn_Save" onAction="#saveEmployee" onKeyReleased="#saveEmployeeKey" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Graphics/AddUser32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="btn_Update" onAction="#updateEmployee" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Graphics/UpdateUser32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
+      <Pane layoutY="369.0">
+         <children>
+            <TableView fx:id="tbl_customer" prefHeight="263.0" prefWidth="876.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="txt_type_nic" layoutX="22.0" layoutY="326.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter your NIC" />
+      <JFXTextField fx:id="txt_type_name" layoutX="261.0" layoutY="326.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter your name" />
+   </children>
+</AnchorPane>
