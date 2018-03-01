@@ -30,6 +30,7 @@ public class ObjectGenerator {
     private static Unit unit;
     private static Customer customer;
     private static SupplierPartner supplierPartner;
+    private static CustomerType customerType;
     private static Product product;
 
     public static synchronized void readyAll() {
@@ -214,10 +215,18 @@ public class ObjectGenerator {
         return supplierPartner;
     }
 
+    public static CustomerType getCustomerType() {
+        if (customerType == null) {
+            customerType = new CustomerType();
+        }
+
+        return customerType;
+    }
     public static Product getProduct() {
         if (product == null) {
             product = new Product();
         }
         return product;
+
     }
 }
