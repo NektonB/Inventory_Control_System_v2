@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="876.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="876.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerController">
    <children>
       <VBox layoutX="22.0" layoutY="14.0" AnchorPane.topAnchor="14.0">
          <children>
@@ -54,7 +54,7 @@
       </VBox>
       <VBox layoutX="292.0" layoutY="25.0" AnchorPane.topAnchor="13.0">
          <children>
-            <JFXTextField fx:id="txt_address_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Address ID">
+            <JFXTextField fx:id="txt_address_id" labelFloat="true" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="218.0" promptText="Address ID">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
@@ -100,20 +100,17 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXComboBox>
-            <JFXTextField fx:id="cmb_activation_status" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Activation Status">
-               <padding>
-                  <Insets bottom="10.0" top="25.0" />
-               </padding>
+            <JFXComboBox fx:id="cmb_activation_status" prefHeight="25.0" prefWidth="249.0" promptText="Activation Status">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
-            </JFXTextField>
+            </JFXComboBox>
          </children>
       </VBox>
       <Separator layoutX="8.0" layoutY="322.0" prefHeight="3.0" prefWidth="868.0" />
       <HBox layoutX="519.0" layoutY="329.0">
          <children>
-            <JFXButton fx:id="btn_Save" onAction="#saveEmployee" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
+            <JFXButton fx:id="btn_Save" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -128,7 +125,7 @@
                   <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                </HBox.margin>
             </JFXButton>
-            <JFXButton fx:id="btn_Update" onAction="#updateEmployee" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update">
+            <JFXButton fx:id="btn_Update" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -149,12 +146,12 @@
          <children>
             <TableView fx:id="tbl_customer" prefHeight="263.0" prefWidth="876.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Customer ID" />
-                <TableColumn prefWidth="272.0" text="Name" />
-                  <TableColumn minWidth="4.0" prefWidth="138.0" text="NIC" />
-                  <TableColumn prefWidth="99.0" text="Join date" />
-                  <TableColumn prefWidth="161.0" text="Customer type" />
-                  <TableColumn prefWidth="128.0" text="Activation Staus" />
+                <TableColumn fx:id="tc_id" prefWidth="93.0" text="Customer ID" />
+                <TableColumn fx:id="tc_name" prefWidth="254.0" text="Name" />
+                  <TableColumn fx:id="tc_nic" minWidth="4.0" prefWidth="138.0" text="NIC" />
+                  <TableColumn fx:id="tc_joindate" prefWidth="99.0" text="Join date" />
+                  <TableColumn fx:id="tc_cutomer_type" prefWidth="161.0" text="Customer type" />
+                  <TableColumn fx:id="tc_avtivation_status" prefWidth="128.0" text="Activation Staus" />
               </columns>
             </TableView>
          </children>

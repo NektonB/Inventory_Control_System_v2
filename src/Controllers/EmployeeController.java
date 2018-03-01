@@ -98,7 +98,6 @@ public class EmployeeController implements Initializable {
     @FXML
     private JFXTextField txt_type_name;
 
-
     DataWriter dataWriter;
     DataReader dataReader;
     Alerts alerts;
@@ -108,6 +107,7 @@ public class EmployeeController implements Initializable {
     Modules.Contact contact;
     ADStatus adStatus;
     Employee employee;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -457,4 +457,6 @@ public class EmployeeController implements Initializable {
             this.status.set(status);
         }
     }
+
+
 }

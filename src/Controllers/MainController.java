@@ -40,6 +40,10 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem mi_employee_manegment;
 
+    @FXML
+    private MenuItem mi_customer_manegment;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -129,6 +133,24 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void loadCustomerManagement() {
+        try {
+            Stage productsStage = new Stage();
+            Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmCustomer.fxml"));
+            productsStage.setTitle("Customer Management");
+            Scene scene = new Scene(frmUser);
+            productsStage.setScene(scene);
+            productsStage.initStyle(StageStyle.UTILITY);
+            productsStage.setResizable(false);
+            productsStage.initModality(Modality.APPLICATION_MODAL);
+            productsStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void showNotifi() {
         Notification.Notifier.INSTANCE.notifySuccess("Database Backup", "Database backup successfully");

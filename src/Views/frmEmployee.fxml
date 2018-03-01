@@ -76,12 +76,12 @@
                   <Insets right="60.0" top="13.0" />
                </VBox.margin>
             </JFXDatePicker>
-            <JFXTextField fx:id="txt_AddressId" labelFloat="true" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="257.0" promptText="Address ID">
+            <JFXTextField fx:id="txt_AddressId" editable="false" labelFloat="true" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="257.0" promptText="Address ID">
                <VBox.margin>
                   <Insets top="25.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextArea fx:id="ta_address" labelFloat="true" prefHeight="132.0" prefWidth="257.0" promptText="Address">
+            <JFXTextArea fx:id="ta_address" editable="false" labelFloat="true" prefHeight="132.0" prefWidth="257.0" promptText="Address">
                <VBox.margin>
                   <Insets bottom="10.0" top="18.0" />
                </VBox.margin>
@@ -95,7 +95,7 @@
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
             </JFXComboBox>
-            <JFXTextField fx:id="txt_Contact_Id" labelFloat="true" onKeyReleased="#loadContactManager" prefHeight="29.0" prefWidth="257.0" promptText="Contact ID">
+            <JFXTextField fx:id="txt_Contact_Id" editable="false" labelFloat="true" onKeyReleased="#loadContactManager" prefHeight="29.0" prefWidth="257.0" promptText="Contact ID">
                <font>
                   <Font size="13.0" />
                </font>
@@ -103,7 +103,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextArea fx:id="ta_Contact" labelFloat="true" prefHeight="125.0" prefWidth="257.0" promptText="Contact">
+            <JFXTextArea fx:id="ta_Contact" editable="false" labelFloat="true" prefHeight="125.0" prefWidth="257.0" promptText="Contact">
                <VBox.margin>
                   <Insets top="25.0" />
                </VBox.margin>
