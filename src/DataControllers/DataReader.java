@@ -33,6 +33,7 @@ public class DataReader {
     CompanyPartner companyPartner;
     CompanyList companyList;
     Employee employee;
+    Category category;
 
     public DataReader() {
         try {
@@ -52,6 +53,7 @@ public class DataReader {
                 companyPartner = ObjectGenerator.getCompanyPartner();
                 companyList = ObjectGenerator.getCompanyList();
                 employee = ObjectGenerator.getEmployee();
+                category = ObjectGenerator.getCategory();
             });
             readyData.setName("DataReader");
             readyData.start();
@@ -252,6 +254,7 @@ public class DataReader {
 
     public void fillUserTypeCombo(JFXComboBox cmbUserType) {
         ResultSet rs = null;
+        cmbUserType.getItems().clear();
         try {
             pst = conn.prepareStatement("SELECT type FROM user_type");
             rs = pst.executeQuery();
@@ -275,6 +278,7 @@ public class DataReader {
 
     public void fillStatusCombo(JFXComboBox cmbStatus) {
         ResultSet rs = null;
+        cmbStatus.getItems().clear();
         try {
             pst = conn.prepareStatement("SELECT status FROM ad_status");
             rs = pst.executeQuery();
@@ -521,6 +525,7 @@ public class DataReader {
      */
     public void fillCompanyCombo(JFXComboBox cmbCompany) {
         ResultSet resultSet = null;
+        cmbCompany.getItems().clear();
         try {
             pst = conn.prepareStatement("SELECT name FROM company");
             resultSet = pst.executeQuery();
@@ -955,6 +960,98 @@ public class DataReader {
 
                 adStatus.setId(rs.getInt(21));
                 adStatus.setStatus(rs.getString(22));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Check Category is already
+     * if already return true.else false
+     */
+    public boolean checkCategoryAlready(String name) {
+        boolean already = false;
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT * FROM category WHERE name = ?");
+            pst.setString(1, name);
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                company.resetAll();
+                already = false;
+            }
+            if (rs.next()) {
+                already = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return already;
+    }
+
+    /**
+     * Fill category combo using category table*/
+    public void fillCategoryCombo(JFXComboBox cmbCategory) {
+        ResultSet rs = null;
+        cmbCategory.getItems().clear();
+        try {
+            pst = conn.prepareStatement("SELECT name FROM category");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                category.resetAll();
+            }
+            while (rs.next()) {
+                cmbCategory.getItems().add(rs.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    /**
+     * Get Category Details using Category Name.
+     * Search
+     */
+    public void getCategoryByName() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT * FROM category  WHERE  name = ?");
+            pst.setString(1, category.getName());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                company.resetAll();
+            }
+            while (rs.next()) {
+                category.setId(rs.getInt(1));
+                category.setName(rs.getString(2));
             }
         } catch (Exception e) {
             e.printStackTrace();

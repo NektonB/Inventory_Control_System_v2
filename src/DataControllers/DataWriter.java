@@ -29,6 +29,8 @@ public class DataWriter {
     Supplier supplier;
     SupplierType supplierType;
     Employee employee;
+    Category category;
+
 
     /**
      * Load Supporting classes by thread
@@ -51,7 +53,9 @@ public class DataWriter {
                 partnership = ObjectGenerator.getPartnership();
                 supplier = ObjectGenerator.getSupplier();
                 supplierType = ObjectGenerator.getSupplierType();
-                employee=ObjectGenerator.getEmployee();
+                employee = ObjectGenerator.getEmployee();
+                category = ObjectGenerator.getCategory();
+
             });
             readyData.setName("Data Writer");
             readyData.start();
@@ -515,6 +519,63 @@ public class DataWriter {
             }
         }
         return saveDone;
+
+    }
+
+    /**
+     * Save all input data in Category Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveCategory() {
+        int saveDone = 0;
+        //ResultSet rs;
+        try {
+            pst = conn.prepareStatement("INSERT INTO category(name) VALUES(?)");
+            pst.setString(1, category.getName());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+
+    }
+
+    /**
+     * Update all input data in Category Module to database
+     * Return 0 not update any record
+     * Return grater than 0 data save ok...
+     */
+    public int updateCategory() {
+        int updateDone = 0;
+        //ResultSet rs;
+        try {
+            pst = conn.prepareStatement("UPDATE category SET name = ? WHERE id = ?");
+            pst.setString(1, category.getName());
+            pst.setInt(2, category.getId());
+
+            updateDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return updateDone;
 
     }
 

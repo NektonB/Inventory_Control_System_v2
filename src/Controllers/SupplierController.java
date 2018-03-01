@@ -151,6 +151,7 @@ public class SupplierController implements Initializable {
             cmbType.setValue("NORMAL");
         } catch (Exception e) {
             e.printStackTrace();
+            alerts.getErrorAlert(e);
         }
     }
 
