@@ -110,6 +110,8 @@ public class ProductController implements Initializable {
     Supplier supplier;
     SupplierPartner supplierPartner;
     Partnership partnership;
+    Product product;
+    ADStatus adStatus;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -131,6 +133,8 @@ public class ProductController implements Initializable {
                 supplier = ObjectGenerator.getSupplier();
                 supplierPartner = ObjectGenerator.getSupplierPartner();
                 partnership = ObjectGenerator.getPartnership();
+                product = ObjectGenerator.getProduct();
+                adStatus = ObjectGenerator.getAdStatus();
 
                 dataReader.fillCompanyCombo(cmbCompany);
                 dataReader.fillStatusCombo(cmbStatus);
@@ -146,6 +150,20 @@ public class ProductController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void resetText() {
+        txtCode.setText("");
+        txtBarCode.setText("");
+        txtName.setText("");
+        cmbCategory.setValue("");
+        cmbUnit.setValue("");
+        txtRefillQty.setText("0");
+        cmbStatus.setValue("");
+        cmbCompany.setValue("");
+        cmbSupplier.setValue("");
+        tblSupplier.getItems().clear();
+        txtCode.requestFocus();
     }
 
     public void readyCompanyTable() {
@@ -447,12 +465,41 @@ public class ProductController implements Initializable {
         return saveSupplierList;
     }
 
-    public void saveProduct(){
+    public void saveProduct() {
         try {
             int saveSupplierList = saveSupplierList();
 
             if (saveSupplierList > 0) {
+                product.setCode(txtCode.getText());
+                product.setBarCode(txtBarCode.getText());
+                product.setName(txtName.getText());
+                product.setRefillingQty(Double.parseDouble(txtRefillQty.getText()));
 
+                category.setName(cmbCategory.getValue());
+                dataReader.getCategoryByName();
+
+                unit.setUnit(cmbUnit.getValue());
+                dataReader.getUnitByUnit();
+
+                adStatus.setStatus(cmbStatus.getValue());
+                dataReader.getStatusDetailsByStatus();
+
+                company.setName(cmbCompany.getValue());
+                dataReader.getCompanyByName();
+
+                int saveProduct = dataWriter.saveProduct();
+                if (saveProduct > 0) {
+                    company.resetAll();
+                    supplierPartner.resetAll();
+                    address.resetAll();
+                    adStatus.resetAll();
+                    supplier.resetAll();
+                    product.resetAll();
+                    resetText();
+                    //dataReader.fillCompanyCombo(cmbCompany);
+                    //dataReader.fillSupplierTable(tblSupplier);
+                    alerts.getInformationAlert("Information", "Product Registration", "Congratulation Chief..!\nProduct registration successful");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -19,7 +19,7 @@
          <children>
             <VBox layoutX="7.0" layoutY="7.0" prefHeight="320.0" prefWidth="310.0">
                <children>
-                  <JFXTextField fx:id="txtCode" editable="false" labelFloat="true" promptText="Code">
+                  <JFXTextField fx:id="txtCode" labelFloat="true" promptText="Code">
                      <VBox.margin>
                         <Insets bottom="10.0" right="150.0" top="10.0" />
                      </VBox.margin>
