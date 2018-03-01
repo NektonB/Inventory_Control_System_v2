@@ -93,7 +93,10 @@ public class EmployeeController implements Initializable {
     private JFXTextArea ta_Contact;
 
     @FXML
-    private JFXTextField txt_type_id;
+    private JFXTextField txt_type_nic;
+
+    @FXML
+    private JFXTextField txt_type_name;
 
 
     DataWriter dataWriter;
@@ -312,8 +315,19 @@ public class EmployeeController implements Initializable {
 
     public void filterEmployeeTableByNic(KeyEvent event) {
         try {
-            employee.setNic(txt_type_id.getText());
+            employee.setNic(txt_type_nic.getText());
             dataReader.filterEmployeeTableByNic(tbl_employee);
+            employee.resetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void filterEmployeeTableByName(KeyEvent event) {
+        try {
+            employee.setNic(txt_type_name.getText());
+            dataReader.filterEmployeeTableByName(tbl_employee);
             employee.resetAll();
         } catch (Exception e) {
             e.printStackTrace();
