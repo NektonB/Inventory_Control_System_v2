@@ -212,9 +212,32 @@ public class ProductController implements Initializable {
         try {
             unit.setUnit(cmbUnit.getValue());
             dataReader.getUnitByUnit();
+            System.out.println(unit.getId());
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
         }
+    }
+
+    public void updateUnit(KeyEvent event) {
+        if (event.isControlDown() & event.getCode().equals(KeyCode.U)) {
+            try {
+                unit.setUnit(cmbUnit.getValue());
+                int updateUnit = dataWriter.updateUnit();
+                if (updateUnit > 0) {
+                    unit.resetAll();
+                    dataReader.fillUnitCombo(cmbUnit);
+                    alerts.getInformationAlert("Information", "Unit Modification", "Congratulation Chief..!\nUnit modification successful");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    public void cmbUnitKey(KeyEvent event){
+        saveUnit(event);
+        updateUnit(event);
     }
 }

@@ -638,4 +638,33 @@ public class DataWriter {
         }
         return saveDone;
     }
+
+    /**
+     * Update all input data in Category Module to database
+     * Return 0 not update any record
+     * Return grater than 0 data save ok...
+     */
+    public int updateUnit() {
+        int updateDone = 0;
+        //ResultSet rs;
+        try {
+            pst = conn.prepareStatement("UPDATE unit SET unit = ? WHERE id = ?");
+            pst.setString(1, unit.getUnit());
+            pst.setInt(2, unit.getId());
+
+            updateDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return updateDone;
+
+    }
 }
