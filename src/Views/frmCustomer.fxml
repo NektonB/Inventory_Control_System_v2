@@ -113,7 +113,7 @@
       <Separator layoutX="8.0" layoutY="322.0" prefHeight="3.0" prefWidth="868.0" />
       <HBox layoutX="519.0" layoutY="329.0">
          <children>
-            <JFXButton fx:id="btn_Save" onAction="#saveEmployee" onKeyReleased="#saveEmployeeKey" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
+            <JFXButton fx:id="btn_Save" onAction="#saveEmployee" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -150,8 +150,11 @@
             <TableView fx:id="tbl_customer" prefHeight="263.0" prefWidth="876.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Customer ID" />
-                <TableColumn prefWidth="75.0" text="Name" />
-                  <TableColumn prefWidth="75.0" text="Name" />
+                <TableColumn prefWidth="272.0" text="Name" />
+                  <TableColumn minWidth="4.0" prefWidth="138.0" text="NIC" />
+                  <TableColumn prefWidth="99.0" text="Join date" />
+                  <TableColumn prefWidth="161.0" text="Customer type" />
+                  <TableColumn prefWidth="128.0" text="Activation Staus" />
               </columns>
             </TableView>
          </children>
