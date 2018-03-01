@@ -1326,7 +1326,7 @@ public class DataReader {
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
                 customerType.resetAll();
-        }
+            }
             while (rs.next()) {
                 cmbCustomerType.getItems().add(rs.getString(1));
             }
@@ -1382,6 +1382,36 @@ public class DataReader {
                 employeeList.add(new EmployeeController.EmployeeList(rs.getInt(1), name, rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
             }
             tblEmployee.setItems(employeeList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    /**
+     * Filling the Product table using Database product table support status,type
+     */
+    public void fillProductTable(TableView tblProduct) {
+        ResultSet rs = null;
+        ObservableList<ProductController.ProductList> productList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                //userType.resetAll();
+            }
+            while (rs.next()) {
+                productList.add(new ProductController.ProductList(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+            tblProduct.setItems(productList);
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
