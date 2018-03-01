@@ -78,22 +78,22 @@ public class ProductController implements Initializable {
     private JFXButton btnUpdate;
 
     @FXML
-    private TableView<?> tblProducts;
+    private TableView<ProductList> tblProducts;
 
     @FXML
-    private TableColumn<?, ?> tcId;
+    private TableColumn<ProductList, String> tcCode;
 
     @FXML
-    private TableColumn<?, ?> tcName;
+    private TableColumn<ProductList, String> tcName;
 
     @FXML
-    private TableColumn<?, ?> tcAddress;
+    private TableColumn<ProductList, String> tcAddress;
 
     @FXML
-    private TableColumn<?, ?> tcType;
+    private TableColumn<ProductList, String> tcType;
 
     @FXML
-    private TableColumn<?, ?> tcStatus;
+    private TableColumn<ProductList, String> tcStatus;
 
     @FXML
     private JFXTextField txtSearcProducts;
@@ -548,6 +548,82 @@ public class ProductController implements Initializable {
 
         public void setCbSelect(JFXCheckBox cbSelect) {
             this.cbSelect = cbSelect;
+        }
+    }
+
+    public static class ProductList {
+        SimpleStringProperty code;
+        SimpleStringProperty name;
+        SimpleStringProperty category;
+        SimpleStringProperty unit;
+        SimpleStringProperty status;
+
+        public ProductList(String code, String name, String category, String unit, String status) {
+            this.code = new SimpleStringProperty(code);
+            this.name = new SimpleStringProperty(name);
+            this.category = new SimpleStringProperty(category);
+            this.unit = new SimpleStringProperty(unit);
+            this.status = new SimpleStringProperty(status);
+        }
+
+        public String getCode() {
+            return code.get();
+        }
+
+        public SimpleStringProperty codeProperty() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code.set(code);
+        }
+
+        public String getName() {
+            return name.get();
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name.set(name);
+        }
+
+        public String getCategory() {
+            return category.get();
+        }
+
+        public SimpleStringProperty categoryProperty() {
+            return category;
+        }
+
+        public void setCategory(String category) {
+            this.category.set(category);
+        }
+
+        public String getUnit() {
+            return unit.get();
+        }
+
+        public SimpleStringProperty unitProperty() {
+            return unit;
+        }
+
+        public void setUnit(String unit) {
+            this.unit.set(unit);
+        }
+
+        public String getStatus() {
+            return status.get();
+        }
+
+        public SimpleStringProperty statusProperty() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status.set(status);
         }
     }
 }

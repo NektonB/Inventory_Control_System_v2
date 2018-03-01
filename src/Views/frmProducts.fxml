@@ -119,7 +119,7 @@
          <children>
             <TableView fx:id="tblProducts" layoutY="66.0" prefHeight="286.0" prefWidth="992.0">
                <columns>
-                  <TableColumn fx:id="tcId" editable="false" prefWidth="150.0" resizable="false" text="Code" />
+                  <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code" />
                   <TableColumn fx:id="tcName" editable="false" prefWidth="421.0" resizable="false" text="Name" />
                   <TableColumn fx:id="tcAddress" editable="false" prefWidth="200.0" resizable="false" text="Category" />
                   <TableColumn fx:id="tcType" editable="false" prefWidth="121.0" resizable="false" text="Unit" />
