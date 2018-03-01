@@ -32,6 +32,7 @@ public class DataWriter {
     Category category;
     Unit unit;
     SupplierPartner supplierPartner;
+    Product product;
 
 
     /**
@@ -59,6 +60,7 @@ public class DataWriter {
                 category = ObjectGenerator.getCategory();
                 unit = ObjectGenerator.getUnit();
                 supplierPartner = ObjectGenerator.getSupplierPartner();
+                product = ObjectGenerator.getProduct();
 
             });
             readyData.setName("Data Writer");
@@ -714,6 +716,41 @@ public class DataWriter {
             pst.setInt(1, supplier.getId());
             pst.setInt(2, supplierPartner.getId());
             pst.setInt(3, partnership.getId());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in Product Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveProduct() {
+        int saveDone = 0;
+        //ResultSet rs;
+        try {
+            pst = conn.prepareStatement("INSERT INTO product(code, bar_code, name, category_id, unit_id,refilling_qty, ad_status_id, company_id, supplier_partner_id) VALUES (?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, product.getCode());
+            pst.setString(2, product.getBarCode());
+            pst.setString(3, product.getName());
+            pst.setInt(4, category.getId());
+            pst.setInt(5, unit.getId());
+            pst.setDouble(6, product.getRefillingQty());
+            pst.setInt(7, adStatus.getId());
+            pst.setInt(8, company.getId());
+            pst.setInt(9, supplierPartner.getId());
 
             saveDone = pst.executeUpdate();
         } catch (Exception e) {
