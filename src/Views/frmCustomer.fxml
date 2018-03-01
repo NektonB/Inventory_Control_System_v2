@@ -52,68 +52,66 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox layoutX="273.0" layoutY="40.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="14.0">
+      <VBox layoutX="292.0" layoutY="25.0" AnchorPane.topAnchor="13.0">
          <children>
-            <JFXTextField fx:id="txt_customer_type_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Customer Type ID">
-               <padding>
-                  <Insets bottom="10.0" top="25.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXComboBox fx:id="txt_customer_type" prefHeight="25.0" prefWidth="218.0" promptText="Customer Type">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="18.0" />
-               </VBox.margin>
-            </JFXComboBox>
             <JFXTextField fx:id="txt_address_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Address ID">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
                <VBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXTextField>
             <JFXTextArea fx:id="ta_address" labelFloat="true" prefHeight="63.0" prefWidth="202.0" promptText="Address">
                <VBox.margin>
-                  <Insets bottom="10.0" top="16.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXTextArea>
-         </children>
-         <padding>
-            <Insets bottom="10.0" top="10.0" />
-         </padding>
-      </VBox>
-      <VBox layoutX="526.0" layoutY="25.0" AnchorPane.leftAnchor="600.0">
-         <children>
             <JFXTextField fx:id="txt_contact_id" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Contact ID">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
             </JFXTextField>
             <JFXTextArea fx:id="ta_contact" labelFloat="true" prefHeight="63.0" prefWidth="218.0" promptText="Contact">
                <padding>
                   <Insets bottom="10.0" />
                </padding>
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </JFXTextArea>
+         </children>
+      </VBox>
+      <VBox layoutX="558.0" layoutY="25.0">
+         <children>
             <JFXDatePicker fx:id="dp_join_date" prefHeight="25.0" prefWidth="218.0" promptText="Join Date">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
             </JFXDatePicker>
+            <JFXComboBox fx:id="txt_customer_type" prefHeight="25.0" prefWidth="218.0" promptText="Customer Type">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </JFXComboBox>
             <JFXTextField fx:id="cmb_activation_status" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Activation Status">
                <padding>
                   <Insets bottom="10.0" top="25.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
             </JFXTextField>
          </children>
       </VBox>
-      <Separator layoutY="362.0" prefHeight="0.0" prefWidth="876.0" />
-      <HBox layoutX="519.0" layoutY="300.0">
+      <Separator layoutX="8.0" layoutY="322.0" prefHeight="3.0" prefWidth="868.0" />
+      <HBox layoutX="519.0" layoutY="329.0">
          <children>
             <JFXButton fx:id="btn_Save" onAction="#saveEmployee" onKeyReleased="#saveEmployeeKey" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
                <graphic>
@@ -147,17 +145,18 @@
             </JFXButton>
          </children>
       </HBox>
-      <Pane layoutY="369.0">
+      <Pane layoutY="395.0" prefHeight="237.0" prefWidth="876.0">
          <children>
             <TableView fx:id="tbl_customer" prefHeight="263.0" prefWidth="876.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="75.0" text="Customer ID" />
+                <TableColumn prefWidth="75.0" text="Name" />
+                  <TableColumn prefWidth="75.0" text="Name" />
               </columns>
             </TableView>
          </children>
       </Pane>
-      <JFXTextField fx:id="txt_type_nic" layoutX="22.0" layoutY="326.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter your NIC" />
-      <JFXTextField fx:id="txt_type_name" layoutX="261.0" layoutY="326.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter your name" />
+      <JFXTextField fx:id="txt_type_nic" layoutX="22.0" layoutY="355.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter your NIC" />
+      <JFXTextField fx:id="txt_type_name" layoutX="261.0" layoutY="355.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter your name" />
    </children>
 </AnchorPane>
