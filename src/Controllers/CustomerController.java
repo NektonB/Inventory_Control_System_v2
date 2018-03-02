@@ -309,6 +309,17 @@ public class CustomerController implements Initializable {
 
     }
 
+    public void filterCustomerTableByNic(KeyEvent event) {
+        try {
+            customer.setNic(txt_type_nic.getText());
+            dataReader.filterCustomerTableByNic(tbl_customer);
+            customer.resetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
 
 
 

@@ -1740,4 +1740,35 @@ public class DataReader {
         return already;
     }
 
+    public void filterCustomerTableByNic(TableView tblCustomer) {
+        ResultSet rs = null;
+        ObservableList<CustomerController.CustomerList> customerLists = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT customer.id,customer.fname,customer.mname,customer.lname,customer.nic,customer.join_date,ad_status.id,ad_status.status,customer_type.id,customer_type.type FROM customer INNER JOIN ad_status ON customer.ad_status_id = ad_status.id INNER JOIN customer_type ON customer.customer_type_id = customer_type.id  WHERE customer.nic LIKE ?");
+            pst.setString(1, customer.getNic() + "%");
+            rs = pst.executeQuery();
+
+
+            if (!rs.isBeforeFirst()) {
+                customer.resetAll();
+            }
+            while (rs.next()) {
+                String name = rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4);
+                customerLists.add(new CustomerController.CustomerList(rs.getInt(1), name, rs.getString(5), rs.getString(6), rs.getString(8), rs.getString(10)));
+            }
+            tblCustomer.setItems(customerLists);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
 }
