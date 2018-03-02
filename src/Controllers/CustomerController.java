@@ -259,7 +259,7 @@ public class CustomerController implements Initializable {
         }
     }
 
-    public void selectEmloyee() {
+    public void selectCustomer() {
         try {
             if (!tbl_customer.getSelectionModel().isEmpty()) {
 
@@ -307,6 +307,12 @@ public class CustomerController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void selectCustomerKey(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.UP) | event.getCode().equals(KeyCode.DOWN)) {
+            selectCustomer();
+        }
     }
 
     public void filterCustomerTableByNic(KeyEvent event) {
@@ -363,6 +369,13 @@ public class CustomerController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
+        }
+    }
+
+    public void updateCustomerKey(KeyEvent event) {
+
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            updateCustomer();
         }
     }
 
