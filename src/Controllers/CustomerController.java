@@ -68,7 +68,7 @@ public class CustomerController implements Initializable {
     private JFXButton btn_Update;
 
     @FXML
-    private TableView<String> tbl_customer;
+    private TableView<CustomerList> tbl_customer;
 
     @FXML
     private TableColumn<CustomerList, Integer> tc_id;
@@ -259,6 +259,55 @@ public class CustomerController implements Initializable {
         }
     }
 
+    public void selectEmloyee() {
+        try {
+            if (!tbl_customer.getSelectionModel().isEmpty()) {
+
+                CustomerList customerList = tbl_customer.getSelectionModel().getSelectedItem();
+
+                customer.setId(customerList.id.get());
+                dataReader.getEmployeeByEmployeeId();
+
+                txt_customer_id.setText(Integer.toString(customer.getId()));
+                txt_fname.setText((customer.getFirstName()));
+                txt_mname.setText((customer.getMiddleName()));
+                txt_lname.setText((customer.getLastName()));
+                txt_nic.setText((customer.getNic()));
+
+                txt_address_id.setText(Integer.toString(address.getId()));
+                String address01 = address.getNumber() + "" +
+                        ",\n" + address.getLine01() + "" +
+                        ",\n" + address.getLine02() + "" +
+                        ",\n" + address.getCity() + "" +
+                        ",\n" + address.getCountry() + "" +
+                        ",\n" + address.getPostalCode() + ".";
+                ta_address.setText(address01);
+
+                txt_contact_id.setText(Integer.toString(contact.getId()));
+                String contact01 = "" +
+                        "Mobile.............." + contact.getMobile() + "\n" +
+                        "Land.................." + contact.getLand() + "\n" +
+                        "Fax....................." + contact.getFax() + "\n" +
+                        "Email................." + contact.getEmail() + "\n" +
+                        "Web.................." + contact.getWeb();
+                ta_contact.setText(contact01);
+
+                dp_join_date.setValue(LocalDate.parse(customer.getJoinDate()));
+                cmb_customer_type.setValue((customer.getNic()));
+                cmb_activation_status.setValue(adStatus.getStatus());
+
+
+                address.resetAll();
+                contact.resetAll();
+                adStatus.resetAll();
+                customer.resetAll();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static class CustomerList {
         SimpleIntegerProperty id;
         SimpleStringProperty name;
@@ -347,55 +396,6 @@ public class CustomerController implements Initializable {
         public void setActivationstatus(String activationstatus) {
             this.activationstatus.set(activationstatus);
         }
-    }
-
-    public void selectEmloyee() {
-        try {
-            if (!tbl_customer.getSelectionModel().isEmpty()) {
-
-                CustomerList employeeList = tbl_customer.getSelectionModel().getSelectedItem();
-
-                customer.setId(CustomerList.id.get());
-                dataReader.getEmployeeByEmployeeId();
-
-                txt_customer_id.setText(Integer.toString(customer.getId()));
-                txt_fname.setText((customer.getFirstName()));
-                txt_mname.setText((customer.getMiddleName()));
-                txt_lname.setText((customer.getLastName()));
-                txt_nic.setText((customer.getNic()));
-
-                txt_address_id.setText(Integer.toString(address.getId()));
-                String address01 = address.getNumber() + "" +
-                        ",\n" + address.getLine01() + "" +
-                        ",\n" + address.getLine02() + "" +
-                        ",\n" + address.getCity() + "" +
-                        ",\n" + address.getCountry() + "" +
-                        ",\n" + address.getPostalCode() + ".";
-                ta_address.setText(address01);
-
-                txt_contact_id.setText(Integer.toString(contact.getId()));
-                String contact01 = "" +
-                        "Mobile.............." + contact.getMobile() + "\n" +
-                        "Land.................." + contact.getLand() + "\n" +
-                        "Fax....................." + contact.getFax() + "\n" +
-                        "Email................." + contact.getEmail() + "\n" +
-                        "Web.................." + contact.getWeb();
-                ta_contact.setText(contact01);
-
-                dp_join_date.setValue(LocalDate.parse(customer.getJoinDate()));
-                cmb_customer_type.setValue((customer.getNic()));
-                cmb_activation_status.setValue(adStatus.getStatus());
-
-
-                address.resetAll();
-                contact.resetAll();
-                adStatus.resetAll();
-                customer.resetAll();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
 

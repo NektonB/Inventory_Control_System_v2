@@ -143,7 +143,7 @@
       </HBox>
       <Pane layoutY="395.0" prefHeight="237.0" prefWidth="876.0">
          <children>
-            <TableView fx:id="tbl_customer" prefHeight="263.0" prefWidth="876.0">
+            <TableView fx:id="tbl_customer" onMouseClicked="#selectEmloyee" prefHeight="263.0" prefWidth="876.0">
               <columns>
                 <TableColumn fx:id="tc_id" prefWidth="93.0" text="Customer ID" />
                 <TableColumn fx:id="tc_name" prefWidth="254.0" text="Name" />
