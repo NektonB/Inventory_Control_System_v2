@@ -25,10 +25,13 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtUserName" labelFloat="true" onKeyReleased="#gotoTable" promptText="User Name">
+                  <JFXTextField fx:id="txtUserName" labelFloat="true" onKeyReleased="#gotoTable" prefHeight="51.0" prefWidth="200.0" promptText="User Name">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="AMALEE Plain" size="15.0" />
+                     </font>
                   </JFXTextField>
                   <JFXTextField fx:id="txtPassword" labelFloat="true" promptText="Password">
                      <VBox.margin>
