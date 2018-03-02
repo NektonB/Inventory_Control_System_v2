@@ -1440,7 +1440,7 @@ public class DataReader {
         ObservableList<ProductController.ProductList> productList = FXCollections.observableArrayList();
         try {
             pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id WHERE product.name LIKE ?");
-            pst.setString(1,product.getName()+"%");
+            pst.setString(1, product.getName() + "%");
 
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
@@ -1472,7 +1472,7 @@ public class DataReader {
         ObservableList<ProductController.ProductList> productList = FXCollections.observableArrayList();
         try {
             pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id WHERE product.code LIKE ?");
-            pst.setString(1,product.getCode()+"%");
+            pst.setString(1, product.getCode() + "%");
 
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
@@ -1505,7 +1505,7 @@ public class DataReader {
         ObservableList<ProductController.ProductList> productList = FXCollections.observableArrayList();
         try {
             pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id WHERE ct.name = ?");
-            pst.setString(1,category.getName());
+            pst.setString(1, category.getName());
 
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
@@ -1568,6 +1568,54 @@ public class DataReader {
 
                 supplierPartner.setId(rs.getInt(13));
                 supplierPartner.setPartner(rs.getString(14));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void getCustomerByCustomerId() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT customer.id,customer.fname,customer.mname,customer.lname,customer.nic,customer.join_date,customer_type.id,customer_type.type, address.id,address.number,address.line_01,address.line_02,address.city,address.country,address.postal_code,contact.id,contact.mobile,contact.land,contact.fax,contact.email,contact.web,ad_status.id,ad_status.status FROM customer INNER JOIN customer_type ON customer.customer_type_id = customer_type.id INNER JOIN address ON customer.address_id = address.id INNER JOIN contact ON customer.contact_id = contact.id INNER JOIN ad_status ON customer.ad_status_id = ad_status.id WHERE customer.id = ?");
+            pst.setInt(1, customer.getId());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                customer.resetAll();
+            }
+            while (rs.next()) {
+                customer.setId(rs.getInt(1));
+                customer.setFirstName(rs.getString(2));
+                customer.setMiddleName(rs.getString(3));
+                customer.setLastName(rs.getString(4));
+                customer.setNic(rs.getString(5));
+
+                address.setId(rs.getInt(6));
+                address.setNumber(rs.getString(7));
+                address.setLine01(rs.getString(8));
+                address.setLine02(rs.getString(9));
+
+                contact.setId(rs.getInt(10));
+                contact.setMobile(rs.getString(11));
+                contact.setLand(rs.getString(12));
+                contact.setFax(rs.getString(13));
+                contact.setEmail(rs.getString(14));
+                contact.setWeb(rs.getString(16));
+
+                customer.setJoinDate(rs.getString(17));
+
+                customerType.setId(rs.getInt(18));
+                customerType.setType(rs.getString(19));
+
+                adStatus.setStatus(rs.getString(20));
             }
         } catch (Exception e) {
             e.printStackTrace();
