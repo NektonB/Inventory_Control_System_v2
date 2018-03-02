@@ -455,7 +455,7 @@ public class ProductController implements Initializable {
         int saveSupplierList = 0;
         try {
             if (!tblSupplier.getItems().isEmpty()) {
-                supplierPartner.setPartner(txtName.getText());
+                supplierPartner.setPartner(txtCode.getText());
 
                 int saveSupplierPartner = dataWriter.saveSupplierPartner();
 
@@ -514,6 +514,7 @@ public class ProductController implements Initializable {
                     supplier.resetAll();
                     product.resetAll();
                     resetText();
+                    dataReader.fillProductTable(tblProducts);
                     //dataReader.fillCompanyCombo(cmbCompany);
                     //dataReader.fillSupplierTable(tblSupplier);
                     alerts.getInformationAlert("Information", "Product Registration", "Congratulation Chief..!\nProduct registration successful");
@@ -522,6 +523,12 @@ public class ProductController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
+        }
+    }
+
+    public void saveProductKey(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            saveProduct();
         }
     }
 
@@ -543,7 +550,7 @@ public class ProductController implements Initializable {
         category.resetAll();
     }
 
-    public void searchProductByName() {
+    public void selectProductByName() {
         try {
             if (!tblProducts.getItems().isEmpty()) {
                 ProductList productList = tblProducts.getSelectionModel().getSelectedItem();
@@ -565,7 +572,7 @@ public class ProductController implements Initializable {
 
                 dataReader.fillSupplierListTableByPartnerId(tblSupplier);
 
-                product.resetAll();
+                //product.resetAll();
                 category.resetAll();
                 unit.resetAll();
                 adStatus.resetAll();
@@ -578,10 +585,95 @@ public class ProductController implements Initializable {
         }
     }
 
-    public void searchProductByNameKey(KeyEvent event) {
+    public void selectProductByNameKey(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            searchProductByName();
-            ;
+            selectProductByName();
+        }
+    }
+
+    public int updateSupplierList() {
+        //product.setCode(txtCode.getText());
+        dataReader.getPartnerByCode();
+
+        int updateSupplierList = 0;
+        try {
+            ObservableList<? extends TableColumn<?, ?>> columns = tblSupplier.getColumns();
+            for (int i = 0; i < tblSupplier.getItems().size(); ++i) {
+                boolean alreadySupplierList = dataReader.checkSupplierAlreadySupplierList(supplierPartner.getId(), Integer.parseInt(columns.get(0).getCellObservableValue(i).getValue().toString()));
+                if (alreadySupplierList) {
+                    supplier.setId(Integer.parseInt(columns.get(0).getCellObservableValue(i).getValue().toString()));
+                    JFXCheckBox cb = (JFXCheckBox) columns.get(2).getCellObservableValue(i).getValue();
+                    if (cb.isSelected()) {
+                        partnership.setId(1);
+                    } else {
+                        partnership.setId(2);
+                    }
+                    updateSupplierList = dataWriter.updateSupplierList();
+                } else {
+                    supplier.setId(Integer.parseInt(columns.get(0).getCellObservableValue(i).getValue().toString()));
+                    JFXCheckBox cb = (JFXCheckBox) columns.get(2).getCellObservableValue(i).getValue();
+                    if (cb.isSelected()) {
+                        partnership.setId(1);
+                    } else {
+                        partnership.setId(2);
+                    }
+                    updateSupplierList = dataWriter.saveSupplierList();
+                }
+            }
+        } catch (Exception e) {
+            updateSupplierList = 0;
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+        return updateSupplierList;
+    }
+
+    public void updateProduct() {
+        try {
+            int updateSupplierList = updateSupplierList();
+
+            if (updateSupplierList > 0) {
+                product.setCode(txtCode.getText());
+                product.setBarCode(txtBarCode.getText());
+                product.setName(txtName.getText());
+                product.setRefillingQty(Double.parseDouble(txtRefillQty.getText()));
+
+                category.setName(cmbCategory.getValue());
+                dataReader.getCategoryByName();
+
+                unit.setUnit(cmbUnit.getValue());
+                dataReader.getUnitByUnit();
+
+                adStatus.setStatus(cmbStatus.getValue());
+                dataReader.getStatusDetailsByStatus();
+
+                company.setName(cmbCompany.getValue());
+                dataReader.getCompanyByName();
+
+                int updateProduct = dataWriter.updateProduct(txtCode.getText());
+                if (updateProduct > 0) {
+                    company.resetAll();
+                    supplierPartner.resetAll();
+                    address.resetAll();
+                    adStatus.resetAll();
+                    supplier.resetAll();
+                    product.resetAll();
+                    resetText();
+                    //dataReader.fillCompanyCombo(cmbCompany);
+                    //dataReader.fillSupplierTable(tblSupplier);
+                    dataReader.fillProductTable(tblProducts);
+                    alerts.getInformationAlert("Information", "Product Registration", "Congratulation Chief..!\nProduct registration successful");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void updateProductKey(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            updateProduct();
         }
     }
 

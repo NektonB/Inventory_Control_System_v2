@@ -1674,4 +1674,70 @@ public class DataReader {
         }
     }
 
+    /**
+     * Get Supplier partner Details using Product Code.
+     * Search
+     */
+    public void getPartnerByCode() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT supplier_partner_id FROM product  WHERE  code = ?");
+            pst.setString(1, product.getCode());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                supplier.resetAll();
+                supplierPartner.resetAll();
+            }
+            while (rs.next()) {
+                supplierPartner.setId(rs.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Check Supplier is already in the supplier list
+     * if already return true.else false
+     */
+    public boolean checkSupplierAlreadySupplierList(int partnerId, int supplierId) {
+        boolean already = false;
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT * FROM supplier_list WHERE supplier_partner_id = ? AND supplier_id = ?");
+            pst.setInt(1, partnerId);
+            pst.setInt(2, supplierId);
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                //company.resetAll();
+                //companyPartner.resetAll();
+                already = false;
+            }
+            if (rs.next()) {
+                already = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return already;
+    }
+
 }

@@ -63,8 +63,8 @@ public class DataWriter {
                 unit = ObjectGenerator.getUnit();
                 supplierPartner = ObjectGenerator.getSupplierPartner();
                 product = ObjectGenerator.getProduct();
-                customer=ObjectGenerator.getCustomer();
-                customerType=ObjectGenerator.getCustomerType();
+                customer = ObjectGenerator.getCustomer();
+                customerType = ObjectGenerator.getCustomerType();
 
             });
             readyData.setName("Data Writer");
@@ -800,5 +800,69 @@ public class DataWriter {
         }
         return saveDone;
 
+    }
+
+    /**
+     * Update company partnership status CompanyPartner table in the database
+     * Return 0 not update any record
+     * Return grater than 0 data update ok...
+     */
+    public int updateSupplierList() {
+        int updateDone = 0;
+        try {
+            pst = conn.prepareStatement("UPDATE supplier_list SET partnership_id = ? WHERE supplier_partner_id = ? AND supplier_id = ?");
+            pst.setInt(1, partnership.getId());
+            pst.setInt(2, supplierPartner.getId());
+            pst.setInt(3, supplier.getId());
+
+            updateDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return updateDone;
+    }
+
+    /**
+     * Save all input data in Product Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int updateProduct(String newcode) {
+        int saveDone = 0;
+        //ResultSet rs;
+        try {
+            pst = conn.prepareStatement("UPDATE product SET code = ?, bar_code = ?, name = ?, category_id = ?, unit_id = ?,refilling_qty = ?, ad_status_id = ?, company_id = ?, supplier_partner_id = ? WHERE product.code = ?");
+            pst.setString(1, newcode);
+            pst.setString(2, product.getBarCode());
+            pst.setString(3, product.getName());
+            pst.setInt(4, category.getId());
+            pst.setInt(5, unit.getId());
+            pst.setDouble(6, product.getRefillingQty());
+            pst.setInt(7, adStatus.getId());
+            pst.setInt(8, company.getId());
+            pst.setInt(9, supplierPartner.getId());
+            pst.setString(10, product.getCode());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
     }
 }

@@ -95,7 +95,7 @@
             </VBox>
             <HBox layoutX="728.0" layoutY="271.0">
                <children>
-                  <JFXButton fx:id="btnSave" alignment="CENTER_RIGHT" onAction="#saveProduct" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save" textAlignment="RIGHT">
+                  <JFXButton fx:id="btnSave" alignment="CENTER_RIGHT" onAction="#saveProduct" onKeyReleased="#saveProductKey" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save" textAlignment="RIGHT">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
@@ -103,7 +103,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="btnUpdate" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update" textAlignment="RIGHT">
+                  <JFXButton fx:id="btnUpdate" alignment="CENTER_RIGHT" onAction="#updateProduct" onKeyReleased="#updateProductKey" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update" textAlignment="RIGHT">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
@@ -117,7 +117,7 @@
       </Pane>
       <Pane layoutX="4.0" layoutY="344.0" prefHeight="352.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
          <children>
-            <TableView fx:id="tblProducts" layoutY="66.0" onKeyReleased="#searchProductByNameKey" onMouseClicked="#searchProductByName" prefHeight="286.0" prefWidth="992.0">
+            <TableView fx:id="tblProducts" layoutY="66.0" onKeyReleased="#selectProductByNameKey" onMouseClicked="#selectProductByName" prefHeight="286.0" prefWidth="992.0">
                <columns>
                   <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code" />
                   <TableColumn fx:id="tcName" editable="false" prefWidth="421.0" resizable="false" text="Name" />
@@ -131,17 +131,17 @@
             </TableView>
             <HBox layoutX="214.0" layoutY="14.0">
                <children>
-                  <JFXTextField fx:id="txtCodeSearch" onKeyReleased="#filterProductTableByCode" prefHeight="31.0" prefWidth="200.0">
+                  <JFXTextField fx:id="txtCodeSearch" onKeyReleased="#filterProductTableByCode" prefHeight="31.0" prefWidth="200.0" promptText="Search by Code">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtSearcProducts" labelFloat="true" onKeyReleased="#filterProductTableByName" prefHeight="31.0" prefWidth="318.0" promptText="Type Name to Search">
+                  <JFXTextField fx:id="txtSearcProducts" labelFloat="true" onKeyReleased="#filterProductTableByName" prefHeight="31.0" prefWidth="318.0" promptText="Search by Name">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </JFXTextField>
-                  <JFXComboBox fx:id="cmbCategorySearch" onHidden="#filterProductTableByCategory" prefHeight="31.0" prefWidth="200.0">
+                  <JFXComboBox fx:id="cmbCategorySearch" labelFloat="true" onHidden="#filterProductTableByCategory" prefHeight="31.0" prefWidth="200.0" promptText="Category">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>

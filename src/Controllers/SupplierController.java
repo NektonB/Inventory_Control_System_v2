@@ -534,7 +534,6 @@ public class SupplierController implements Initializable {
     }
 
     public int updateCompanyList() {
-
         supplier.setId(Integer.parseInt(txtSupplierId.getText()));
         dataReader.getPartnerBySupplierId();
 
