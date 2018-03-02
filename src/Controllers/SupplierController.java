@@ -58,9 +58,6 @@ public class SupplierController implements Initializable {
     private JFXComboBox<String> cmbCompany;
 
     @FXML
-    private JFXButton btnAddCompany;
-
-    @FXML
     private TableView<CompanyList> tblCompany;
 
     @FXML

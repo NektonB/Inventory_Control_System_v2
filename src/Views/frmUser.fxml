@@ -72,7 +72,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Graphics/AddUser32.png" />
+                        <Image url="@../Graphics/Save_04.png" />
                      </image>
                   </ImageView>
                </graphic></JFXButton>
@@ -83,7 +83,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Graphics/UpdateUser32.png" />
+                        <Image url="@../Graphics/Update_01.png" />
                      </image>
                   </ImageView>
                </graphic></JFXButton>
