@@ -563,6 +563,7 @@ public class ProductController implements Initializable {
 
                 cmbCompany.setValue(company.getName());
 
+                dataReader.fillSupplierListTableByPartnerId(tblSupplier);
 
                 product.resetAll();
                 category.resetAll();

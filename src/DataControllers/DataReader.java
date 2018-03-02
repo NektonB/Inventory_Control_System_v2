@@ -1632,4 +1632,46 @@ public class DataReader {
         }
     }
 
+    /**
+     * Get Company List Details using Partner Id.
+     * Search
+     */
+    public void fillSupplierListTableByPartnerId(TableView tblSupplier) {
+        ResultSet rs = null;
+        ObservableList<ProductController.SupplierList> supplierLists = FXCollections.observableArrayList();
+
+        try {
+            pst = conn.prepareStatement("SELECT sup.id,sup.namel,p.id FROM supplier_list INNER JOIN supplier sup ON supplier_list.supplier_id = sup.id INNER JOIN partnership p ON supplier_list.partnership_id = p.id WHERE supplier_list.supplier_partner_id = ?");
+            pst.setInt(1, supplierPartner.getId());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                supplier.resetAll();
+                supplierPartner.resetAll();
+            }
+            while (rs.next()) {
+
+                int partnershipId = rs.getInt(3);
+                JFXCheckBox cbSelect = new JFXCheckBox();
+                if (partnershipId == 1) {
+                    cbSelect.setSelected(true);
+                } else if (partnershipId == 2) {
+                    cbSelect.setSelected(false);
+                }
+
+                supplierLists.add(new ProductController.SupplierList(rs.getInt(1), rs.getString(2), cbSelect));
+            }
+            tblSupplier.setItems(supplierLists);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

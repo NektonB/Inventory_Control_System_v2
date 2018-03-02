@@ -89,9 +89,9 @@ public class MainController implements Initializable {
     public void loadSupplierManagement() {
         try {
             Stage supplierStage = new Stage();
-            Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmSupplier.fxml"));
+            Parent frmSupplier = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmSupplier.fxml"));
             supplierStage.setTitle("Supplier Management");
-            Scene scene = new Scene(frmUser);
+            Scene scene = new Scene(frmSupplier);
             supplierStage.setScene(scene);
             supplierStage.initStyle(StageStyle.UTILITY);
             supplierStage.setResizable(false);
@@ -105,9 +105,9 @@ public class MainController implements Initializable {
     public void loadProductManagement() {
         try {
             Stage productsStage = new Stage();
-            Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmProducts.fxml"));
+            Parent frmProduct = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmProducts.fxml"));
             productsStage.setTitle("Products Management");
-            Scene scene = new Scene(frmUser);
+            Scene scene = new Scene(frmProduct);
             productsStage.setScene(scene);
             productsStage.initStyle(StageStyle.UTILITY);
             productsStage.setResizable(false);
@@ -121,9 +121,9 @@ public class MainController implements Initializable {
     public void loadEmployeeManagement() {
         try {
             Stage productsStage = new Stage();
-            Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmEmployee.fxml"));
+            Parent frmEmployee = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmEmployee.fxml"));
             productsStage.setTitle("Employee Management");
-            Scene scene = new Scene(frmUser);
+            Scene scene = new Scene(frmEmployee);
             productsStage.setScene(scene);
             productsStage.initStyle(StageStyle.UTILITY);
             productsStage.setResizable(false);
@@ -137,9 +137,9 @@ public class MainController implements Initializable {
     public void loadCustomerManagement() {
         try {
             Stage productsStage = new Stage();
-            Parent frmUser = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmCustomer.fxml"));
+            Parent frmCustomer = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmCustomer.fxml"));
             productsStage.setTitle("Customer Management");
-            Scene scene = new Scene(frmUser);
+            Scene scene = new Scene(frmCustomer);
             productsStage.setScene(scene);
             productsStage.initStyle(StageStyle.UTILITY);
             productsStage.setResizable(false);
