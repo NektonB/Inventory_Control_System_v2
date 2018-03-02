@@ -1348,7 +1348,7 @@ public class DataReader {
         }
     }
 
-    public void getCustomerDetailsByCustomerType() {
+    public void getCustomerTypeByType() {
         ResultSet rs = null;
         try {
             pst = conn.prepareStatement("SELECT * FROM customer_type WHERE type = ?");

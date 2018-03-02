@@ -227,7 +227,7 @@ public class CustomerController implements Initializable {
             customer.setJoinDate(dp_join_date.getValue().toString());
 
             customerType.setType(cmb_customer_type.getValue());
-            dataReader.getCustomerDetailsByCustomerType();
+            dataReader.getCustomerTypeByType();
 
             address.setId(Integer.parseInt(txt_address_id.getText()));
             contact.setId(Integer.parseInt(txt_contact_id.getText()));
