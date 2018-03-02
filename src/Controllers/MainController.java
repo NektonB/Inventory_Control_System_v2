@@ -51,8 +51,6 @@ public class MainController implements Initializable {
     @FXML
     private BorderPane rootpane;
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
