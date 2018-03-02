@@ -320,6 +320,17 @@ public class CustomerController implements Initializable {
         }
     }
 
+    public void filterCustomerTableByName(KeyEvent event) {
+        try {
+            customer.setFirstName(txt_type_name.getText());
+            dataReader.filterCustomerTableByName(tbl_customer);
+            customer.resetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
 
 
 
