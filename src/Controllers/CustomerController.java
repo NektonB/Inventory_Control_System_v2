@@ -135,7 +135,7 @@ public class CustomerController implements Initializable {
             });
             readyData.setName("Customer Controller");
             readyData.start();
-            redyCustomerTable();
+            readyCustomerTable();
             cmb_activation_status.setValue("ACTIVE");
             cmb_customer_type.setValue("NORMAL");
 
@@ -160,10 +160,10 @@ public class CustomerController implements Initializable {
         ta_contact.setText("");
     }
 
-    public void redyCustomerTable() {
+    public void readyCustomerTable() {
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tc_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tc_nic.setCellValueFactory(new PropertyValueFactory<>("join_date"));
+        tc_nic.setCellValueFactory(new PropertyValueFactory<>("joinDate"));
         tc_joindate.setCellValueFactory(new PropertyValueFactory<>("nic"));
         tc_cutomer_type.setCellValueFactory(new PropertyValueFactory<>("cutomer_type"));
         tc_avtivation_status.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -227,7 +227,7 @@ public class CustomerController implements Initializable {
             customer.setJoinDate(dp_join_date.getValue().toString());
 
             customerType.setType(cmb_customer_type.getValue());
-            dataReader.getCustomerDetailsByCustomerType();
+            dataReader.getCustomerTypeByType();
 
             address.setId(Integer.parseInt(txt_address_id.getText()));
             contact.setId(Integer.parseInt(txt_contact_id.getText()));
@@ -256,96 +256,6 @@ public class CustomerController implements Initializable {
 
         if (event.getCode().equals(KeyCode.ENTER)) {
             saveCustomer();
-        }
-    }
-
-    public static class CustomerList {
-        SimpleIntegerProperty id;
-        SimpleStringProperty name;
-        SimpleStringProperty nic;
-        SimpleStringProperty joindate;
-        SimpleStringProperty customertype;
-        SimpleStringProperty activationstatus;
-
-        public CustomerList(int id, String name, String nic, String joindate, String customertype, String activationstatus) {
-            this.id = new SimpleIntegerProperty(id);
-            this.name = new SimpleStringProperty(name);
-            this.nic = new SimpleStringProperty(nic);
-            this.joindate = new SimpleStringProperty(joindate);
-            this.customertype = new SimpleStringProperty(customertype);
-            this.activationstatus = new SimpleStringProperty(activationstatus);
-        }
-
-        public int getId() {
-            return id.get();
-        }
-
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id.set(id);
-        }
-
-        public String getName() {
-            return name.get();
-        }
-
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name.set(name);
-        }
-
-        public String getNic() {
-            return nic.get();
-        }
-
-        public SimpleStringProperty nicProperty() {
-            return nic;
-        }
-
-        public void setNic(String nic) {
-            this.nic.set(nic);
-        }
-
-        public String getJoindate() {
-            return joindate.get();
-        }
-
-        public SimpleStringProperty joindateProperty() {
-            return joindate;
-        }
-
-        public void setJoindate(String joindate) {
-            this.joindate.set(joindate);
-        }
-
-        public String getCustomertype() {
-            return customertype.get();
-        }
-
-        public SimpleStringProperty customertypeProperty() {
-            return customertype;
-        }
-
-        public void setCustomertype(String customertype) {
-            this.customertype.set(customertype);
-        }
-
-        public String getActivationstatus() {
-            return activationstatus.get();
-        }
-
-        public SimpleStringProperty activationstatusProperty() {
-            return activationstatus;
-        }
-
-        public void setActivationstatus(String activationstatus) {
-            this.activationstatus.set(activationstatus);
         }
     }
 
@@ -395,6 +305,99 @@ public class CustomerController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+
+
+
+    public static class CustomerList {
+        SimpleIntegerProperty id;
+        SimpleStringProperty name;
+        SimpleStringProperty nic;
+        SimpleStringProperty joinDate;
+        SimpleStringProperty customerType;
+        SimpleStringProperty activationStatus;
+
+        public CustomerList(int id, String name, String nic, String joinDate, String customerType, String activationStatus) {
+            this.id = new SimpleIntegerProperty(id);
+            this.name = new SimpleStringProperty(name);
+            this.nic = new SimpleStringProperty(nic);
+            this.joinDate = new SimpleStringProperty(joinDate);
+            this.customerType = new SimpleStringProperty(customerType);
+            this.activationStatus = new SimpleStringProperty(activationStatus);
+        }
+
+        public int getId() {
+            return id.get();
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id.set(id);
+        }
+
+        public String getName() {
+            return name.get();
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name.set(name);
+        }
+
+        public String getNic() {
+            return nic.get();
+        }
+
+        public SimpleStringProperty nicProperty() {
+            return nic;
+        }
+
+        public void setNic(String nic) {
+            this.nic.set(nic);
+        }
+
+        public String getJoinDate() {
+            return joinDate.get();
+        }
+
+        public SimpleStringProperty joinDateProperty() {
+            return joinDate;
+        }
+
+        public void setJoinDate(String joinDate) {
+            this.joinDate.set(joinDate);
+        }
+
+        public String getCustomerType() {
+            return customerType.get();
+        }
+
+        public SimpleStringProperty customerTypeProperty() {
+            return customerType;
+        }
+
+        public void setCustomerType(String customerType) {
+            this.customerType.set(customerType);
+        }
+
+        public String getActivationStatus() {
+            return activationStatus.get();
+        }
+
+        public SimpleStringProperty activationStatusProperty() {
+            return activationStatus;
+        }
+
+        public void setActivationStatus(String activationStatus) {
+            this.activationStatus.set(activationStatus);
+        }
     }
 
 
