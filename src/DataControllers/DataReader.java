@@ -37,6 +37,8 @@ public class DataReader {
     Unit unit;
     CustomerType customerType;
     Customer customer;
+    Product product;
+    SupplierPartner supplierPartner;
 
     public DataReader() {
         try {
@@ -59,7 +61,9 @@ public class DataReader {
                 category = ObjectGenerator.getCategory();
                 unit = ObjectGenerator.getUnit();
                 customerType = ObjectGenerator.getCustomerType();
-                customer=ObjectGenerator.getCustomer();
+                customer = ObjectGenerator.getCustomer();
+                product = ObjectGenerator.getProduct();
+                supplierPartner = ObjectGenerator.getSupplierPartner();
             });
             readyData.setName("DataReader");
             readyData.start();
@@ -1381,7 +1385,7 @@ public class DataReader {
             }
             while (rs.next()) {
                 String name = rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4);
-                customerLists.add(new CustomerController.CustomerList(rs.getInt(1),name, rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8)));
+                customerLists.add(new CustomerController.CustomerList(rs.getInt(1), name, rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
             }
             tblCustomer.setItems(customerLists);
         } catch (Exception e) {
@@ -1424,6 +1428,155 @@ public class DataReader {
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    /**
+     * Filling the Product table using Database product table support status,type
+     */
+    public void fillterProductTableByName(TableView tblProduct) {
+        ResultSet rs = null;
+        ObservableList<ProductController.ProductList> productList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id WHERE product.name LIKE ?");
+            pst.setString(1,product.getName()+"%");
+
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                product.resetAll();
+            }
+            while (rs.next()) {
+                productList.add(new ProductController.ProductList(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+            tblProduct.setItems(productList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    /**
+     * Filling the Product table using Database product table support status,type
+     */
+    public void fillterProductTableByCode(TableView tblProduct) {
+        ResultSet rs = null;
+        ObservableList<ProductController.ProductList> productList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id WHERE product.code LIKE ?");
+            pst.setString(1,product.getCode()+"%");
+
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                product.resetAll();
+            }
+            while (rs.next()) {
+                productList.add(new ProductController.ProductList(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+            tblProduct.setItems(productList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+
+    /**
+     * Filling the Product table using Database product table support status,type
+     */
+    public void fillterProductTableByCategory(TableView tblProduct) {
+        ResultSet rs = null;
+        ObservableList<ProductController.ProductList> productList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id WHERE ct.name = ?");
+            pst.setString(1,category.getName());
+
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                category.resetAll();
+            }
+            while (rs.next()) {
+                productList.add(new ProductController.ProductList(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+            tblProduct.setItems(productList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    /**
+     * Get Product Details using Product Name.
+     * Search
+     */
+    public void getProductByCode() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.bar_code,product.name,product.refilling_qty,ct.id,ct.name,u.id,u.unit,ad.id,ad.status,com.id,com.name,partner.id,partner.partner FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id INNER JOIN company com ON product.company_id = com.id INNER JOIN supplier_partner partner ON product.supplier_partner_id = partner.id WHERE product.code = ?");
+            pst.setString(1, product.getCode());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                product.resetAll();
+                category.resetAll();
+                unit.resetAll();
+                adStatus.resetAll();
+                company.resetAll();
+                supplierPartner.resetAll();
+            }
+            if (rs.next()) {
+                product.setCode(rs.getString(1));
+                product.setBarCode(rs.getString(2));
+                product.setName(rs.getString(3));
+                product.setRefillingQty(rs.getDouble(4));
+
+                category.setId(rs.getInt(5));
+                category.setName(rs.getString(6));
+
+                unit.setId(rs.getInt(7));
+                unit.setUnit(rs.getString(8));
+
+                adStatus.setId(rs.getInt(9));
+                adStatus.setStatus(rs.getString(10));
+
+                company.setId(rs.getInt(11));
+                company.setName(rs.getString(12));
+
+                supplierPartner.setId(rs.getInt(13));
+                supplierPartner.setPartner(rs.getString(14));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

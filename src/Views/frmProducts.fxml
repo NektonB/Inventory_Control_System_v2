@@ -117,7 +117,7 @@
       </Pane>
       <Pane layoutX="4.0" layoutY="344.0" prefHeight="352.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
          <children>
-            <TableView fx:id="tblProducts" layoutY="66.0" prefHeight="286.0" prefWidth="992.0">
+            <TableView fx:id="tblProducts" layoutY="66.0" onKeyReleased="#searchProductByNameKey" onMouseClicked="#searchProductByName" prefHeight="286.0" prefWidth="992.0">
                <columns>
                   <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code" />
                   <TableColumn fx:id="tcName" editable="false" prefWidth="421.0" resizable="false" text="Name" />
@@ -129,7 +129,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TableView>
-            <JFXTextField fx:id="txtSearcProducts" labelFloat="true" layoutX="729.0" layoutY="25.0" prefHeight="31.0" prefWidth="260.0" promptText="Type Name to Search" />
+            <HBox layoutX="214.0" layoutY="14.0">
+               <children>
+                  <JFXTextField fx:id="txtCodeSearch" onKeyReleased="#filterProductTableByCode" prefHeight="31.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtSearcProducts" labelFloat="true" onKeyReleased="#filterProductTableByName" prefHeight="31.0" prefWidth="318.0" promptText="Type Name to Search">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <JFXComboBox fx:id="cmbCategorySearch" onHidden="#filterProductTableByCategory" prefHeight="31.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+               </children>
+            </HBox>
          </children>
       </Pane>
    </children>

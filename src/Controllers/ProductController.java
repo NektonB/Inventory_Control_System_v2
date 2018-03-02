@@ -95,9 +95,14 @@ public class ProductController implements Initializable {
     @FXML
     private TableColumn<ProductList, String> tcStatus;
 
-
     @FXML
     private JFXTextField txtSearcProducts;
+
+    @FXML
+    private JFXTextField txtCodeSearch;
+
+    @FXML
+    private JFXComboBox<String> cmbCategorySearch;
 
     DataWriter dataWriter;
     DataReader dataReader;
@@ -140,10 +145,12 @@ public class ProductController implements Initializable {
                 dataReader.fillCompanyCombo(cmbCompany);
                 dataReader.fillStatusCombo(cmbStatus);
                 dataReader.fillCategoryCombo(cmbCategory);
+                dataReader.fillCategoryCombo(cmbCategorySearch);
                 dataReader.fillUnitCombo(cmbUnit);
                 dataReader.fillSupplierCombo(cmbSupplier);
                 dataReader.fillProductTable(tblProducts);
                 //dataReader.fillSupplierTable(tblSupplier);
+                dataReader.fillProductTable(tblProducts);
             });
             readyData.setName("Product Controller");
             readyData.start();
@@ -515,6 +522,65 @@ public class ProductController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
+        }
+    }
+
+    public void filterProductTableByName() {
+        product.setName(txtSearcProducts.getText());
+        dataReader.fillterProductTableByName(tblProducts);
+        product.resetAll();
+    }
+
+    public void filterProductTableByCode() {
+        product.setCode(txtSearcProducts.getText());
+        dataReader.fillterProductTableByCode(tblProducts);
+        product.resetAll();
+    }
+
+    public void filterProductTableByCategory() {
+        category.setName(cmbCategorySearch.getValue());
+        dataReader.fillterProductTableByCategory(tblProducts);
+        category.resetAll();
+    }
+
+    public void searchProductByName() {
+        try {
+            if (!tblProducts.getItems().isEmpty()) {
+                ProductList productList = tblProducts.getSelectionModel().getSelectedItem();
+                product.setCode(productList.code.get());
+                dataReader.getProductByCode();
+
+                txtCode.setText(product.getCode());
+                txtBarCode.setText(product.getBarCode());
+                txtName.setText(product.getName());
+                txtRefillQty.setText(Double.toString(product.getRefillingQty()));
+
+                cmbCategory.setValue(category.getName());
+
+                cmbUnit.setValue(unit.getUnit());
+
+                cmbStatus.setValue(adStatus.getStatus());
+
+                cmbCompany.setValue(company.getName());
+
+
+                product.resetAll();
+                category.resetAll();
+                unit.resetAll();
+                adStatus.resetAll();
+                company.resetAll();
+                supplierPartner.resetAll();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void searchProductByNameKey(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            searchProductByName();
+            ;
         }
     }
 
