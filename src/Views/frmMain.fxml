@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane fx:id="rootpane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
     <center>
         <AnchorPane fx:id="apParent" prefHeight="430.0" prefWidth="1364.0" style="-fx-background-color: #6c8f8e;" BorderPane.alignment="CENTER" />
     </center>
@@ -54,6 +54,7 @@
                   <MenuItem mnemonicParsing="false" text="Server Cnfiguratin" />
                   <MenuItem fx:id="mi_employee_manegment" mnemonicParsing="false" onAction="#loadEmployeeManagement" text="Employee Managment" />
                   <MenuItem fx:id="mi_customer_manegment" mnemonicParsing="false" onAction="#loadCustomerManagement" text="Customer Manegment" />
+                  <MenuItem fx:id="mi_full_screen" mnemonicParsing="false" onAction="#fullscreen" text="Full Screen" />
               </items>
             </Menu>
             </menus>
