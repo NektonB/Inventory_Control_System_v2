@@ -1496,7 +1496,6 @@ public class DataReader {
         }
     }
 
-
     /**
      * Filling the Product table using Database product table support status,type
      */

@@ -57,9 +57,6 @@ public class ProductController implements Initializable {
     private JFXComboBox<String> cmbSupplier;
 
     @FXML
-    private JFXButton btnAddSupplier;
-
-    @FXML
     private TableView<SupplierList> tblSupplier;
 
     @FXML
@@ -539,7 +536,7 @@ public class ProductController implements Initializable {
     }
 
     public void filterProductTableByCode() {
-        product.setCode(txtSearcProducts.getText());
+        product.setCode(txtCodeSearch.getText());
         dataReader.fillterProductTableByCode(tblProducts);
         product.resetAll();
     }
