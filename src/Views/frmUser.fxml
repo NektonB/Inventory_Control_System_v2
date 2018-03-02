@@ -65,24 +65,28 @@
                   </JFXComboBox>
                </children>
             </VBox>
-            <JFXButton fx:id="btnAdd" alignment="CENTER_RIGHT" layoutX="496.0" layoutY="150.0" onAction="#saveUser" onKeyReleased="#saveUserKey" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Add User" textAlignment="RIGHT">
+            <JFXButton fx:id="btnAdd" alignment="CENTER_RIGHT" layoutX="558.0" layoutY="150.0" onAction="#saveUser" onKeyReleased="#saveUserKey" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="      Add" textAlignment="RIGHT">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
-               </font></JFXButton>
-            <JFXButton fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="645.0" layoutY="150.0" onAction="#updateUser" onKeyReleased="#updateUserKey" prefHeight="50.0" prefWidth="140.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update User">
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Graphics/AddUser32.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="675.0" layoutY="150.0" onAction="#updateUser" onKeyReleased="#updateUserKey" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
-               </font></JFXButton>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="500.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Graphics/AddUser32.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="651.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Graphics/UpdateUser32.png" />
-               </image>
-            </ImageView>
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Graphics/UpdateUser32.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
          </children>
       </Pane>
       <Pane layoutX="4.0" layoutY="214.0" prefHeight="270.0" prefWidth="792.0" style="-fx-background-color: #9acc8e;">
