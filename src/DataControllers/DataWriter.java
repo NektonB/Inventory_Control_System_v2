@@ -865,4 +865,38 @@ public class DataWriter {
         }
         return saveDone;
     }
+
+    public int updateCustomer() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("UPDATE customer SET fname = ?, mname = ?, lname = ?, nic = ?, join_date = ?,customer_type_id=?, address_id = ?, contact_id = ?, ad_status_id = ? WHERE id = ?");
+            pst.setString(1, customer.getFirstName());
+            pst.setString(2, customer.getMiddleName());
+            pst.setString(3, customer.getLastName());
+            pst.setString(4, customer.getNic());
+            pst.setString(5, customer.getJoinDate());
+
+            pst.setInt(6, customerType.getId());
+
+            pst.setInt(7, address.getId());
+            pst.setInt(8, contact.getId());
+            pst.setInt(9, adStatus.getId());
+            pst.setInt(10, customer.getId());
+
+            saveDone = pst.executeUpdate();
+            // saveDone = Statement.RETURN_GENERATED_KEYS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+
+    }
 }

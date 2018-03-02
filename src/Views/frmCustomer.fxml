@@ -125,7 +125,7 @@
                         <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton fx:id="btn_Update" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update">
+                  <JFXButton fx:id="btn_Update" alignment="CENTER_RIGHT" onAction="#updateCustomer" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update">
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
