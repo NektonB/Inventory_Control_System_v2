@@ -163,10 +163,10 @@ public class CustomerController implements Initializable {
     public void readyCustomerTable() {
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tc_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tc_nic.setCellValueFactory(new PropertyValueFactory<>("joinDate"));
-        tc_joindate.setCellValueFactory(new PropertyValueFactory<>("nic"));
-        tc_cutomer_type.setCellValueFactory(new PropertyValueFactory<>("cutomer_type"));
-        tc_avtivation_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        tc_nic.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        tc_joindate.setCellValueFactory(new PropertyValueFactory<>("joinDate"));
+        tc_cutomer_type.setCellValueFactory(new PropertyValueFactory<>("customerType"));
+        tc_avtivation_status.setCellValueFactory(new PropertyValueFactory<>("activationStatus"));
     }
 
     public void loadAddressManager(KeyEvent event) {
@@ -266,7 +266,7 @@ public class CustomerController implements Initializable {
                 CustomerList customerList = tbl_customer.getSelectionModel().getSelectedItem();
 
                 customer.setId(customerList.id.get());
-                dataReader.getEmployeeByEmployeeId();
+                dataReader.getCustomerByCustomerId();
 
                 txt_customer_id.setText(Integer.toString(customer.getId()));
                 txt_fname.setText((customer.getFirstName()));
@@ -293,9 +293,11 @@ public class CustomerController implements Initializable {
                 ta_contact.setText(contact01);
 
                 dp_join_date.setValue(LocalDate.parse(customer.getJoinDate()));
-                cmb_customer_type.setValue((customer.getNic()));
+
+                cmb_customer_type.setValue(customerType.getType());
                 cmb_activation_status.setValue(adStatus.getStatus());
 
+                customerType.resetAll();
                 address.resetAll();
                 contact.resetAll();
                 adStatus.resetAll();

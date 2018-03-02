@@ -1597,25 +1597,28 @@ public class DataReader {
                 customer.setMiddleName(rs.getString(3));
                 customer.setLastName(rs.getString(4));
                 customer.setNic(rs.getString(5));
+                customer.setJoinDate(rs.getString(6));
 
-                address.setId(rs.getInt(6));
-                address.setNumber(rs.getString(7));
-                address.setLine01(rs.getString(8));
-                address.setLine02(rs.getString(9));
+                customerType.setId(rs.getInt(7));
+                customerType.setType(rs.getString(8));
 
-                contact.setId(rs.getInt(10));
-                contact.setMobile(rs.getString(11));
-                contact.setLand(rs.getString(12));
-                contact.setFax(rs.getString(13));
-                contact.setEmail(rs.getString(14));
-                contact.setWeb(rs.getString(16));
+                address.setId(rs.getInt(9));
+                address.setNumber(rs.getString(10));
+                address.setLine01(rs.getString(11));
+                address.setLine02(rs.getString(12));
+                address.setCity(rs.getString(13));
+                address.setCountry(rs.getString(14));
+                address.setPostalCode(rs.getString(15));
 
-                customer.setJoinDate(rs.getString(17));
+                contact.setId(rs.getInt(16));
+                contact.setMobile(rs.getString(17));
+                contact.setLand(rs.getString(18));
+                contact.setFax(rs.getString(19));
+                contact.setEmail(rs.getString(20));
+                contact.setWeb(rs.getString(21));
 
-                customerType.setId(rs.getInt(18));
-                customerType.setType(rs.getString(19));
-
-                adStatus.setStatus(rs.getString(20));
+                adStatus.setId(rs.getInt(22));
+                adStatus.setStatus(rs.getString(23));
             }
         } catch (Exception e) {
             e.printStackTrace();
