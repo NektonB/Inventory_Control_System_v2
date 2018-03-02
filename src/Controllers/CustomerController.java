@@ -259,7 +259,7 @@ public class CustomerController implements Initializable {
         }
     }
 
-    public void selectEmloyee() {
+    public void selectCustomer() {
         try {
             if (!tbl_customer.getSelectionModel().isEmpty()) {
 
@@ -307,6 +307,76 @@ public class CustomerController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void selectCustomerKey(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.UP) | event.getCode().equals(KeyCode.DOWN)) {
+            selectCustomer();
+        }
+    }
+
+    public void filterCustomerTableByNic(KeyEvent event) {
+        try {
+            customer.setNic(txt_type_nic.getText());
+            dataReader.filterCustomerTableByNic(tbl_customer);
+            customer.resetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void filterCustomerTableByName(KeyEvent event) {
+        try {
+            customer.setFirstName(txt_type_name.getText());
+            dataReader.filterCustomerTableByName(tbl_customer);
+            customer.resetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void updateCustomer() {
+        try {
+            customer.setId(Integer.parseInt(txt_customer_id.getText()));
+            customer.setFirstName(txt_fname.getText());
+            customer.setMiddleName(txt_mname.getText());
+            customer.setLastName(txt_lname.getText());
+            customer.setNic(txt_nic.getText());
+            customer.setJoinDate(dp_join_date.getValue().toString());
+
+            customerType.setType(cmb_customer_type.getValue());
+            dataReader.getCustomerTypeByType();
+
+            address.setId(Integer.parseInt(txt_address_id.getText()));
+            contact.setId(Integer.parseInt(txt_contact_id.getText()));
+
+            adStatus.setStatus(cmb_activation_status.getValue());
+            dataReader.getStatusDetailsByStatus();
+
+            int updateCustomer = dataWriter.updateCustomer();
+            if (updateCustomer > 0) {
+                customer.resetAll();
+                contact.resetAll();
+                adStatus.resetAll();
+                address.resetAll();
+
+                resetText();
+                dataReader.fillCustomerTable(tbl_customer);
+                alerts.getInformationAlert("Information", "Employee Update modification", "Congratulation Chief..!\nEmployee registration successful");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void updateCustomerKey(KeyEvent event) {
+
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            updateCustomer();
+        }
     }
 
 

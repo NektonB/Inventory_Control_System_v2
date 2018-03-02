@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -43,6 +45,11 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem mi_customer_manegment;
 
+    @FXML
+    private MenuItem mi_full_screen;
+
+    @FXML
+    private BorderPane rootpane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -150,6 +157,11 @@ public class MainController implements Initializable {
         }
     }
 
+
+    public void fullscreen(){
+        Stage stage=((Stage) rootpane.getScene().getWindow());
+        stage.setFullScreen(!stage.isFullScreen());
+    }
 
 
     public void showNotifi() {
