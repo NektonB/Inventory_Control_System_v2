@@ -380,8 +380,6 @@ public class CustomerController implements Initializable {
     }
 
 
-
-
     public static class CustomerList {
         SimpleIntegerProperty id;
         SimpleStringProperty name;
