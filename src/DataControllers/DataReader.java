@@ -1747,7 +1747,6 @@ public class DataReader {
             pst.setString(1, customer.getNic() + "%");
             rs = pst.executeQuery();
 
-
             if (!rs.isBeforeFirst()) {
                 customer.resetAll();
             }

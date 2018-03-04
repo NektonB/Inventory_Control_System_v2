@@ -315,7 +315,7 @@ public class CustomerController implements Initializable {
         }
     }
 
-    public void filterCustomerTableByNic(KeyEvent event) {
+    public void filterCustomerTableByNic() {
         try {
             customer.setNic(txt_type_nic.getText());
             dataReader.filterCustomerTableByNic(tbl_customer);
@@ -326,7 +326,7 @@ public class CustomerController implements Initializable {
         }
     }
 
-    public void filterCustomerTableByName(KeyEvent event) {
+    public void filterCustomerTableByName() {
         try {
             customer.setFirstName(txt_type_name.getText());
             dataReader.filterCustomerTableByName(tbl_customer);
