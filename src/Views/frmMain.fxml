@@ -42,19 +42,17 @@
                 </Menu>
             <Menu mnemonicParsing="false" text="Control Panel">
               <items>
+                <MenuItem fx:id="miUserManagment" mnemonicParsing="false" onAction="#loadUserManagement" text="User Managment">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
                   <MenuItem fx:id="miSupplier" mnemonicParsing="false" onAction="#loadSupplierManagement" text="Supplier Managment">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                <MenuItem fx:id="miUserManagment" mnemonicParsing="false" onAction="#loadUserManagement" text="User Managment">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Server Cnfiguratin" />
                   <MenuItem fx:id="mi_employee_manegment" mnemonicParsing="false" onAction="#loadEmployeeManagement" text="Employee Managment" />
                   <MenuItem fx:id="mi_customer_manegment" mnemonicParsing="false" onAction="#loadCustomerManagement" text="Customer Manegment" />
-                  <MenuItem fx:id="mi_full_screen" mnemonicParsing="false" onAction="#fullscreen" text="Full Screen" />
               </items>
             </Menu>
             </menus>

@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -19,8 +20,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmMain.fxml"));
-        primaryStage.setTitle("Inventory Control System v2.0");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Inventory Master v2.0");
+        Scene mainScene = new Scene(root);
+        Font.loadFont(getClass().getClassLoader().getResource("Fonts/SriBhashitha.ttf").toExternalForm(),15);
+        mainScene.getStylesheets().add(getClass().getClassLoader().getResource("CSS/Decorator.css").toExternalForm());
+        primaryStage.setScene(mainScene);
         //primaryStage.setFullScreen(true);
         primaryStage.setMaximized(true);
         primaryStage.getIcons().add(new Image("/Graphics/Main_01.png"));

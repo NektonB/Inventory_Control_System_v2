@@ -31,7 +31,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtName" labelFloat="true" promptText="Name">
+                  <JFXTextField id="txtProductName" fx:id="txtName" labelFloat="true" promptText="Name" stylesheets="@../CSS/Decorator.css">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
@@ -115,10 +115,10 @@
       </Pane>
       <Pane layoutX="4.0" layoutY="344.0" prefHeight="352.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
          <children>
-            <TableView fx:id="tblProducts" layoutY="66.0" onKeyReleased="#selectProductByNameKey" onMouseClicked="#selectProductByName" prefHeight="286.0" prefWidth="992.0">
+            <TableView id="tblProducts" fx:id="tblProducts" layoutY="66.0" onKeyReleased="#selectProductByNameKey" onMouseClicked="#selectProductByName" prefHeight="286.0" prefWidth="992.0" stylesheets="@../CSS/Decorator.css">
                <columns>
                   <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code" />
-                  <TableColumn fx:id="tcName" editable="false" prefWidth="421.0" resizable="false" text="Name" />
+                  <TableColumn id="tcProductName" fx:id="tcName" editable="false" prefWidth="421.0" resizable="false" text="Name" />
                   <TableColumn fx:id="tcCategory" editable="false" prefWidth="200.0" resizable="false" text="Category" />
                   <TableColumn fx:id="tcUnit" editable="false" prefWidth="121.0" resizable="false" text="Unit" />
                   <TableColumn fx:id="tcStatus" editable="false" prefWidth="100.0" resizable="false" text="Status" />

@@ -29,9 +29,6 @@
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
-                     <font>
-                        <Font name="AMALEE Plain" size="15.0" />
-                     </font>
                   </JFXTextField>
                   <JFXTextField fx:id="txtPassword" labelFloat="true" promptText="Password">
                      <VBox.margin>
