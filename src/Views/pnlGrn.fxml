@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1366.0" style="-fx-background-color: #6c8f8e;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="18.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="1410.0" text="GRN   " textFill="#8d1717">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Pane layoutY="21.0" prefHeight="336.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
+         <children>
+            <VBox layoutX="4.0" layoutY="14.0" prefHeight="193.0" prefWidth="566.0" style="-fx-background-color: #65b47e;">
+               <children>
+                  <JFXTextField labelFloat="true" promptText="Code">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="300.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField labelFloat="true" promptText="Bar Cde">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="200.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField labelFloat="true" promptText="Prduct Name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="SriBhashitha" size="12.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField promptText="Category">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" right="300.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+               </children></VBox>
+            <VBox layoutX="572.0" layoutY="14.0" prefHeight="193.0" prefWidth="250.0" style="-fx-background-color: #65b47e;">
+               <children>
+                  <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" promptText="Quantity" text="0">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" promptText="Purchase Price" text="0">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" promptText="Sale Price" text="0">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+               </children>
+            </VBox>
+            <VBox layoutX="824.0" layoutY="14.0" prefHeight="193.0" prefWidth="300.0" style="-fx-background-color: #65b47e;">
+               <children>
+                  <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" promptText="Total Cost" text="0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="50.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </JFXTextField>
+                  <HBox prefHeight="52.0" prefWidth="300.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="Disc. Valuve" text="0">
+                           <HBox.margin>
+                              <Insets right="10.0" top="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="Disc. Precentage" text="0">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </JFXTextField>
+                        <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="20.0" text="\%" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox layoutX="984.0" layoutY="230.0" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <JFXButton prefHeight="50.0" prefWidth="100.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Button" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane layoutY="365.0" prefHeight="295.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;" />
+   </children>
+</AnchorPane>

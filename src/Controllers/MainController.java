@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -152,6 +153,15 @@ public class MainController implements Initializable {
             productsStage.setResizable(false);
             productsStage.initModality(Modality.APPLICATION_MODAL);
             productsStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadGrn() {
+        try {
+            AnchorPane pnlGRN = FXMLLoader.load(getClass().getClassLoader().getResource("Views/pnlGrn.fxml"));
+            rootpane.setCenter(pnlGRN);
         } catch (Exception e) {
             e.printStackTrace();
         }

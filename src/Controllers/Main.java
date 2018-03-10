@@ -21,15 +21,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmMain.fxml"));
         primaryStage.setTitle("Inventory Master v2.0");
-        Scene mainScene = new Scene(root);
+        Scene mainScene = new Scene(root,1366,798);
         Font.loadFont(getClass().getClassLoader().getResource("Fonts/SriBhashitha.ttf").toExternalForm(),15);
         mainScene.getStylesheets().add(getClass().getClassLoader().getResource("CSS/Decorator.css").toExternalForm());
         primaryStage.setScene(mainScene);
         //primaryStage.setFullScreen(true);
-        primaryStage.setMaximized(true);
+        //primaryStage.setMaximized(true);
         primaryStage.getIcons().add(new Image("/Graphics/Main_01.png"));
         //primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.resizableProperty().setValue(false);
+        //primaryStage.resizableProperty().setValue(false);
         primaryStage.setOnCloseRequest(event -> {
             System.exit(0);
         });
