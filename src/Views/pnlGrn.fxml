@@ -3,8 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -22,11 +23,11 @@
             </Label>
          </children>
       </HBox>
-      <Pane layoutY="21.0" prefHeight="336.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
+      <Pane layoutY="21.0" prefHeight="208.0" prefWidth="1366.0" style="-fx-background-color: #8cc49a;">
          <children>
-            <VBox layoutX="4.0" layoutY="14.0" prefHeight="193.0" prefWidth="566.0" style="-fx-background-color: #65b47e;">
+            <VBox layoutX="4.0" layoutY="14.0" prefHeight="193.0" prefWidth="566.0" style="-fx-background-color: #8cc49a;">
                <children>
-                  <JFXTextField labelFloat="true" promptText="Code">
+                  <JFXTextField fx:id="txtCode" labelFloat="true" promptText="Code">
                      <VBox.margin>
                         <Insets bottom="10.0" left="5.0" right="300.0" top="20.0" />
                      </VBox.margin>
@@ -34,7 +35,7 @@
                         <Font size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField labelFloat="true" promptText="Bar Cde">
+                  <JFXTextField fx:id="txtBarCode" labelFloat="true" promptText="Bar Cde">
                      <VBox.margin>
                         <Insets bottom="10.0" left="5.0" right="200.0" top="10.0" />
                      </VBox.margin>
@@ -42,7 +43,7 @@
                         <Font size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField labelFloat="true" promptText="Prduct Name">
+                  <JFXTextField fx:id="txtName" labelFloat="true" promptText="Prduct Name">
                      <VBox.margin>
                         <Insets bottom="10.0" left="5.0" top="10.0" />
                      </VBox.margin>
@@ -50,7 +51,7 @@
                         <Font name="SriBhashitha" size="12.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField promptText="Category">
+                  <JFXTextField fx:id="txtCategory" promptText="Category">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -59,9 +60,9 @@
                      </VBox.margin>
                   </JFXTextField>
                </children></VBox>
-            <VBox layoutX="572.0" layoutY="14.0" prefHeight="193.0" prefWidth="250.0" style="-fx-background-color: #65b47e;">
+            <VBox layoutX="683.0" layoutY="14.0" prefHeight="193.0" prefWidth="250.0" style="-fx-background-color: #8cc49a;">
                <children>
-                  <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" promptText="Quantity" text="0">
+                  <JFXTextField fx:id="txtQuantity" alignment="CENTER_RIGHT" labelFloat="true" promptText="Quantity" text="0">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -69,7 +70,7 @@
                         <Insets bottom="10.0" left="10.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" promptText="Purchase Price" text="0">
+                  <JFXTextField fx:id="txtPPrice" alignment="CENTER_RIGHT" labelFloat="true" promptText="Purchase Price" text="0">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -77,7 +78,7 @@
                         <Insets bottom="10.0" left="10.0" top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" promptText="Sale Price" text="0">
+                  <JFXTextField fx:id="txtSalePrice" alignment="CENTER_RIGHT" labelFloat="true" promptText="Sale Price" text="0">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -87,9 +88,9 @@
                   </JFXTextField>
                </children>
             </VBox>
-            <VBox layoutX="824.0" layoutY="14.0" prefHeight="193.0" prefWidth="300.0" style="-fx-background-color: #65b47e;">
+            <VBox layoutX="1051.0" layoutY="14.0" prefHeight="116.0" prefWidth="300.0" style="-fx-background-color: #8cc49a;">
                <children>
-                  <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" promptText="Total Cost" text="0">
+                  <JFXTextField fx:id="txtCost" alignment="CENTER_RIGHT" labelFloat="true" promptText="Total Cost" text="0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="50.0" top="20.0" />
                      </VBox.margin>
@@ -102,15 +103,15 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="Disc. Valuve" text="0">
+                        <JFXTextField fx:id="txtDisValue" alignment="CENTER_RIGHT" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="Disc. Valuve" text="0">
                            <HBox.margin>
-                              <Insets right="10.0" top="5.0" />
+                              <Insets left="10.0" right="10.0" top="5.0" />
                            </HBox.margin>
                            <font>
                               <Font size="12.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField alignment="CENTER_RIGHT" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="Disc. Precentage" text="0">
+                        <JFXTextField fx:id="txtDisPrecentage" alignment="CENTER_RIGHT" labelFloat="true" prefHeight="31.0" prefWidth="130.0" promptText="Disc. Precentage" text="0">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -123,18 +124,46 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox layoutX="984.0" layoutY="230.0" prefHeight="50.0" prefWidth="200.0">
+            <HBox layoutX="1046.0" layoutY="148.0" prefHeight="50.0" prefWidth="310.0">
                <children>
-                  <JFXButton prefHeight="50.0" prefWidth="100.0">
+                  <JFXButton fx:id="btnAddToList" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Add To List">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Button" />
+                  <JFXButton fx:id="btnPurchaseNow" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Purchase Now" />
                </children>
             </HBox>
          </children>
       </Pane>
-      <Pane layoutY="365.0" prefHeight="295.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;" />
+      <Pane layoutY="231.0" prefHeight="429.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
+         <children>
+            <TableView id="tcGrnItems" fx:id="tblItems" layoutY="1.0" prefHeight="379.0" prefWidth="1366.0" stylesheets="@../CSS/Decorator.css">
+              <columns>
+                <TableColumn editable="false" prefWidth="150.0" resizable="false" text="Code" />
+                <TableColumn id="tcProductName" editable="false" prefWidth="500.0" resizable="false" text="Name" />
+                  <TableColumn editable="false" prefWidth="126.0" resizable="false" text="Quantity" />
+                  <TableColumn editable="false" prefWidth="130.0" resizable="false" text="Purchase Price" />
+                  <TableColumn editable="false" prefWidth="130.0" resizable="false" text="Sale Price" />
+                  <TableColumn editable="false" prefWidth="130.0" resizable="false" text="Total Cost" />
+                  <TableColumn editable="false" prefWidth="100.0" resizable="false" text="Discount Value" />
+                  <TableColumn editable="false" prefWidth="100.0" resizable="false" text="Disc. Pre. %" />
+              </columns>
+            </TableView>
+            <Pane layoutX="1097.0" layoutY="382.0" prefHeight="45.0" prefWidth="273.0">
+               <children>
+                  <JFXButton fx:id="btnRemveItem" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="7.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Remove Item">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="txtRemveAll" alignment="CENTER_RIGHT" layoutX="141.0" layoutY="8.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Remove All">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+         </children></Pane>
    </children>
 </AnchorPane>
