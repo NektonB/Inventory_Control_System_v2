@@ -166,8 +166,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
+    
     public void fullscreen(){
         Stage stage=((Stage) rootpane.getScene().getWindow());
         stage.setFullScreen(!stage.isFullScreen());
