@@ -11,3 +11,20 @@
 #tcGrnItems {
     -fx-font-size: 12;
 }
+
+#lvProductName {
+    -fx-font-family: "SriBhashitha";
+    -fx-font-size: 13;
+}
+
+#dpDate {
+    -fx-font-size: 12;
+}
+
+#dpTime {
+    -fx-font-size: 12;
+}
+
+#tblPayment {
+    -fx-font-size: 12;
+}

@@ -6,6 +6,8 @@ import DB_Conn.ConnectDB;
 import Modules.*;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
@@ -1529,7 +1531,7 @@ public class DataReader {
     }
 
     /**
-     * Get Product Details using Product Name.
+     * Get Product Details using Product Code.
      * Search
      */
     public void getProductByCode() {
@@ -1537,6 +1539,110 @@ public class DataReader {
         try {
             pst = conn.prepareStatement("SELECT product.code,product.bar_code,product.name,product.refilling_qty,ct.id,ct.name,u.id,u.unit,ad.id,ad.status,com.id,com.name,partner.id,partner.partner FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id INNER JOIN company com ON product.company_id = com.id INNER JOIN supplier_partner partner ON product.supplier_partner_id = partner.id WHERE product.code = ?");
             pst.setString(1, product.getCode());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                product.resetAll();
+                category.resetAll();
+                unit.resetAll();
+                adStatus.resetAll();
+                company.resetAll();
+                supplierPartner.resetAll();
+            }
+            if (rs.next()) {
+                product.setCode(rs.getString(1));
+                product.setBarCode(rs.getString(2));
+                product.setName(rs.getString(3));
+                product.setRefillingQty(rs.getDouble(4));
+
+                category.setId(rs.getInt(5));
+                category.setName(rs.getString(6));
+
+                unit.setId(rs.getInt(7));
+                unit.setUnit(rs.getString(8));
+
+                adStatus.setId(rs.getInt(9));
+                adStatus.setStatus(rs.getString(10));
+
+                company.setId(rs.getInt(11));
+                company.setName(rs.getString(12));
+
+                supplierPartner.setId(rs.getInt(13));
+                supplierPartner.setPartner(rs.getString(14));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Get Product Details using Product BarCode.
+     * Search
+     */
+    public void getProductByBarCode() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.bar_code,product.name,product.refilling_qty,ct.id,ct.name,u.id,u.unit,ad.id,ad.status,com.id,com.name,partner.id,partner.partner FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id INNER JOIN company com ON product.company_id = com.id INNER JOIN supplier_partner partner ON product.supplier_partner_id = partner.id WHERE product.bar_code = ?");
+            pst.setString(1, product.getBarCode());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                product.resetAll();
+                category.resetAll();
+                unit.resetAll();
+                adStatus.resetAll();
+                company.resetAll();
+                supplierPartner.resetAll();
+            }
+            if (rs.next()) {
+                product.setCode(rs.getString(1));
+                product.setBarCode(rs.getString(2));
+                product.setName(rs.getString(3));
+                product.setRefillingQty(rs.getDouble(4));
+
+                category.setId(rs.getInt(5));
+                category.setName(rs.getString(6));
+
+                unit.setId(rs.getInt(7));
+                unit.setUnit(rs.getString(8));
+
+                adStatus.setId(rs.getInt(9));
+                adStatus.setStatus(rs.getString(10));
+
+                company.setId(rs.getInt(11));
+                company.setName(rs.getString(12));
+
+                supplierPartner.setId(rs.getInt(13));
+                supplierPartner.setPartner(rs.getString(14));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Get Product Details using Product BarCode.
+     * Search
+     */
+    public void getProductByName() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.bar_code,product.name,product.refilling_qty,ct.id,ct.name,u.id,u.unit,ad.id,ad.status,com.id,com.name,partner.id,partner.partner FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id INNER JOIN company com ON product.company_id = com.id INNER JOIN supplier_partner partner ON product.supplier_partner_id = partner.id WHERE product.name = ?");
+            pst.setString(1, product.getName());
             rs = pst.executeQuery();
 
             if (!rs.isBeforeFirst()) {
@@ -1800,6 +1906,59 @@ public class DataReader {
         }
     }
 
+    public void autoCompleteProductCode(JFXListView<String> lvCode, JFXTextField txtCode) {
+        ResultSet rs = null;
+        ObservableList<String> productCodeList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT code FROM product WHERE code LIKE ?");
+            pst.setString(1, txtCode.getText() + "%");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                lvCode.setVisible(false);
+                //alerts.getWarningAlert("Warning Alert", "Something went wrong..", "Apologetic Chief..!\nI have no suitable data in my database for your choice.\nPlease try another.");
+            }
+            while (rs.next()) {
+                productCodeList.add(rs.getString(1));
+            }
+            lvCode.setItems(productCodeList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void autoCompleteProductName(JFXListView<String> lvName, JFXTextField txtName) {
+        ResultSet rs = null;
+        ObservableList<String> productCodeList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT name FROM product WHERE product.name LIKE ?");
+            pst.setString(1, txtName.getText() + "%");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                lvName.setVisible(false);
+                //alerts.getWarningAlert("Warning Alert", "Something went wrong..", "Apologetic Chief..!\nI have no suitable data in my database for your choice.\nPlease try another.");
+            }
+            while (rs.next()) {
+                productCodeList.add(rs.getString(1));
+            }
+            lvName.setItems(productCodeList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 }

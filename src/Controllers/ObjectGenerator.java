@@ -32,6 +32,8 @@ public class ObjectGenerator {
     private static SupplierPartner supplierPartner;
     private static CustomerType customerType;
     private static Product product;
+    private static TextValidator textValidator;
+    private static TimeFormatConverter timeFormatConverter;
 
     public static synchronized void readyAll() {
         try {
@@ -229,5 +231,19 @@ public class ObjectGenerator {
         }
         return product;
 
+    }
+
+    public static TextValidator getTextValidator() {
+        if (textValidator == null) {
+            textValidator = new TextValidator();
+        }
+        return textValidator;
+    }
+
+    public static TimeFormatConverter getTimeFormatConverter() {
+        if (timeFormatConverter == null) {
+            timeFormatConverter = new TimeFormatConverter();
+        }
+        return timeFormatConverter;
     }
 }
