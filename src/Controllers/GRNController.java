@@ -3,6 +3,7 @@ package Controllers;
 import DataControllers.DataReader;
 import DataControllers.DataWriter;
 import Modules.Category;
+import Modules.ComponentSwitcher;
 import Modules.Product;
 import com.gluonhq.charm.glisten.layout.Layer;
 import com.jfoenix.controls.JFXButton;
@@ -25,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -118,6 +120,7 @@ public class GRNController implements Initializable {
     Alerts alerts;
     Product product;
     Category category;
+    ComponentSwitcher switcher;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -134,6 +137,7 @@ public class GRNController implements Initializable {
                 validator = ObjectGenerator.getTextValidator();
                 product = ObjectGenerator.getProduct();
                 category = ObjectGenerator.getCategory();
+                switcher = ObjectGenerator.getComponentSwitcher();
 
                 validator.validateDigit(txtQuantity, 10, 2);
                 validator.validateDigit(txtPPrice, 10, 2);
@@ -509,15 +513,22 @@ public class GRNController implements Initializable {
 
     public void loadGRNPurchase() {
         try {
-            Stage GrnStage = new Stage();
-            Parent frmGRNPurchase = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmGrnSummary.fxml"));
-            GrnStage.setTitle("GRN Purchase");
-            Scene scene = new Scene(frmGRNPurchase);
-            GrnStage.setScene(scene);
-            GrnStage.initStyle(StageStyle.UTILITY);
-            GrnStage.setResizable(false);
-            GrnStage.initModality(Modality.APPLICATION_MODAL);
-            GrnStage.show();
+            if (tblItems.getItems().isEmpty()) {
+                Toolkit.getDefaultToolkit().beep();
+                alerts.getWarningNotify("Warning", "Cart is empty.Please add at least one");
+            } else {
+                switcher.setTblItem(tblItems);
+
+                Stage GrnStage = new Stage();
+                Parent frmGRNPurchase = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmGrnSummary.fxml"));
+                GrnStage.setTitle("GRN Purchase");
+                Scene scene = new Scene(frmGRNPurchase);
+                GrnStage.setScene(scene);
+                GrnStage.initStyle(StageStyle.UTILITY);
+                GrnStage.setResizable(false);
+                GrnStage.initModality(Modality.APPLICATION_MODAL);
+                GrnStage.show();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

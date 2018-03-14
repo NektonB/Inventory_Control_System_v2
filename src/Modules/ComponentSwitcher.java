@@ -2,6 +2,7 @@ package Modules;
 
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.scene.control.TableView;
 
 public class ComponentSwitcher {
 
@@ -9,6 +10,7 @@ public class ComponentSwitcher {
     private JFXTextField txt02;
     private JFXTextArea txta01;
     private JFXTextArea txta02;
+    private TableView<?> tblItem;
 
     public JFXTextField getTxt01() {
         return txt01;
@@ -40,5 +42,13 @@ public class ComponentSwitcher {
 
     public void setTxta02(JFXTextArea txta02) {
         this.txta02 = txta02;
+    }
+
+    public TableView<?> getTblItem() {
+        return tblItem;
+    }
+
+    public void setTblItem(TableView<?> tblItem) {
+        this.tblItem = tblItem;
     }
 }

@@ -72,7 +72,7 @@
                         <Insets bottom="10.0" right="50.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <JFXTextField fx:id="txtGrossAmount" alignment="CENTER_RIGHT" editable="false" labelFloat="true" promptText="Gross Amount" text="145">
+                  <JFXTextField fx:id="txtGrossAmount" alignment="CENTER_RIGHT" editable="false" labelFloat="true" promptText="Gross Amount" text="0">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -204,7 +204,7 @@
       </Pane>
       <Pane layoutX="3.0" layoutY="526.0" prefHeight="66.0" prefWidth="794.0" style="-fx-background-color: #8cc49a;">
          <children>
-            <JFXButton fx:id="btnGoBack" alignment="CENTER_RIGHT" layoutX="477.0" layoutY="8.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Go Back">
+            <JFXButton fx:id="btnGoBack" alignment="CENTER_RIGHT" layoutX="477.0" layoutY="8.0" onAction="#calculateItemCount" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Go Back">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

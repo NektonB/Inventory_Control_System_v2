@@ -2,6 +2,7 @@ package Controllers;
 
 import DataControllers.DataReader;
 import DataControllers.DataWriter;
+import Modules.ComponentSwitcher;
 import Modules.PaymentType;
 import com.jfoenix.controls.*;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -91,6 +92,9 @@ public class GRNPurchaseController implements Initializable {
     DateFormatConverter dateFormatConverter;
     TimeFormatConverter timeFormatConverter;
     PaymentType paymentType;
+    ComponentSwitcher switcher;
+
+    TableView tblItems;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -108,6 +112,7 @@ public class GRNPurchaseController implements Initializable {
                 dateFormatConverter = ObjectGenerator.getDateFormatConverter();
                 timeFormatConverter = ObjectGenerator.getTimeFormatConverter();
                 paymentType = ObjectGenerator.getPaymentType();
+                switcher = ObjectGenerator.getComponentSwitcher();
 
                 dateFormatConverter.convert(dpGRNDate, "yyyy-MM-dd");
                 //timeFormatConverter.convert(tpGRNTime, "hh:mm");
@@ -117,6 +122,11 @@ public class GRNPurchaseController implements Initializable {
                 validator.validateDigit(txtPayedAmountPart, 10, 2);
                 dataReader.fillPaymentTypeCombo(cmbType);
                 cmbType.setValue("CASH");
+                calculateItemCount();
+                calculateTotalAmount();
+                calculateDiscValue();
+                calculateDiscPercentage();
+                calculateGrossAmount();
 
             });
             readyTable();
@@ -161,6 +171,84 @@ public class GRNPurchaseController implements Initializable {
     public double roundValue(double value) {
         value = Math.round(value * 100.00) / 100.00;
         return value;
+    }
+
+    public void calculateItemCount() {
+        try {
+            double quantity = 0;
+
+            ObservableList<? extends TableColumn<?, ?>> columns = switcher.getTblItem().getColumns();
+            for (int i = 0; i < switcher.getTblItem().getItems().size(); ++i) {
+                quantity += Double.parseDouble(columns.get(2).getCellObservableValue(i).getValue().toString());
+            }
+            quantity = roundValue(quantity);
+            txtItemCount.setText(Double.toString(quantity));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void calculateTotalAmount() {
+        try {
+            double totalAmount = 0;
+
+            ObservableList<? extends TableColumn<?, ?>> columns = switcher.getTblItem().getColumns();
+            for (int i = 0; i < switcher.getTblItem().getItems().size(); ++i) {
+                totalAmount += Double.parseDouble(columns.get(5).getCellObservableValue(i).getValue().toString());
+            }
+            totalAmount = roundValue(totalAmount);
+            txtTotalAmount.setText(Double.toString(totalAmount));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void calculateDiscValue() {
+        try {
+            double discValue = 0;
+
+            ObservableList<? extends TableColumn<?, ?>> columns = switcher.getTblItem().getColumns();
+            for (int i = 0; i < switcher.getTblItem().getItems().size(); ++i) {
+                discValue += Double.parseDouble(columns.get(6).getCellObservableValue(i).getValue().toString());
+            }
+            discValue = roundValue(discValue);
+            txtDisValue.setText(Double.toString(discValue));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void calculateDiscPercentage() {
+        double discValue = 0, discPercentage = 0, totalAmount = 0;
+        try {
+            totalAmount = Double.parseDouble(txtTotalAmount.getText());
+            discValue = Double.parseDouble(txtDisValue.getText());
+
+            discPercentage = ((discValue / totalAmount) * 100);
+            discPercentage = roundValue(discPercentage);
+
+            txtDisPercentage.setText(Double.toString(discPercentage));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void calculateGrossAmount() {
+        try {
+            double totalAmount = 0, grossAmount = 0, discValue = 0;
+
+            totalAmount = Double.parseDouble(txtTotalAmount.getText());
+            discValue = Double.parseDouble(txtDisValue.getText());
+
+            grossAmount = (totalAmount - discValue);
+            grossAmount = roundValue(grossAmount);
+            txtGrossAmount.setText(Double.toString(grossAmount));
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
     }
 
     public void increasePayedAmount() {
@@ -281,6 +369,42 @@ public class GRNPurchaseController implements Initializable {
         }
     }
 
+    public void calculateNetDiscPercentage() {
+        double netDiscPercentage = 0, discPercentage = 0, manualDiscPercentage = 0;
+        try {
+
+            discPercentage = Double.parseDouble(txtDisValue.getText());
+            manualDiscPercentage = Double.parseDouble(txtManualDisValue.getText());
+
+            netDiscPercentage = (discPercentage + manualDiscPercentage);
+            netDiscPercentage = roundValue(netDiscPercentage);
+
+            txtTotalDisPercentage.setText(Double.toString(netDiscPercentage));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void calculateNetDiscValue() {
+        double netDiscValue = 0, discValue = 0, manualDiscValue = 0;
+        try {
+
+            discValue = Double.parseDouble(txtDisValue.getText());
+            manualDiscValue = Double.parseDouble(txtManualDisValue.getText());
+
+            netDiscValue = (discValue + manualDiscValue);
+            netDiscValue = roundValue(netDiscValue);
+
+            txtTotalDisValue.setText(Double.toString(netDiscValue));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+    }
+
     public void calculateNetAmount() {
         try {
             double grossAmount = 0, manualDiscValue = 0, netAmount = 0;
@@ -305,11 +429,13 @@ public class GRNPurchaseController implements Initializable {
 
     public void txtManualDisValueKeyReleased() {
         calculateManualDiscPercentage();
+        calculateNetDiscPercentage();
         calculateNetAmount();
     }
 
     public void setTxtManualDisPercentageKeyReleased() {
         calculateManualDisValue();
+        calculateNetDiscValue();
         calculateNetAmount();
     }
 
