@@ -13,7 +13,7 @@ public class TextValidator {
 
         txtValue.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (txtValue.isFocused()) {
-                if (txtValue.getText().equals("0")) {
+                if (txtValue.getText().equals("0") | txtValue.getText().equals("0.0")) {
                     txtValue.setText("");
                 }
             } else {

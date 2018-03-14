@@ -334,11 +334,16 @@ public class GRNController implements Initializable {
     }
 
     public void addItemToTable() {
-        ObservableList<Items> itemList;
-        itemList = tblItems.getItems();
-        itemList.add(new Items(txtCode.getText(), txtName.getText(), Double.parseDouble(txtQuantity.getText()), Double.parseDouble(txtPPrice.getText()), Double.parseDouble(txtSalePrice.getText()), Double.parseDouble(txtCost.getText()), Double.parseDouble(txtDisValue.getText()), Double.parseDouble(txtDisPrecentage.getText())));
-        tblItems.setItems(itemList);
-        resetText();
+        try {
+            ObservableList<Items> itemList;
+            itemList = tblItems.getItems();
+            itemList.add(new Items(txtCode.getText(), txtName.getText(), Double.parseDouble(txtQuantity.getText()), Double.parseDouble(txtPPrice.getText()), Double.parseDouble(txtSalePrice.getText()), Double.parseDouble(txtCost.getText()), Double.parseDouble(txtDisValue.getText()), Double.parseDouble(txtDisPrecentage.getText())));
+            tblItems.setItems(itemList);
+            resetText();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
     }
 
     public void addItemToTableKey(KeyEvent event) {
@@ -412,7 +417,7 @@ public class GRNController implements Initializable {
         removeAllKey(event);
     }
 
-    public void readyCodeAutoCompleter(KeyEvent event){
+    public void readyCodeAutoCompleter(KeyEvent event) {
         try {
             dataReader.autoCompleteProductCode(lvCode, txtCode);
 
@@ -457,7 +462,7 @@ public class GRNController implements Initializable {
         }
     }
 
-    public void readyNameAutoCompleter(KeyEvent event){
+    public void readyNameAutoCompleter(KeyEvent event) {
         try {
             dataReader.autoCompleteProductName(lvName, txtName);
 

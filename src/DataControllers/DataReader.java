@@ -41,6 +41,7 @@ public class DataReader {
     Customer customer;
     Product product;
     SupplierPartner supplierPartner;
+    PaymentType paymentType;
 
     public DataReader() {
         try {
@@ -66,6 +67,7 @@ public class DataReader {
                 customer = ObjectGenerator.getCustomer();
                 product = ObjectGenerator.getProduct();
                 supplierPartner = ObjectGenerator.getSupplierPartner();
+                paymentType = ObjectGenerator.getPaymentType();
             });
             readyData.setName("DataReader");
             readyData.start();
@@ -1948,6 +1950,64 @@ public class DataReader {
                 productCodeList.add(rs.getString(1));
             }
             lvName.setItems(productCodeList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Check Payment Type is already
+     * if already return true.else false
+     */
+    public boolean checkPaymentTypeAlready(String type) {
+        boolean already = false;
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT type FROM payment_type WHERE type = ?");
+            pst.setString(1, type);
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                paymentType.resetAll();
+                already = false;
+            }
+            if (rs.next()) {
+                already = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return already;
+    }
+
+    public void fillPaymentTypeCombo(JFXComboBox cmbPaymentType) {
+        ResultSet rs = null;
+        cmbPaymentType.getItems().clear();
+        try {
+            pst = conn.prepareStatement("SELECT type FROM  payment_type");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                paymentType.resetAll();
+            }
+            while (rs.next()) {
+                cmbPaymentType.getItems().add(rs.getString(1));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

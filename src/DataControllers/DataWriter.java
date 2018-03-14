@@ -35,6 +35,7 @@ public class DataWriter {
     Product product;
     Customer customer;
     CustomerType customerType;
+    PaymentType paymentType;
 
 
     /**
@@ -65,6 +66,7 @@ public class DataWriter {
                 product = ObjectGenerator.getProduct();
                 customer = ObjectGenerator.getCustomer();
                 customerType = ObjectGenerator.getCustomerType();
+                paymentType =ObjectGenerator.getPaymentType();
 
             });
             readyData.setName("Data Writer");
@@ -898,5 +900,31 @@ public class DataWriter {
         }
         return saveDone;
 
+    }
+
+    /**
+     * Save all input data in Payment Type Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int savePaymentType() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO payment_type(type) VALUES (?)");
+            pst.setString(1, paymentType.getType());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
     }
 }

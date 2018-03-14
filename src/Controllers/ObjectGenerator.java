@@ -34,6 +34,7 @@ public class ObjectGenerator {
     private static Product product;
     private static TextValidator textValidator;
     private static TimeFormatConverter timeFormatConverter;
+    private static PaymentType paymentType;
 
     public static synchronized void readyAll() {
         try {
@@ -245,5 +246,12 @@ public class ObjectGenerator {
             timeFormatConverter = new TimeFormatConverter();
         }
         return timeFormatConverter;
+    }
+
+    public static PaymentType getPaymentType() {
+        if (paymentType == null) {
+            paymentType = new PaymentType();
+        }
+        return paymentType;
     }
 }

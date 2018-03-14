@@ -28,3 +28,7 @@
 #tblPayment {
     -fx-font-size: 12;
 }
+
+#cmbPaymentType {
+    -fx-font-size: 12;
+}
