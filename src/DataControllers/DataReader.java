@@ -2020,5 +2020,62 @@ public class DataReader {
         }
     }
 
+    /**
+     * Get Payment type Details using Payment type.
+     * Search
+     */
+    public void getPaymentTypeByType() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT * FROM payment_type WHERE type = ?");
+            pst.setString(1, paymentType.getType());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                paymentType.resetAll();
+            }
+            while (rs.next()) {
+                paymentType.setId(rs.getInt(1));
+                paymentType.setType(rs.getString(2));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void autoCompleteSupplierName(JFXListView<String> lvSupplierName, JFXTextField txtSupplierName) {
+        ResultSet rs = null;
+        ObservableList<String> productCodeList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT namel FROM supplier WHERE namel LIKE ?");
+            pst.setString(1, txtSupplierName.getText() + "%");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                lvSupplierName.setVisible(false);
+                //alerts.getWarningAlert("Warning Alert", "Something went wrong..", "Apologetic Chief..!\nI have no suitable data in my database for your choice.\nPlease try another.");
+            }
+            while (rs.next()) {
+                productCodeList.add(rs.getString(1));
+            }
+            lvSupplierName.setItems(productCodeList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }

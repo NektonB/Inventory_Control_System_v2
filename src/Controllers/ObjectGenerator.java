@@ -35,6 +35,13 @@ public class ObjectGenerator {
     private static TextValidator textValidator;
     private static TimeFormatConverter timeFormatConverter;
     private static PaymentType paymentType;
+    private static PaymentMethod paymentMethod;
+    private static GRN grn;
+    private static MethodList methodList;
+    private static PayStatus payStatus;
+    private static Approve approve;
+    private static GrnItems grnItems;
+    private static Stock stock;
 
     public static synchronized void readyAll() {
         try {
@@ -253,5 +260,54 @@ public class ObjectGenerator {
             paymentType = new PaymentType();
         }
         return paymentType;
+    }
+
+    public static PaymentMethod getPaymentMethod() {
+        if (paymentMethod == null) {
+            paymentMethod = new PaymentMethod();
+        }
+        return paymentMethod;
+    }
+
+    public static GRN getGrn() {
+        if (grn == null) {
+            grn = new GRN();
+        }
+        return grn;
+    }
+
+    public static MethodList getMethodList() {
+        if (methodList == null) {
+            methodList = new MethodList();
+        }
+        return methodList;
+    }
+
+    public static PayStatus getPayStatus() {
+        if (payStatus == null) {
+            payStatus = new PayStatus();
+        }
+        return payStatus;
+    }
+
+    public static Approve getApprove() {
+        if (approve == null) {
+            approve = new Approve();
+        }
+        return approve;
+    }
+
+    public static GrnItems getGrnItems() {
+        if (grnItems == null) {
+            grnItems = new GrnItems();
+        }
+        return grnItems;
+    }
+
+    public static Stock getStock() {
+        if (stock == null) {
+            stock = new Stock();
+        }
+        return stock;
     }
 }

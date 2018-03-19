@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.layout.Layer?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.geometry.Insets?>
@@ -16,13 +18,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" style="-fx-background-color: #6c8f8e;" stylesheets="@../CSS/Decorator.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GRNPurchaseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#autoHidelvSupplierName" prefHeight="596.0" prefWidth="800.0" style="-fx-background-color: #6c8f8e;" stylesheets="@../CSS/Decorator.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GRNPurchaseController">
    <children>
       <Pane layoutX="3.0" layoutY="3.0" prefHeight="318.0" prefWidth="794.0" style="-fx-background-color: #8cc49a;">
          <children>
             <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="293.0">
                <children>
-                  <JFXDatePicker id="dpDate" fx:id="dpGRNDate" promptText="Date" showWeekNumbers="true">
+                  <JFXDatePicker id="dpDate" fx:id="dpGRNDate" onKeyReleased="#goToSupplier" promptText="Date" showWeekNumbers="true">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
@@ -84,7 +86,7 @@
             </VBox>
             <VBox layoutX="416.0" layoutY="15.0" prefHeight="285.0" prefWidth="364.0">
                <children>
-                  <JFXTextField labelFloat="true" promptText="Supplier">
+                  <JFXTextField fx:id="txtSupplierName" labelFloat="true" onKeyReleased="#setTxtSupplierNameKeyReleased" promptText="Supplier">
                      <VBox.margin>
                         <Insets bottom="30.0" top="10.0" />
                      </VBox.margin>
@@ -191,11 +193,12 @@
                   </HBox>
                   <TableView id="tblPayment" fx:id="tblPayment" onKeyReleased="#removeRow" prefHeight="173.0" prefWidth="350.0">
                     <columns>
+                        <TableColumn fx:id="tcTypeId" editable="false" prefWidth="75.0" resizable="false" text="Id" />
                       <TableColumn fx:id="tcMethode" editable="false" prefWidth="200.0" resizable="false" text="Methode" />
                         <TableColumn fx:id="tcAmount" editable="false" prefWidth="150.0" resizable="false" text="Amount" />
                     </columns>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="435.0" right="5.0" />
+                        <Insets bottom="5.0" left="360.0" right="5.0" />
                      </VBox.margin>
                   </TableView>
                </children>
@@ -204,7 +207,7 @@
       </Pane>
       <Pane layoutX="3.0" layoutY="526.0" prefHeight="66.0" prefWidth="794.0" style="-fx-background-color: #8cc49a;">
          <children>
-            <JFXButton fx:id="btnGoBack" alignment="CENTER_RIGHT" layoutX="477.0" layoutY="8.0" onAction="#calculateItemCount" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Go Back">
+            <JFXButton fx:id="btnGoBack" alignment="CENTER_RIGHT" layoutX="477.0" layoutY="8.0" onAction="#goBack" onKeyReleased="#goBackKey" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Go Back">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -212,7 +215,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnPurchaseNow" alignment="CENTER_RIGHT" layoutX="637.0" layoutY="8.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Purchase Now">
+            <JFXButton fx:id="btnPurchaseNow" alignment="CENTER_RIGHT" layoutX="637.0" layoutY="8.0" onAction="#saveGRN" onKeyReleased="#saveGRNKey" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Purchase Now">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -222,5 +225,10 @@
             </JFXButton>
          </children>
       </Pane>
+      <Layer layoutX="419.0" layoutY="58.0" prefHeight="262.0" prefWidth="364.0">
+         <children>
+            <JFXListView id="lvSupplierName" fx:id="lvSupplierName" onKeyReleased="#completeSupplierName" style="-fx-background-color: rgba(54,203,154,0.56);" />
+         </children>
+      </Layer>
    </children>
 </AnchorPane>

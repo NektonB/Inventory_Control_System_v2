@@ -36,6 +36,12 @@ public class DataWriter {
     Customer customer;
     CustomerType customerType;
     PaymentType paymentType;
+    GRN grn;
+    PaymentMethod paymentMethod;
+    MethodList methodList;
+    PayStatus payStatus;
+    Approve approve;
+    GrnItems grnItems;
 
 
     /**
@@ -66,7 +72,13 @@ public class DataWriter {
                 product = ObjectGenerator.getProduct();
                 customer = ObjectGenerator.getCustomer();
                 customerType = ObjectGenerator.getCustomerType();
-                paymentType =ObjectGenerator.getPaymentType();
+                paymentType = ObjectGenerator.getPaymentType();
+                grn = ObjectGenerator.getGrn();
+                paymentMethod = ObjectGenerator.getPaymentMethod();
+                methodList = ObjectGenerator.getMethodList();
+                payStatus = ObjectGenerator.getPayStatus();
+                approve = ObjectGenerator.getApprove();
+                grnItems = ObjectGenerator.getGrnItems();
 
             });
             readyData.setName("Data Writer");
@@ -912,6 +924,184 @@ public class DataWriter {
         try {
             pst = conn.prepareStatement("INSERT INTO payment_type(type) VALUES (?)");
             pst.setString(1, paymentType.getType());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in Payment Method Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int savePaymentMethod() {
+        ResultSet rs = null;
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO pay_methode(supplier_id) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, supplier.getId());
+
+            saveDone = pst.executeUpdate();
+            rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                paymentMethod.setId(rs.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in Payment Method List Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int savePaymentMethodList() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO methode_list(pay_methode_id, payment_type_id, payed_value) VALUES(?,?,?)");
+            pst.setInt(1, paymentMethod.getId());
+            pst.setInt(2, paymentType.getId());
+            pst.setDouble(3, methodList.getPayedValue());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in GRN Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveGRN() {
+        ResultSet rs = null;
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO grn(date, time, supplier_id, item_count, total_amount, gross_discount, manual_discount, net_discount, net_amount, pay_methode_id, payed_value, deu_amount, pay_status_id, approve_id, approved_user_id, user_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, grn.getDate());
+            pst.setString(2, grn.getTime());
+            pst.setInt(3, supplier.getId());
+            pst.setDouble(4, grn.getItemCount());
+            pst.setDouble(5, grn.getTotalAmount());
+            pst.setDouble(6, grn.getGrossDiscount());
+            pst.setDouble(7, grn.getManualDiscount());
+            pst.setDouble(8, grn.getNetDiscount());
+            pst.setDouble(9, grn.getNetAmount());
+            pst.setInt(10, paymentMethod.getId());
+            pst.setDouble(11, grn.getPayedValue());
+            pst.setDouble(12, grn.getDeuAmount());
+            pst.setInt(13, payStatus.getId());
+            pst.setInt(14, approve.getId());
+            pst.setInt(15, user.getId());
+            pst.setInt(16, user.getId());
+
+            saveDone = pst.executeUpdate();
+
+            rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                grn.setId(rs.getInt(1));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in GRN Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveGrnItems() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO grn_items(grn_id, product_code, purchasing_price, sale_price, quantity, total_amount, discount_value, discount_rate, net_amount, item_status) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            pst.setInt(1, grn.getId());
+            pst.setString(2, product.getCode());
+            pst.setDouble(3, grnItems.getPurchasePrice());
+            pst.setDouble(4, grnItems.getSalePrice());
+            pst.setDouble(5, grnItems.getQuantity());
+            pst.setDouble(6, grnItems.getTotalAmount());
+            pst.setDouble(7, grnItems.getDiscValue());
+            pst.setDouble(8, grnItems.getDiscRate());
+            pst.setDouble(9, grnItems.getNetAmount());
+            pst.setString(10, grnItems.getItemStatus());
+
+            saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in GRN Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveStock() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO stock(grn_id, product_code, purchasing_price, sale_price, quantity, total_amount, discount_value, discount_rate, net_amount, item_status) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            pst.setInt(1, grn.getId());
+            pst.setString(2, product.getCode());
+            pst.setDouble(3, grnItems.getPurchasePrice());
+            pst.setDouble(4, grnItems.getSalePrice());
+            pst.setDouble(5, grnItems.getQuantity());
+            pst.setDouble(6, grnItems.getTotalAmount());
+            pst.setDouble(7, grnItems.getDiscValue());
+            pst.setDouble(8, grnItems.getDiscRate());
+            pst.setDouble(9, grnItems.getNetAmount());
+            pst.setString(10, grnItems.getItemStatus());
 
             saveDone = pst.executeUpdate();
         } catch (Exception e) {

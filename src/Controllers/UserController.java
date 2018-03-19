@@ -130,7 +130,7 @@ public class UserController implements Initializable {
                         userType.resetAll();
                         alerts.getWarningAlert("Warning", "Data Duplication", "Sorry Chief..! Data is you entered.already in my database.Please try another..");
                     } else {
-                        userType.setType(cmbUserType.getValue().toString());
+                        userType.setType(cmbUserType.getValue());
 
                         int saveUserType = dataWriter.saveUserType();
                         if (saveUserType > 0) {

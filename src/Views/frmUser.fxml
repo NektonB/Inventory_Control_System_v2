@@ -44,7 +44,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXComboBox fx:id="cmbUserType" editable="true" onKeyPressed="#saveUserType" prefHeight="28.0" prefWidth="152.0" promptText="User Type">
+                  <JFXComboBox fx:id="cmbUserType" editable="true" labelFloat="true" onKeyPressed="#saveUserType" prefHeight="28.0" prefWidth="152.0" promptText="User Type">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
@@ -58,7 +58,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXComboBox fx:id="cmbUserStatus" editable="true" prefHeight="28.0" prefWidth="152.0" promptText="Active Status">
+                  <JFXComboBox fx:id="cmbUserStatus" editable="true" labelFloat="true" prefHeight="28.0" prefWidth="152.0" promptText="Active Status">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>

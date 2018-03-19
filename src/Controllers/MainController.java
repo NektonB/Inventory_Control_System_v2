@@ -14,8 +14,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -167,8 +165,17 @@ public class MainController implements Initializable {
         }
     }
 
-    public void fullscreen(){
-        Stage stage=((Stage) rootpane.getScene().getWindow());
+    public void loadInvoice() {
+        try {
+            AnchorPane pnlInvoice = FXMLLoader.load(getClass().getClassLoader().getResource("Views/pnlInvoice.fxml"));
+            rootpane.setCenter(pnlInvoice);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void fullscreen() {
+        Stage stage = ((Stage) rootpane.getScene().getWindow());
         stage.setFullScreen(!stage.isFullScreen());
     }
 

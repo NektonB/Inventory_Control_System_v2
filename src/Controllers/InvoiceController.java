@@ -30,7 +30,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GRNController implements Initializable {
+public class InvoiceController implements Initializable {
 
     @FXML
     private JFXTextField txtCode;
@@ -113,7 +113,6 @@ public class GRNController implements Initializable {
     @FXML
     private JFXListView<String> lvName;
 
-
     TextValidator validator;
     DataWriter dataWriter;
     DataReader dataReader;
@@ -147,7 +146,7 @@ public class GRNController implements Initializable {
 
 
             });
-            readyData.setName("GRN Controller");
+            readyData.setName("Invoice Controller");
             readyData.start();
             readyTable();
             lvCode.setVisible(false);
@@ -181,6 +180,14 @@ public class GRNController implements Initializable {
         txtDisValue.setText("0");
         txtDisPrecentage.setText("0");
         txtCode.requestFocus();
+    }
+
+    public void autoHideListView() {
+        if (lvCode.isVisible()) {
+            lvCode.setVisible(false);
+        } else if (lvName.isVisible()) {
+            lvName.setVisible(false);
+        }
     }
 
     public void getProductByCode(KeyEvent event) {
@@ -224,14 +231,6 @@ public class GRNController implements Initializable {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
             }
-        }
-    }
-
-    public void autoHideListView() {
-        if (lvCode.isVisible()) {
-            lvCode.setVisible(false);
-        } else if (lvName.isVisible()) {
-            lvName.setVisible(false);
         }
     }
 

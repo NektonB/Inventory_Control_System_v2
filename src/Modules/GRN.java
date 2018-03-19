@@ -10,12 +10,11 @@ public class GRN {
     String time;
     double itemCount;
     double totalAmount;
-    double totalDiscValue;
-    double grossAmount;
-    double manualDiscValue;
-    double netDiscValue;
+    double grossDiscount;
+    double manualDiscount;
+    double netDiscount;
     double netAmount;
-    double payedAmount;
+    double payedValue;
     double deuAmount;
 
     public void resetAll(){
@@ -24,12 +23,11 @@ public class GRN {
         time = LocalTime.now().toString();
         itemCount = 0;
         totalAmount = 0;
-        totalDiscValue = 0;
-        grossAmount = 0;
-        manualDiscValue = 0;
-        netDiscValue = 0;
+        grossDiscount = 0;
+        manualDiscount = 0;
+        netDiscount = 0;
         netAmount = 0;
-        payedAmount = 0;
+        payedValue = 0;
         deuAmount = 0;
     }
 
@@ -73,36 +71,28 @@ public class GRN {
         this.totalAmount = totalAmount;
     }
 
-    public double getTotalDiscValue() {
-        return totalDiscValue;
+    public double getGrossDiscount() {
+        return grossDiscount;
     }
 
-    public void setTotalDiscValue(double totalDiscValue) {
-        this.totalDiscValue = totalDiscValue;
+    public void setGrossDiscount(double grossDiscount) {
+        this.grossDiscount = grossDiscount;
     }
 
-    public double getGrossAmount() {
-        return grossAmount;
+    public double getManualDiscount() {
+        return manualDiscount;
     }
 
-    public void setGrossAmount(double grossAmount) {
-        this.grossAmount = grossAmount;
+    public void setManualDiscount(double manualDiscount) {
+        this.manualDiscount = manualDiscount;
     }
 
-    public double getManualDiscValue() {
-        return manualDiscValue;
+    public double getNetDiscount() {
+        return netDiscount;
     }
 
-    public void setManualDiscValue(double manualDiscValue) {
-        this.manualDiscValue = manualDiscValue;
-    }
-
-    public double getNetDiscValue() {
-        return netDiscValue;
-    }
-
-    public void setNetDiscValue(double netDiscValue) {
-        this.netDiscValue = netDiscValue;
+    public void setNetDiscount(double netDiscount) {
+        this.netDiscount = netDiscount;
     }
 
     public double getNetAmount() {
@@ -113,12 +103,12 @@ public class GRN {
         this.netAmount = netAmount;
     }
 
-    public double getPayedAmount() {
-        return payedAmount;
+    public double getPayedValue() {
+        return payedValue;
     }
 
-    public void setPayedAmount(double payedAmount) {
-        this.payedAmount = payedAmount;
+    public void setPayedValue(double payedValue) {
+        this.payedValue = payedValue;
     }
 
     public double getDeuAmount() {

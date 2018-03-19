@@ -71,14 +71,14 @@
             </VBox>
             <VBox layoutX="636.0" prefHeight="259.0" prefWidth="346.0">
                <children>
-                  <JFXComboBox fx:id="cmbType" prefHeight="29.0" prefWidth="150.0" promptText="Supplier Type">
+                  <JFXComboBox fx:id="cmbType" labelFloat="true" prefHeight="29.0" prefWidth="150.0" promptText="Supplier Type">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </JFXComboBox>
                   <HBox prefHeight="41.0" prefWidth="270.0">
                      <children>
-                        <JFXComboBox fx:id="cmbCompany" editable="true" onHidden="#searchCompanyDetailByName" onKeyReleased="#cmbCompanyOnKey" prefHeight="29.0" prefWidth="290.0" promptText="Compay">
+                        <JFXComboBox fx:id="cmbCompany" editable="true" labelFloat="true" onHidden="#searchCompanyDetailByName" onKeyReleased="#cmbCompanyOnKey" prefHeight="29.0" prefWidth="290.0" promptText="Compay">
                            <HBox.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </HBox.margin>
