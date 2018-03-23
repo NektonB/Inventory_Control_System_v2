@@ -87,7 +87,7 @@ public class AddressController implements Initializable {
              * All supporting classes load in the thread
              * call the table ready method outside of the thread
              * */
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -98,9 +98,9 @@ public class AddressController implements Initializable {
                 //dataReader.fillUserTypeCombo(cmbUserType);
                 //dataReader.fillStatusCombo(cmbUserStatus);
                 //dataReader.fillUserTable(tblUser);
-            });
-            readyData.setName("Address Controller");
-            readyData.start();
+            //});
+            //readyData.setName("Address Controller");
+            //readyData.start();
             readyTable();
         } catch (Exception e) {
             e.printStackTrace();

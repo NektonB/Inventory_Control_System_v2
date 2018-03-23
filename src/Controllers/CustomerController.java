@@ -115,7 +115,7 @@ public class CustomerController implements Initializable {
              * Load Supporting classes by thread
              * All supporting classes load in the thread
              * */
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -132,9 +132,9 @@ public class CustomerController implements Initializable {
                 dataReader.fillCustomerTypeCombo(cmb_customer_type);
                 dataReader.fillCustomerTable(tbl_customer);
 
-            });
-            readyData.setName("Customer Controller");
-            readyData.start();
+            //});
+            //readyData.setName("Customer Controller");
+            //readyData.start();
             readyCustomerTable();
             cmb_activation_status.setValue("ACTIVE");
             cmb_customer_type.setValue("NORMAL");

@@ -78,7 +78,7 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -90,9 +90,9 @@ public class UserController implements Initializable {
                 dataReader.fillStatusCombo(cmbUserStatus);
 
                 dataReader.fillUserTable(tblUser);
-            });
-            readyData.setName("User Controller");
-            readyData.start();
+            //});
+            //readyData.setName("User Controller");
+            //readyData.start();
             readyTable();
         } catch (Exception e) {
             e.printStackTrace();

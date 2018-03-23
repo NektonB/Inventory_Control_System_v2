@@ -129,7 +129,7 @@ public class InvoiceController implements Initializable {
              * All supporting classes load in the thread
              * call the table ready method outside of the thread
              * */
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -145,9 +145,9 @@ public class InvoiceController implements Initializable {
                 validator.validateDigit(txtDisPrecentage, 3, 2);
 
 
-            });
-            readyData.setName("Invoice Controller");
-            readyData.start();
+            //});
+            //readyData.setName("Invoice Controller");
+            //readyData.start();
             readyTable();
             lvCode.setVisible(false);
             lvName.setVisible(false);

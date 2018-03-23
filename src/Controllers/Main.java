@@ -45,7 +45,7 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         Thread readyAll = new Thread(() -> initialing());
-        //readyAll.setPriority(Thread.MAX_PRIORITY);
+        readyAll.setPriority(Thread.MAX_PRIORITY);
         dbConn = ConnectDB.getConn();
         if (dbConn != null) {
             //System.out.println("Connection success...!");
@@ -54,8 +54,8 @@ public class Main extends Application {
                 ///notifications.show();
                 ObjectGenerator.getAlerts().getSuccessNotify("Connection", "Database connection success...!");
             });*/
-            readyAll.start();
-            initialing();
+            //readyAll.start();
+            //initialing();
         }
 
         launch(args);

@@ -118,7 +118,7 @@ public class SupplierController implements Initializable {
              * Load Supporting classes by thread
              * All supporting classes load in the thread
              * */
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -139,9 +139,9 @@ public class SupplierController implements Initializable {
                 dataReader.fillStatusCombo(cmbStatus);
                 dataReader.fillSupplierTypeCombo(cmbType);
                 dataReader.fillSupplierTable(tblSupplier);
-            });
-            readyData.setName("Supplier Controller");
-            readyData.start();
+            //});
+            //readyData.setName("Supplier Controller");
+            //readyData.start();
             readyCompanyTable();
             readySupplierTable();
             cmbStatus.setValue("ACTIVE");

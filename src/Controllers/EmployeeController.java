@@ -117,7 +117,7 @@ public class EmployeeController implements Initializable {
              * Load Supporting classes by thread
              * All supporting classes load in the thread
              * */
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -132,9 +132,9 @@ public class EmployeeController implements Initializable {
                 dateFormatConverter.convert(dp_join_date, "yyyy-MM-dd");
                 dataReader.fillStatusCombo(cmb_Activation_status);
                 dataReader.fillEmployeeTable(tbl_employee);
-            });
-            readyData.setName("Employee Controller");
-            readyData.start();
+            //});
+            //readyData.setName("Employee Controller");
+            //readyData.start();
             readyEmployeeTable();
             cmb_Activation_status.setValue("ACTIVE");
         } catch (Exception e) {

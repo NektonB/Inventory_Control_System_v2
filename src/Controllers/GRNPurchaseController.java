@@ -124,7 +124,7 @@ public class GRNPurchaseController implements Initializable {
              * All supporting classes load in the thread
              * call the table ready method outside of the thread
              * */
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -159,9 +159,9 @@ public class GRNPurchaseController implements Initializable {
                 calculateGrossAmount();
                 calculateNetAmount();
                 calculateDeuAmount();
-            });
-            readyData.setName("GRN Purchase Controller");
-            readyData.start();
+            //});
+            //readyData.setName("GRN Purchase Controller");
+            //readyData.start();
             readyTable();
             lvSupplierName.setVisible(false);
         } catch (Exception e) {

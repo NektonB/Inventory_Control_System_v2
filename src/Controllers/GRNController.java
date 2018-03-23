@@ -130,7 +130,7 @@ public class GRNController implements Initializable {
              * All supporting classes load in the thread
              * call the table ready method outside of the thread
              * */
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -146,9 +146,9 @@ public class GRNController implements Initializable {
                 validator.validateDigit(txtDisPrecentage, 3, 2);
 
 
-            });
-            readyData.setName("GRN Controller");
-            readyData.start();
+            //});
+            //readyData.setName("GRN Controller");
+            //readyData.start();
             readyTable();
             lvCode.setVisible(false);
             lvName.setVisible(false);

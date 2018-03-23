@@ -81,7 +81,7 @@ public class ContactController implements Initializable {
              * All supporting classes load in the thread
              * call the table ready method outside of the thread
              * */
-            Thread readyData = new Thread(() -> {
+            //Thread readyData = new Thread(() -> {
                 alerts = ObjectGenerator.getAlerts();
                 dataWriter = ObjectGenerator.getDataWriter();
                 dataReader = ObjectGenerator.getDataReader();
@@ -89,9 +89,9 @@ public class ContactController implements Initializable {
                 switcher = ObjectGenerator.getComponentSwitcher();
 
                 dataReader.fillContactTable(tblContacts);
-            });
-            readyData.setName("Contact Controller");
-            readyData.start();
+            //});
+            //readyData.setName("Contact Controller");
+            //readyData.start();
             readyTable();
         } catch (Exception e) {
             e.printStackTrace();

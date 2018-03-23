@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="rootpane" prefHeight="728.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane fx:id="rootpane" prefHeight="730.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
     <bottom>
         <AnchorPane fx:id="apStatus" prefHeight="20.0" prefWidth="1366.0" style="-fx-background-color: #b8b8b8;" BorderPane.alignment="CENTER" />
     </bottom>
@@ -22,8 +22,11 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Stocks Management">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="View Current Stock" />
-                        <MenuItem mnemonicParsing="false" onAction="#loadGrn" text="Stock Update" />
+                        <MenuItem fx:id="tcStockView" mnemonicParsing="false" onAction="#loadStockView" text="View Current Stock">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
+                        <MenuItem fx:id="tcStockUpdate" mnemonicParsing="false" onAction="#loadGrn" text="Stock Update" />
                         <MenuItem mnemonicParsing="false" text="View GRN" />
                         <MenuItem mnemonicParsing="false" text="Genarate PO" />
                     </items>
@@ -56,6 +59,6 @@
         </MenuBar>
     </top>
    <center>
-      <AnchorPane prefHeight="676.0" prefWidth="1366.0" style="-fx-background-color: #6c8f8e;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="658.0" prefWidth="1366.0" style="-fx-background-color: #6c8f8e;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

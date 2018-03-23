@@ -1,11 +1,11 @@
 #txtProductName {
     -fx-font-family: "SriBhashitha";
-    -fx-font-size: 17;
+    -fx-font-size: 15;
 }
 
 #tcProductName {
     -fx-font-family: "SriBhashitha";
-    -fx-font-size: 15;
+    -fx-font-size: 12;
 }
 
 #tcGrnItems {
@@ -29,10 +29,22 @@
     -fx-font-size: 12;
 }
 
+#tblProducts {
+    -fx-font-size: 12;
+}
+
 #cmbPaymentType {
+    -fx-font-size: 12;
+}
+
+#cmbCategory {
     -fx-font-size: 12;
 }
 
 #lvSupplierName {
     -fx-font-size: 13;
+}
+
+#tcTextAlignment {
+    -fx-alignment: CENTER-RIGHT;
 }

@@ -2077,5 +2077,64 @@ public class DataReader {
         }
     }
 
+    /**
+     * Filling the Stock View table using Database product,stock,category
+     */
+    public void fillStockViewTable(TableView tblProduct) {
+        ResultSet rs = null;
+        ObservableList<StockView.Products> productList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,st.purchasing_price,st.sale_price,SUM(st.quantity) FROM product INNER JOIN category ct ON product.category_id = ct.id LEFT OUTER JOIN stock st ON product.code = st.product_code GROUP BY product.code,st.purchasing_price,st.sale_price");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                //userType.resetAll();
+            }
+            while (rs.next()) {
+                productList.add(new StockView.Products(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6)));
+            }
+            tblProduct.setItems(productList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
 
+    /**
+     * Filling the Stock View table using Database product,stock,category
+     */
+    public void fillterStockViewTableByCode(TableView tblProduct) {
+        ResultSet rs = null;
+        ObservableList<StockView.Products> productList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,st.purchasing_price,st.sale_price,SUM(st.quantity) FROM product INNER JOIN category ct ON product.category_id = ct.id LEFT OUTER JOIN stock st ON product.code = st.product_code WHERE product.code LIKE ? GROUP BY product.code,st.purchasing_price,st.sale_price");
+            pst.setString(1,product.getCode()+"%");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                //userType.resetAll();
+            }
+            while (rs.next()) {
+                productList.add(new StockView.Products(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6)));
+            }
+            tblProduct.setItems(productList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
 }

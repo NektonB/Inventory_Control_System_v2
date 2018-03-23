@@ -123,34 +123,34 @@ public class ProductController implements Initializable {
              * Load Supporting classes by thread
              * All supporting classes load in the thread
              * */
-            Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                address = ObjectGenerator.getAddress();
-                switcher = ObjectGenerator.getComponentSwitcher();
-                company = ObjectGenerator.getCompany();
-                dateFormatConverter = ObjectGenerator.getDateFormatConverter();
-                category = ObjectGenerator.getCategory();
-                unit = ObjectGenerator.getUnit();
-                supplier = ObjectGenerator.getSupplier();
-                supplierPartner = ObjectGenerator.getSupplierPartner();
-                partnership = ObjectGenerator.getPartnership();
-                product = ObjectGenerator.getProduct();
-                adStatus = ObjectGenerator.getAdStatus();
+            //Thread readyData = new Thread(() -> {
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            address = ObjectGenerator.getAddress();
+            switcher = ObjectGenerator.getComponentSwitcher();
+            company = ObjectGenerator.getCompany();
+            dateFormatConverter = ObjectGenerator.getDateFormatConverter();
+            category = ObjectGenerator.getCategory();
+            unit = ObjectGenerator.getUnit();
+            supplier = ObjectGenerator.getSupplier();
+            supplierPartner = ObjectGenerator.getSupplierPartner();
+            partnership = ObjectGenerator.getPartnership();
+            product = ObjectGenerator.getProduct();
+            adStatus = ObjectGenerator.getAdStatus();
 
-                dataReader.fillCompanyCombo(cmbCompany);
-                dataReader.fillStatusCombo(cmbStatus);
-                dataReader.fillCategoryCombo(cmbCategory);
-                dataReader.fillCategoryCombo(cmbCategorySearch);
-                dataReader.fillUnitCombo(cmbUnit);
-                dataReader.fillSupplierCombo(cmbSupplier);
-                dataReader.fillProductTable(tblProducts);
-                //dataReader.fillSupplierTable(tblSupplier);
-                dataReader.fillProductTable(tblProducts);
-            });
-            readyData.setName("Product Controller");
-            readyData.start();
+            dataReader.fillCompanyCombo(cmbCompany);
+            dataReader.fillStatusCombo(cmbStatus);
+            dataReader.fillCategoryCombo(cmbCategory);
+            dataReader.fillCategoryCombo(cmbCategorySearch);
+            dataReader.fillUnitCombo(cmbUnit);
+            dataReader.fillSupplierCombo(cmbSupplier);
+            dataReader.fillProductTable(tblProducts);
+            //dataReader.fillSupplierTable(tblSupplier);
+            dataReader.fillProductTable(tblProducts);
+            //});
+            //readyData.setName("Product Controller");
+            //readyData.start();
             cmbStatus.setValue("ACTIVE");
             readyCompanyTable();
             readyProductTable();

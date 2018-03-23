@@ -15,8 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#autoHideListView" prefHeight="676.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InvoiceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#autoHideListView" prefHeight="658.0" prefWidth="1366.0" style="-fx-background-color: #6c8f8e;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InvoiceController">
    <children>
       <HBox prefHeight="18.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
          <children>
@@ -154,24 +153,24 @@
             </HBox>
          </children>
       </Pane>
-      <Pane layoutY="231.0" prefHeight="445.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
+      <Pane layoutY="231.0" prefHeight="427.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
          <children>
-            <TableView id="tcGrnItems" fx:id="tblItems" layoutY="1.0" onKeyReleased="#tblItemsKeyReleased" prefHeight="393.0" prefWidth="1366.0" stylesheets="@../CSS/Decorator.css">
+            <TableView id="tcGrnItems" fx:id="tblItems" layoutY="1.0" onKeyReleased="#tblItemsKeyReleased" prefHeight="373.0" prefWidth="1366.0" stylesheets="@../CSS/Decorator.css">
                <columns>
                   <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code" />
                   <TableColumn id="tcProductName" fx:id="tcName" editable="false" prefWidth="500.0" resizable="false" text="Name" />
-                  <TableColumn fx:id="tcQuantity" editable="false" prefWidth="126.0" resizable="false" text="Quantity" />
-                  <TableColumn fx:id="tcPPrice" editable="false" prefWidth="130.0" resizable="false" text="Purchase Price" />
-                  <TableColumn fx:id="tcSalePrice" editable="false" prefWidth="130.0" resizable="false" text="Sale Price" />
-                  <TableColumn fx:id="txTotalCost" editable="false" prefWidth="130.0" resizable="false" text="Total Cost" />
-                  <TableColumn fx:id="tcDiscValue" editable="false" prefWidth="100.0" resizable="false" text="Discount Value" />
-                  <TableColumn fx:id="tcDiscPrecentage" editable="false" prefWidth="100.0" resizable="false" text="Disc. Pre. %" />
+                  <TableColumn id="tcTextAlignment" fx:id="tcQuantity" editable="false" prefWidth="126.0" resizable="false" text="Quantity" />
+                  <TableColumn id="tcTextAlignment" fx:id="tcPPrice" editable="false" prefWidth="130.0" resizable="false" text="Purchase Price" />
+                  <TableColumn id="tcTextAlignment" fx:id="tcSalePrice" editable="false" prefWidth="130.0" resizable="false" text="Sale Price" />
+                  <TableColumn id="tcTextAlignment" fx:id="txTotalCost" editable="false" prefWidth="130.0" resizable="false" text="Total Cost" />
+                  <TableColumn id="tcTextAlignment" fx:id="tcDiscValue" editable="false" prefWidth="100.0" resizable="false" text="Discount Value" />
+                  <TableColumn id="tcTextAlignment" fx:id="tcDiscPrecentage" editable="false" prefWidth="85.0" resizable="false" text="Disc. Pre. %" />
                </columns>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TableView>
-            <Pane layoutX="1099.0" layoutY="397.0" prefHeight="45.0" prefWidth="273.0">
+            <Pane layoutX="1099.0" layoutY="379.0" prefHeight="45.0" prefWidth="273.0">
                <children>
                   <JFXButton fx:id="btnRemveItem" alignment="CENTER_RIGHT" layoutX="8.0" layoutY="5.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Remove Item">
                      <font>

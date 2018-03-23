@@ -50,6 +50,9 @@ public class MainController implements Initializable {
     @FXML
     private BorderPane rootpane;
 
+    AnchorPane pnlGRN;
+    AnchorPane pnlInvoice;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -158,7 +161,10 @@ public class MainController implements Initializable {
 
     public void loadGrn() {
         try {
-            AnchorPane pnlGRN = FXMLLoader.load(getClass().getClassLoader().getResource("Views/pnlGrn.fxml"));
+            if (pnlGRN == null) {
+                pnlGRN = new AnchorPane();
+            }
+            pnlGRN = FXMLLoader.load(getClass().getClassLoader().getResource("Views/pnlGrn.fxml"));
             rootpane.setCenter(pnlGRN);
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,8 +173,27 @@ public class MainController implements Initializable {
 
     public void loadInvoice() {
         try {
-            AnchorPane pnlInvoice = FXMLLoader.load(getClass().getClassLoader().getResource("Views/pnlInvoice.fxml"));
+            if (pnlInvoice == null) {
+                pnlInvoice = new AnchorPane();
+            }
+            pnlInvoice = FXMLLoader.load(getClass().getClassLoader().getResource("Views/pnlInvoice.fxml"));
             rootpane.setCenter(pnlInvoice);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadStockView() {
+        try {
+            Stage stockViewStage = new Stage();
+            Parent frmStockView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmStockView.fxml"));
+            stockViewStage.setTitle("Stock View");
+            Scene scene = new Scene(frmStockView);
+            stockViewStage.setScene(scene);
+            stockViewStage.initStyle(StageStyle.UTILITY);
+            stockViewStage.setResizable(false);
+            stockViewStage.initModality(Modality.APPLICATION_MODAL);
+            stockViewStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -178,7 +203,6 @@ public class MainController implements Initializable {
         Stage stage = ((Stage) rootpane.getScene().getWindow());
         stage.setFullScreen(!stage.isFullScreen());
     }
-
 
     public void showNotifi() {
         Notification.Notifier.INSTANCE.notifySuccess("Database Backup", "Database backup successfully");
