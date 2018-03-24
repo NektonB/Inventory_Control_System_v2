@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="1200.0" stylesheets="@../CSS/Decorator.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProductView">
+   <children>
+      <Pane prefHeight="526.0" prefWidth="1200.0" style="-fx-background-color: #8db4b3;">
+         <children>
+            <TableView fx:id="tblProducts" prefHeight="526.0" prefWidth="1200.0">
+               <columns>
+                  <TableColumn fx:id="tcCode" editable="false" prefWidth="120.0" resizable="false" text="Code" />
+                  <TableColumn fx:id="tcProductName" editable="false" prefWidth="480.0" resizable="false" text="Name" />
+                  <TableColumn fx:id="tcCategory" editable="false" prefWidth="150.0" resizable="false" text="Category" />
+                  <TableColumn id="tcTextAlignment" fx:id="tcPurchasePrice" editable="false" prefWidth="150.0" resizable="false" text="Purchase Price" />
+                  <TableColumn id="tcTextAlignment" fx:id="tcSalePrice" editable="false" prefWidth="150.0" resizable="false" text="Sale Price" />
+                  <TableColumn id="tcTextAlignment" fx:id="tcQuantity" editable="false" prefWidth="135.0" resizable="false" text="Ave. Quantity" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

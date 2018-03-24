@@ -4,6 +4,7 @@ import DataControllers.DataReader;
 import DataControllers.DataWriter;
 import Modules.Category;
 import Modules.ComponentSwitcher;
+import Modules.InvoiceInterConnector;
 import Modules.Product;
 import com.gluonhq.charm.glisten.layout.Layer;
 import com.jfoenix.controls.JFXButton;
@@ -120,6 +121,7 @@ public class InvoiceController implements Initializable {
     Product product;
     Category category;
     ComponentSwitcher switcher;
+    InvoiceInterConnector interConnector;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -130,19 +132,20 @@ public class InvoiceController implements Initializable {
              * call the table ready method outside of the thread
              * */
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                validator = ObjectGenerator.getTextValidator();
-                product = ObjectGenerator.getProduct();
-                category = ObjectGenerator.getCategory();
-                switcher = ObjectGenerator.getComponentSwitcher();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            validator = ObjectGenerator.getTextValidator();
+            product = ObjectGenerator.getProduct();
+            category = ObjectGenerator.getCategory();
+            switcher = ObjectGenerator.getComponentSwitcher();
+            interConnector = ObjectGenerator.getInterConnector();
 
-                validator.validateDigit(txtQuantity, 10, 2);
-                validator.validateDigit(txtPPrice, 10, 2);
-                validator.validateDigit(txtSalePrice, 10, 2);
-                validator.validateDigit(txtDisValue, 10, 2);
-                validator.validateDigit(txtDisPrecentage, 3, 2);
+            validator.validateDigit(txtQuantity, 10, 2);
+            validator.validateDigit(txtPPrice, 10, 2);
+            validator.validateDigit(txtSalePrice, 10, 2);
+            validator.validateDigit(txtDisValue, 10, 2);
+            validator.validateDigit(txtDisPrecentage, 3, 2);
 
 
             //});
@@ -201,6 +204,8 @@ public class InvoiceController implements Initializable {
                 txtName.setText(product.getName());
                 txtCategory.setText(category.getName());
 
+                loadProductView();
+
                 txtQuantity.requestFocus();
 
                 product.resetAll();
@@ -244,6 +249,8 @@ public class InvoiceController implements Initializable {
                 txtCode.setText(product.getCode());
                 txtBarCode.setText(product.getBarCode());
                 txtCategory.setText(category.getName());
+
+                loadProductView();
 
                 txtQuantity.requestFocus();
 
@@ -460,6 +467,25 @@ public class InvoiceController implements Initializable {
             txtCode.requestFocus();
             lvCode.setVisible(false);
             getProductByCode(event);
+        }
+    }
+
+    public void loadProductView() {
+        try {
+
+            interConnector.setProductCode(txtCode.getText());
+
+            Stage productViewStage = new Stage();
+            Parent frmProductView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmProductList.fxml"));
+            productViewStage.setTitle("Product View");
+            Scene scene = new Scene(frmProductView);
+            productViewStage.setScene(scene);
+            productViewStage.initStyle(StageStyle.UTILITY);
+            productViewStage.setResizable(false);
+            productViewStage.initModality(Modality.APPLICATION_MODAL);
+            productViewStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
