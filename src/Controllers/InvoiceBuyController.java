@@ -598,21 +598,22 @@ public class InvoiceBuyController implements Initializable {
             for (int i = 0; i < interConnector.getTblItem().getItems().size(); ++i) {
 
                 product.setCode(columns.get(0).getCellObservableValue(i).getValue().toString());
-                invoiceItems.setSalePrice(Double.parseDouble(columns.get(4).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setSalePrice(Double.parseDouble(columns.get(3).getCellObservableValue(i).getValue().toString()));
                 invoiceItems.setQuantity(Double.parseDouble(columns.get(2).getCellObservableValue(i).getValue().toString()));
-                invoiceItems.setTotalAmount(Double.parseDouble(columns.get(5).getCellObservableValue(i).getValue().toString()));
-                invoiceItems.setDiscValue(Double.parseDouble(columns.get(6).getCellObservableValue(i).getValue().toString()));
-                invoiceItems.setDiscRate(Double.parseDouble(columns.get(7).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setTotalAmount(Double.parseDouble(columns.get(4).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setDiscValue(Double.parseDouble(columns.get(5).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setDiscRate(Double.parseDouble(columns.get(6).getCellObservableValue(i).getValue().toString()));
                 invoiceItems.setItemStatus("SALE");
 
-                saveGrnItems = dataWriter.saveGrnItems();
+                saveGrnItems = dataWriter.saveInvoiceItems();
                 product.resetAll();
                 invoiceItems.resetAll();
             }
 
             if (saveGrnItems > 0) {
                 product.resetAll();
-                grn.resetAll();
+                invoice.resetAll();
+                invoiceItems.resetAll();
                 payStatus.resetAll();
                 approve.resetAll();
                 user.resetAll();
@@ -658,7 +659,7 @@ public class InvoiceBuyController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             try {
                 customer.setFirstName(txtCustomerName.getText());
-                dataReader.getSupplierByName();
+                dataReader.getCustomerByCustomerName();
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);

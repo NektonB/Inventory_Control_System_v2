@@ -43,6 +43,7 @@ public class DataWriter {
     Approve approve;
     GrnItems grnItems;
     Invoice invoice;
+    InvoiceItems invoiceItems;
 
 
     /**
@@ -81,6 +82,7 @@ public class DataWriter {
                 approve = ObjectGenerator.getApprove();
                 grnItems = ObjectGenerator.getGrnItems();
                 invoice = ObjectGenerator.getInvoice();
+                invoiceItems = ObjectGenerator.getInvoiceItems();
 
             });
             readyData.setName("Data Writer");
@@ -1116,9 +1118,43 @@ public class DataWriter {
 
             rs = pst.getGeneratedKeys();
             if (rs.next()) {
-                grn.setId(rs.getInt(1));
+                invoice.setId(rs.getInt(1));
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in GRN Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveInvoiceItems() {
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO invoice_items(invoice_id, product_code, sale_price, quantity, total_amount, discount_value, discount_rate, net_amount, item_status) VALUES (?,?,?,?,?,?,?,?,?)");
+            pst.setInt(1, invoice.getId());
+            pst.setString(2, product.getCode());
+            pst.setDouble(3, invoiceItems.getSalePrice());
+            pst.setDouble(4, invoiceItems.getQuantity());
+            pst.setDouble(5, invoiceItems.getTotalAmount());
+            pst.setDouble(6, invoiceItems.getDiscValue());
+            pst.setDouble(7, invoiceItems.getDiscRate());
+            pst.setDouble(8, invoiceItems.getNetAmount());
+            pst.setString(9, invoiceItems.getItemStatus());
+
+            saveDone = pst.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
