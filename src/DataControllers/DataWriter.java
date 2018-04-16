@@ -42,6 +42,7 @@ public class DataWriter {
     PayStatus payStatus;
     Approve approve;
     GrnItems grnItems;
+    Invoice invoice;
 
 
     /**
@@ -79,6 +80,7 @@ public class DataWriter {
                 payStatus = ObjectGenerator.getPayStatus();
                 approve = ObjectGenerator.getApprove();
                 grnItems = ObjectGenerator.getGrnItems();
+                invoice = ObjectGenerator.getInvoice();
 
             });
             readyData.setName("Data Writer");
@@ -949,7 +951,7 @@ public class DataWriter {
         ResultSet rs = null;
         int saveDone = 0;
         try {
-            pst = conn.prepareStatement("INSERT INTO pay_methode(supplier_id) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
+            pst = conn.prepareStatement("INSERT INTO pay_methode(owner_id) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, supplier.getId());
 
             saveDone = pst.executeUpdate();
@@ -1069,6 +1071,54 @@ public class DataWriter {
             pst.setString(10, grnItems.getItemStatus());
 
             saveDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+        return saveDone;
+    }
+
+    /**
+     * Save all input data in GRN Module to database
+     * Return 0 not save any record
+     * Return grater than 0 data save ok...
+     */
+    public int saveInvoice() {
+        ResultSet rs = null;
+        int saveDone = 0;
+        try {
+            pst = conn.prepareStatement("INSERT INTO invoice(date, time, customer_id, item_count, total_amount, gross_discount, manual_discount, net_discount, net_amount, pay_methode_id, payed_value, deu_amount, pay_status_id, approve_id, approved_user_id, user_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, invoice.getDate());
+            pst.setString(2, invoice.getTime());
+            pst.setInt(3, customer.getId());
+            pst.setDouble(4, invoice.getItemCount());
+            pst.setDouble(5, invoice.getTotalAmount());
+            pst.setDouble(6, invoice.getGrossDiscount());
+            pst.setDouble(7, invoice.getManualDiscount());
+            pst.setDouble(8, invoice.getNetDiscount());
+            pst.setDouble(9, invoice.getNetAmount());
+            pst.setInt(10, paymentMethod.getId());
+            pst.setDouble(11, invoice.getPayedValue());
+            pst.setDouble(12, invoice.getDeuAmount());
+            pst.setInt(13, payStatus.getId());
+            pst.setInt(14, approve.getId());
+            pst.setInt(15, user.getId());
+            pst.setInt(16, user.getId());
+
+            saveDone = pst.executeUpdate();
+
+            rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                grn.setId(rs.getInt(1));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);

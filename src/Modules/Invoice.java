@@ -3,7 +3,7 @@ package Modules;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class GRN {
+public class Invoice {
 
     int id;
     String date;

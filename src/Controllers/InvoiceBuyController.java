@@ -23,78 +23,6 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class InvoiceBuyController implements Initializable {
-    @FXML
-    private JFXDatePicker dpGRNDate;
-
-    @FXML
-    private JFXTimePicker tpGRNTime;
-
-    @FXML
-    private JFXTextField txtItemCount;
-
-    @FXML
-    private JFXTextField txtTotalAmount;
-
-    @FXML
-    private JFXTextField txtDisValue;
-
-    @FXML
-    private JFXTextField txtDisPercentage;
-
-    @FXML
-    private JFXTextField txtGrossAmount;
-
-    @FXML
-    private JFXTextField txtManualDisValue;
-
-    @FXML
-    private JFXTextField txtManualDisPercentage;
-
-    @FXML
-    private JFXTextField txtTotalDisValue;
-
-    @FXML
-    private JFXTextField txtTotalDisPercentage;
-
-    @FXML
-    private JFXTextField txtNetAmount;
-
-    @FXML
-    private JFXTextField txtPayedAmount;
-
-    @FXML
-    private JFXTextField txtDeuAmount;
-
-    @FXML
-    private JFXComboBox<String> cmbType;
-
-    @FXML
-    private JFXTextField txtPayedAmountPart;
-
-    @FXML
-    private TableView<PaymentMethodList> tblPayment;
-
-    @FXML
-    private TableColumn<PaymentMethodList, Integer> tcTypeId;
-
-    @FXML
-    private TableColumn<PaymentMethodList, String> tcMethode;
-
-    @FXML
-    private TableColumn<PaymentMethodList, Double> tcAmount;
-
-    @FXML
-    private JFXButton btnGoBack;
-
-    @FXML
-    private JFXButton btnPurchaseNow;
-
-    @FXML
-    private JFXListView<String> lvCustomerName;
-
-    @FXML
-    private JFXTextField txtCustomerName;
-
     TextValidator validator;
     DataWriter dataWriter;
     DataReader dataReader;
@@ -112,8 +40,58 @@ public class InvoiceBuyController implements Initializable {
     User user;
     GrnItems grnItems;
     Product product;
-
     TableView tblItems;
+    Invoice invoice;
+    InvoiceItems invoiceItems;
+
+    @FXML
+    private JFXDatePicker dpGRNDate;
+    @FXML
+    private JFXTimePicker tpGRNTime;
+    @FXML
+    private JFXTextField txtItemCount;
+    @FXML
+    private JFXTextField txtTotalAmount;
+    @FXML
+    private JFXTextField txtDisValue;
+    @FXML
+    private JFXTextField txtDisPercentage;
+    @FXML
+    private JFXTextField txtGrossAmount;
+    @FXML
+    private JFXTextField txtManualDisValue;
+    @FXML
+    private JFXTextField txtManualDisPercentage;
+    @FXML
+    private JFXTextField txtTotalDisValue;
+    @FXML
+    private JFXTextField txtTotalDisPercentage;
+    @FXML
+    private JFXTextField txtNetAmount;
+    @FXML
+    private JFXTextField txtPayedAmount;
+    @FXML
+    private JFXTextField txtDeuAmount;
+    @FXML
+    private JFXComboBox<String> cmbType;
+    @FXML
+    private JFXTextField txtPayedAmountPart;
+    @FXML
+    private TableView<PaymentMethodList> tblPayment;
+    @FXML
+    private TableColumn<PaymentMethodList, Integer> tcTypeId;
+    @FXML
+    private TableColumn<PaymentMethodList, String> tcMethode;
+    @FXML
+    private TableColumn<PaymentMethodList, Double> tcAmount;
+    @FXML
+    private JFXButton btnGoBack;
+    @FXML
+    private JFXButton btnPurchaseNow;
+    @FXML
+    private JFXListView<String> lvCustomerName;
+    @FXML
+    private JFXTextField txtCustomerName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -141,6 +119,8 @@ public class InvoiceBuyController implements Initializable {
             user = ObjectGenerator.getUser();
             grnItems = ObjectGenerator.getGrnItems();
             product = ObjectGenerator.getProduct();
+            invoice = ObjectGenerator.getInvoice();
+            invoiceItems = ObjectGenerator.getInvoiceItems();
 
             dateFormatConverter.convert(dpGRNDate, "yyyy-MM-dd");
             //timeFormatConverter.convert(tpGRNTime, "hh:mm");
@@ -564,22 +544,22 @@ public class InvoiceBuyController implements Initializable {
         return savePaymentMethodList;
     }
 
-    public void saveGRN() {
+    public void saveInvoice() {
         try {
             int savePaymentMethod = savePaymentMethod();
 
             if (savePaymentMethod > 0) {
 
-                grn.setDate(dpGRNDate.getValue().toString());
-                grn.setTime(tpGRNTime.getValue().toString());
-                grn.setItemCount(Double.parseDouble(txtItemCount.getText()));
-                grn.setTotalAmount(Double.parseDouble(txtTotalAmount.getText()));
-                grn.setGrossDiscount(Double.parseDouble(txtDisValue.getText()));
-                grn.setManualDiscount(Double.parseDouble(txtManualDisValue.getText()));
-                grn.setNetDiscount(Double.parseDouble(txtTotalDisValue.getText()));
-                grn.setNetAmount(Double.parseDouble(txtNetAmount.getText()));
-                grn.setPayedValue(Double.parseDouble(txtPayedAmount.getText()));
-                grn.setDeuAmount(Double.parseDouble(txtDeuAmount.getText()));
+                invoice.setDate(dpGRNDate.getValue().toString());
+                invoice.setTime(tpGRNTime.getValue().toString());
+                invoice.setItemCount(Double.parseDouble(txtItemCount.getText()));
+                invoice.setTotalAmount(Double.parseDouble(txtTotalAmount.getText()));
+                invoice.setGrossDiscount(Double.parseDouble(txtDisValue.getText()));
+                invoice.setManualDiscount(Double.parseDouble(txtManualDisValue.getText()));
+                invoice.setNetDiscount(Double.parseDouble(txtTotalDisValue.getText()));
+                invoice.setNetAmount(Double.parseDouble(txtNetAmount.getText()));
+                invoice.setPayedValue(Double.parseDouble(txtPayedAmount.getText()));
+                invoice.setDeuAmount(Double.parseDouble(txtDeuAmount.getText()));
 
 
                 if (grn.getDeuAmount() == 0) {
@@ -593,10 +573,10 @@ public class InvoiceBuyController implements Initializable {
                 approve.setId(1);
                 user.setId(1);
 
-                int saveGRN = dataWriter.saveGRN();
+                int saveInvoice = dataWriter.saveInvoice();
 
-                if (saveGRN > 0) {
-                    saveGRNItems();
+                if (saveInvoice > 0) {
+                    saveInvoiceItems();
                 }
             }
         } catch (Exception e) {
@@ -605,64 +585,32 @@ public class InvoiceBuyController implements Initializable {
         }
     }
 
-    public void saveGRNKey(KeyEvent event) {
+    public void saveInvoiceKey(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            saveGRN();
-            ;
+            saveInvoice();
         }
     }
 
-    public void saveGRNItems() {
+    public void saveInvoiceItems() {
         try {
             int saveGrnItems = 0;
             ObservableList<? extends TableColumn<?, ?>> columns = interConnector.getTblItem().getColumns();
             for (int i = 0; i < interConnector.getTblItem().getItems().size(); ++i) {
 
                 product.setCode(columns.get(0).getCellObservableValue(i).getValue().toString());
-                grnItems.setPurchasePrice(Double.parseDouble(columns.get(3).getCellObservableValue(i).getValue().toString()));
-                grnItems.setSalePrice(Double.parseDouble(columns.get(4).getCellObservableValue(i).getValue().toString()));
-                grnItems.setQuantity(Double.parseDouble(columns.get(2).getCellObservableValue(i).getValue().toString()));
-                grnItems.setTotalAmount(Double.parseDouble(columns.get(5).getCellObservableValue(i).getValue().toString()));
-                grnItems.setDiscValue(Double.parseDouble(columns.get(6).getCellObservableValue(i).getValue().toString()));
-                grnItems.setDiscRate(Double.parseDouble(columns.get(7).getCellObservableValue(i).getValue().toString()));
-                grnItems.setItemStatus("IN STOCK");
+                invoiceItems.setSalePrice(Double.parseDouble(columns.get(4).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setQuantity(Double.parseDouble(columns.get(2).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setTotalAmount(Double.parseDouble(columns.get(5).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setDiscValue(Double.parseDouble(columns.get(6).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setDiscRate(Double.parseDouble(columns.get(7).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setItemStatus("SALE");
 
                 saveGrnItems = dataWriter.saveGrnItems();
                 product.resetAll();
-                grnItems.resetAll();
+                invoiceItems.resetAll();
             }
 
             if (saveGrnItems > 0) {
-                saveStock();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            alerts.getErrorAlert(e);
-        }
-    }
-
-    public void saveStock() {
-        try {
-            int saveStock = 0;
-            ObservableList<? extends TableColumn<?, ?>> columns = interConnector.getTblItem().getColumns();
-            for (int i = 0; i < interConnector.getTblItem().getItems().size(); ++i) {
-
-                product.setCode(columns.get(0).getCellObservableValue(i).getValue().toString());
-                grnItems.setPurchasePrice(Double.parseDouble(columns.get(3).getCellObservableValue(i).getValue().toString()));
-                grnItems.setSalePrice(Double.parseDouble(columns.get(4).getCellObservableValue(i).getValue().toString()));
-                grnItems.setQuantity(Double.parseDouble(columns.get(2).getCellObservableValue(i).getValue().toString()));
-                grnItems.setTotalAmount(Double.parseDouble(columns.get(5).getCellObservableValue(i).getValue().toString()));
-                grnItems.setDiscValue(Double.parseDouble(columns.get(6).getCellObservableValue(i).getValue().toString()));
-                grnItems.setDiscRate(Double.parseDouble(columns.get(7).getCellObservableValue(i).getValue().toString()));
-                grnItems.setItemStatus("IN STOCK");
-
-                saveStock = dataWriter.saveStock();
-                product.resetAll();
-                grnItems.resetAll();
-            }
-
-            if (saveStock > 0) {
                 product.resetAll();
                 grn.resetAll();
                 payStatus.resetAll();
@@ -673,7 +621,7 @@ public class InvoiceBuyController implements Initializable {
                 methodList.resetAll();
                 tblPayment.getItems().clear();
                 interConnector.getTblItem().getItems().clear();
-                alerts.getInformationAlert("Information", "Purchase", "Congratulation Chief..!\n GRN  Purchase successful");
+                alerts.getInformationAlert("Information", "Sale", "Congratulation Chief..!\n Invoice  Purchase successful");
                 ((Stage) btnPurchaseNow.getScene().getWindow()).close();
             }
 
@@ -788,36 +736,36 @@ public class InvoiceBuyController implements Initializable {
             return typeId.get();
         }
 
-        public SimpleIntegerProperty typeIdProperty() {
-            return typeId;
-        }
-
         public void setTypeId(int typeId) {
             this.typeId.set(typeId);
+        }
+
+        public SimpleIntegerProperty typeIdProperty() {
+            return typeId;
         }
 
         public String getType() {
             return type.get();
         }
 
-        public SimpleStringProperty typeProperty() {
-            return type;
-        }
-
         public void setType(String type) {
             this.type.set(type);
+        }
+
+        public SimpleStringProperty typeProperty() {
+            return type;
         }
 
         public double getAmount() {
             return amount.get();
         }
 
-        public SimpleDoubleProperty amountProperty() {
-            return amount;
-        }
-
         public void setAmount(double amount) {
             this.amount.set(amount);
+        }
+
+        public SimpleDoubleProperty amountProperty() {
+            return amount;
         }
     }
 }

@@ -43,6 +43,8 @@ public class ObjectGenerator {
     private static GrnItems grnItems;
     private static Stock stock;
     private static InvoiceInterConnector interConnector;
+    private static Invoice invoice;
+    private static InvoiceItems invoiceItems;
 
     public static synchronized void readyAll() {
         try {
@@ -317,5 +319,19 @@ public class ObjectGenerator {
             interConnector = new InvoiceInterConnector();
         }
         return interConnector;
+    }
+
+    public static Invoice getInvoice() {
+        if (invoice == null) {
+            invoice = new Invoice();
+        }
+        return invoice;
+    }
+
+    public static InvoiceItems getInvoiceItems() {
+        if (invoiceItems == null) {
+            invoiceItems = new InvoiceItems();
+        }
+        return invoiceItems;
     }
 }

@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#autoHidelvSupplierName" prefHeight="596.0" prefWidth="800.0" style="-fx-background-color: #6c8f8e;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InvoiceBuyController">
    <children>
       <Pane layoutX="3.0" layoutY="4.0" prefHeight="318.0" prefWidth="794.0" style="-fx-background-color: #8cc49a;">
@@ -216,7 +215,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnPurchaseNow" alignment="CENTER_RIGHT" layoutX="637.0" layoutY="8.0" onAction="#saveGRN" onKeyReleased="#saveGRNKey" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Purchase Now">
+            <JFXButton fx:id="btnPurchaseNow" alignment="CENTER_RIGHT" layoutX="637.0" layoutY="8.0" onAction="#saveInvoice" onKeyReleased="#saveInvoiceKey" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Purchase Now">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
