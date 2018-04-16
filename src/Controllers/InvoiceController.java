@@ -29,6 +29,8 @@ import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class InvoiceController implements Initializable {
@@ -47,9 +49,6 @@ public class InvoiceController implements Initializable {
 
     @FXML
     private JFXTextField txtQuantity;
-
-    @FXML
-    private JFXTextField txtPPrice;
 
     @FXML
     private JFXTextField txtSalePrice;
@@ -82,9 +81,6 @@ public class InvoiceController implements Initializable {
     private TableColumn<Items, Double> tcQuantity;
 
     @FXML
-    private TableColumn<Items, Double> tcPPrice;
-
-    @FXML
     private TableColumn<Items, Double> tcSalePrice;
 
     @FXML
@@ -97,10 +93,13 @@ public class InvoiceController implements Initializable {
     private TableColumn<Items, Double> tcDiscPrecentage;
 
     @FXML
+    private TableColumn<Items, String> tcIdList;
+
+    @FXML
     private JFXButton btnRemveItem;
 
     @FXML
-    private JFXButton txtRemveAll;
+    private JFXButton btnRemoveAll;
 
     @FXML
     private Layer lyCode;
@@ -123,6 +122,9 @@ public class InvoiceController implements Initializable {
     ComponentSwitcher switcher;
     InvoiceInterConnector interConnector;
 
+    Map<Integer, Double> qtyList;
+    String idList = "";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -142,10 +144,11 @@ public class InvoiceController implements Initializable {
             interConnector = ObjectGenerator.getInterConnector();
 
             validator.validateDigit(txtQuantity, 10, 2);
-            validator.validateDigit(txtPPrice, 10, 2);
             validator.validateDigit(txtSalePrice, 10, 2);
             validator.validateDigit(txtDisValue, 10, 2);
             validator.validateDigit(txtDisPrecentage, 3, 2);
+
+            qtyList = new HashMap<>();
 
 
             //});
@@ -164,11 +167,11 @@ public class InvoiceController implements Initializable {
         tcCode.setCellValueFactory(new PropertyValueFactory<>("code"));
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        tcPPrice.setCellValueFactory(new PropertyValueFactory<>("purchasePrice"));
         tcSalePrice.setCellValueFactory(new PropertyValueFactory<>("salePrice"));
         txTotalCost.setCellValueFactory(new PropertyValueFactory<>("totalCost"));
         tcDiscValue.setCellValueFactory(new PropertyValueFactory<>("discValue"));
         tcDiscPrecentage.setCellValueFactory(new PropertyValueFactory<>("discPercentage"));
+        tcIdList.setCellValueFactory(new PropertyValueFactory<>("idList"));
     }
 
     public void resetText() {
@@ -177,12 +180,12 @@ public class InvoiceController implements Initializable {
         txtName.setText("");
         txtCategory.setText("");
         txtQuantity.setText("0");
-        txtPPrice.setText("0");
         txtSalePrice.setText("0");
         txtCost.setText("0");
         txtDisValue.setText("0");
         txtDisPrecentage.setText("0");
         txtCode.requestFocus();
+        idList = "";
     }
 
     public void autoHideListView() {
@@ -277,10 +280,10 @@ public class InvoiceController implements Initializable {
                 quantity = Double.parseDouble(txtQuantity.getText());
             }
 
-            if (txtPPrice.getText().isEmpty()) {
+            if (txtSalePrice.getText().isEmpty()) {
                 purchasePrice = 0;
             } else {
-                purchasePrice = Double.parseDouble(txtPPrice.getText());
+                purchasePrice = Double.parseDouble(txtSalePrice.getText());
             }
 
             if (txtSalePrice.getText().isEmpty()) {
@@ -353,11 +356,17 @@ public class InvoiceController implements Initializable {
 
     public void addItemToTable() {
         try {
-            ObservableList<Items> itemList;
-            itemList = tblItems.getItems();
-            itemList.add(new Items(txtCode.getText(), txtName.getText(), Double.parseDouble(txtQuantity.getText()), Double.parseDouble(txtPPrice.getText()), Double.parseDouble(txtSalePrice.getText()), Double.parseDouble(txtCost.getText()), Double.parseDouble(txtDisValue.getText()), Double.parseDouble(txtDisPrecentage.getText())));
-            tblItems.setItems(itemList);
-            resetText();
+
+            int decreaseItemQuantity = decreaseItemQuantity();
+
+            if (decreaseItemQuantity > 0) {
+                ObservableList<Items> itemList;
+                itemList = tblItems.getItems();
+                itemList.add(new Items(txtCode.getText(), txtName.getText(), Double.parseDouble(txtQuantity.getText()), Double.parseDouble(txtSalePrice.getText()), Double.parseDouble(txtCost.getText()), Double.parseDouble(txtDisValue.getText()), Double.parseDouble(txtDisPrecentage.getText()), idList));
+                tblItems.setItems(itemList);
+                System.out.println(idList);
+                resetText();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
@@ -371,6 +380,9 @@ public class InvoiceController implements Initializable {
     }
 
     public void txtQuantityKeyReleased(KeyEvent event) {
+
+        calculateTotalCost();
+
         if (event.getCode().equals(KeyCode.ENTER)) {
             addItemToTable();
         }
@@ -399,40 +411,73 @@ public class InvoiceController implements Initializable {
 
     public void removeRow() {
         try {
+            int increaseProductQuantity = 0;
             if (tblItems.getItems().isEmpty()) {
                 alerts.getWarningNotify("Warning !", "No more rows here...");
             } else {
                 Items item = tblItems.getSelectionModel().getSelectedItem();
-                tblItems.getItems().remove(item);
+
+                String[] split = item.idList.get().split(",");
+
+                for (String strId : split) {
+                    int stockId = Integer.parseInt(strId);
+                    increaseProductQuantity = dataWriter.increaseProductQuantity(stockId, qtyList.get(stockId));
+                    if (increaseProductQuantity > 0) {
+                        qtyList.remove(stockId);
+                    }
+                }
+
+                if (increaseProductQuantity > 0) {
+                    tblItems.getItems().remove(item);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public void removeRowKey(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.DELETE)) {
-            removeRow();
+            alerts.getErrorAlert(e);
         }
     }
 
     public void removeAll() {
-        if (tblItems.getItems().isEmpty()) {
-            alerts.getWarningNotify("Warning !", "No more rows here...");
-        } else {
-            tblItems.getItems().clear();
-        }
-    }
+        try {
+            if (tblItems.getItems().isEmpty()) {
+                alerts.getWarningNotify("Warning !", "No more rows here...");
+            } else {
+                int increaseProductQuantity = 0;
+                ObservableList<? extends TableColumn<?, ?>> columns = tblItems.getColumns();
 
-    public void removeAllKey(KeyEvent event) {
-        if (event.isShiftDown() & event.getCode().equals(KeyCode.DELETE)) {
-            removeAll();
+                for (int i = 0; i < tblItems.getItems().size(); ++i) {
+
+                    String[] split = columns.get(7).getCellObservableValue(i).getValue().toString().split(",");
+
+                    for (String strId : split) {
+
+                        int stockId = Integer.parseInt(strId);
+                        increaseProductQuantity = dataWriter.increaseProductQuantity(stockId, qtyList.get(stockId));
+
+                        if (increaseProductQuantity > 0) {
+                            qtyList.remove(stockId);
+                        }
+                    }
+                }
+
+                if (increaseProductQuantity > 0) {
+                    qtyList.clear();
+                    tblItems.getItems().clear();
+                    resetText();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
         }
     }
 
     public void tblItemsKeyReleased(KeyEvent event) {
-        removeRowKey(event);
-        removeAllKey(event);
+        if (event.isShiftDown() & event.getCode().equals(KeyCode.DELETE)) {
+            removeAll();
+        } else if (event.getCode().equals(KeyCode.DELETE)) {
+            removeRow();
+        }
     }
 
     public void readyCodeAutoCompleter(KeyEvent event) {
@@ -474,6 +519,7 @@ public class InvoiceController implements Initializable {
         try {
 
             interConnector.setProductCode(txtCode.getText());
+            interConnector.setTxtSalePrice(txtSalePrice);
 
             Stage productViewStage = new Stage();
             Parent frmProductView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmProductList.fxml"));
@@ -545,17 +591,17 @@ public class InvoiceController implements Initializable {
         }
     }
 
-    public void loadGRNPurchase() {
+    public void loadInvoiceBuy() {
         try {
             if (tblItems.getItems().isEmpty()) {
                 Toolkit.getDefaultToolkit().beep();
                 alerts.getWarningNotify("Warning", "Cart is empty.Please add at least one");
             } else {
-                switcher.setTblItem(tblItems);
+                interConnector.setTblItem(tblItems);
 
                 Stage GrnStage = new Stage();
-                Parent frmGRNPurchase = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmGrnSummary.fxml"));
-                GrnStage.setTitle("GRN Purchase");
+                Parent frmGRNPurchase = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmInvoiceSummary.fxml"));
+                GrnStage.setTitle("Invoice Summary");
                 Scene scene = new Scene(frmGRNPurchase);
                 GrnStage.setScene(scene);
                 GrnStage.initStyle(StageStyle.UTILITY);
@@ -570,8 +616,55 @@ public class InvoiceController implements Initializable {
 
     public void loadGRNPurchaseKey(KeyEvent event) {
         if (event.isControlDown() & event.getCode().equals(KeyCode.F)) {
-            loadGRNPurchase();
+            loadInvoiceBuy();
         }
+    }
+
+    private int decreaseItemQuantity() {
+        int decreaseProductQuantity = 0;
+        try {
+            Map<Integer, Double> ids = dataReader.getStockIdsByProduct();
+            double qty = Double.parseDouble(txtQuantity.getText());
+            int done = 0;
+            for (int stockId : ids.keySet()) {
+                if (done == 1) {
+                    break;
+                } else {
+                    if (ids.get(stockId) == qty) {
+
+                        qtyList.put(stockId, ids.get(stockId));
+                        idList += stockId + ",";
+
+                        qty -= ids.get(stockId);
+                        decreaseProductQuantity = dataWriter.decreaseProductQuantity(stockId, ids.get(stockId));
+                        if (decreaseProductQuantity > 0) {
+                            done = 1;
+                        }
+                    } else if (ids.get(stockId) < qty) {
+
+                        qtyList.put(stockId, ids.get(stockId));
+                        idList += stockId + ",";
+
+                        qty -= ids.get(stockId);
+                        decreaseProductQuantity = dataWriter.decreaseProductQuantity(stockId, ids.get(stockId));
+                    } else if (ids.get(stockId) > qty) {
+
+                        qtyList.put(stockId, ids.get(stockId));
+                        idList += stockId + ",";
+
+                        decreaseProductQuantity = dataWriter.decreaseProductQuantity(stockId, qty);
+                        if (decreaseProductQuantity > 0) {
+                            done = 1;
+                        }
+                    }
+                }
+            }
+            interConnector.resetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alerts.getErrorAlert(e);
+        }
+        return decreaseProductQuantity;
     }
 
     public static class Items {
@@ -579,21 +672,21 @@ public class InvoiceController implements Initializable {
         SimpleStringProperty code;
         SimpleStringProperty name;
         SimpleDoubleProperty quantity;
-        SimpleDoubleProperty purchasePrice;
         SimpleDoubleProperty salePrice;
         SimpleDoubleProperty totalCost;
         SimpleDoubleProperty discValue;
         SimpleDoubleProperty discPercentage;
+        SimpleStringProperty idList;
 
-        public Items(String code, String name, double quantity, double purchasePrice, double salePrice, double totalCost, double discValue, double discPercentage) {
+        public Items(String code, String name, double quantity, double salePrice, double totalCost, double discValue, double discPercentage, String idList) {
             this.code = new SimpleStringProperty(code);
             this.name = new SimpleStringProperty(name);
             this.quantity = new SimpleDoubleProperty(quantity);
-            this.purchasePrice = new SimpleDoubleProperty(purchasePrice);
             this.salePrice = new SimpleDoubleProperty(salePrice);
             this.totalCost = new SimpleDoubleProperty(totalCost);
             this.discValue = new SimpleDoubleProperty(discValue);
             this.discPercentage = new SimpleDoubleProperty(discPercentage);
+            this.idList = new SimpleStringProperty(idList);
         }
 
         public String getCode() {
@@ -630,18 +723,6 @@ public class InvoiceController implements Initializable {
 
         public void setQuantity(double quantity) {
             this.quantity.set(quantity);
-        }
-
-        public double getPurchasePrice() {
-            return purchasePrice.get();
-        }
-
-        public SimpleDoubleProperty purchasePriceProperty() {
-            return purchasePrice;
-        }
-
-        public void setPurchasePrice(double purchasePrice) {
-            this.purchasePrice.set(purchasePrice);
         }
 
         public double getSalePrice() {
@@ -690,6 +771,18 @@ public class InvoiceController implements Initializable {
 
         public void setDiscPercentage(double discPercentage) {
             this.discPercentage.set(discPercentage);
+        }
+
+        public String getIdList() {
+            return idList.get();
+        }
+
+        public SimpleStringProperty idListProperty() {
+            return idList;
+        }
+
+        public void setIdList(String idList) {
+            this.idList.set(idList);
         }
     }
 }

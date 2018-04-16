@@ -15,6 +15,8 @@ import javafx.scene.control.TableView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataReader {
 
@@ -42,6 +44,7 @@ public class DataReader {
     Product product;
     SupplierPartner supplierPartner;
     PaymentType paymentType;
+    InvoiceInterConnector interConnector;
 
     public DataReader() {
         try {
@@ -68,6 +71,7 @@ public class DataReader {
                 product = ObjectGenerator.getProduct();
                 supplierPartner = ObjectGenerator.getSupplierPartner();
                 paymentType = ObjectGenerator.getPaymentType();
+                interConnector = ObjectGenerator.getInterConnector();
             });
             readyData.setName("DataReader");
             readyData.start();
@@ -2145,7 +2149,7 @@ public class DataReader {
         ObservableList<StockView.Products> productList = FXCollections.observableArrayList();
         try {
             pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,st.purchasing_price,st.sale_price,SUM(st.quantity) FROM product INNER JOIN category ct ON product.category_id = ct.id LEFT OUTER JOIN stock st ON product.code = st.product_code WHERE product.code LIKE ? GROUP BY product.code,st.purchasing_price,st.sale_price");
-            pst.setString(1,product.getCode()+"%");
+            pst.setString(1, product.getCode() + "%");
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
                 //userType.resetAll();
@@ -2164,6 +2168,112 @@ public class DataReader {
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    public Map<Integer, Double> getStockIdsByProduct() {
+        ResultSet resultSet = null;
+        Map<Integer, Double> ids = new HashMap<>();
+        try {
+            pst = conn.prepareStatement("SELECT id,quantity FROM stock WHERE product_code = ? AND sale_price = ? AND quantity > 0");
+            pst.setString(1, interConnector.getProductCode());
+            pst.setDouble(2, interConnector.getSalePrice());
+            resultSet = pst.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                //product.resetAll();
+            }
+            while (resultSet.next()) {
+                ids.put(resultSet.getInt(1), resultSet.getDouble(2));
+                //System.out.println(ids);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return ids;
+    }
+
+    public void autoCompleteCustomerName(JFXListView<String> lvCustomerName, JFXTextField txtCustomerName) {
+        ResultSet rs = null;
+        ObservableList<String> productCodeList = FXCollections.observableArrayList();
+        try {
+            pst = conn.prepareStatement("SELECT fname FROM customer WHERE fname LIKE ?");
+            pst.setString(1, txtCustomerName.getText() + "%");
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst()) {
+                lvCustomerName.setVisible(false);
+                //alerts.getWarningAlert("Warning Alert", "Something went wrong..", "Apologetic Chief..!\nI have no suitable data in my database for your choice.\nPlease try another.");
+            }
+            while (rs.next()) {
+                productCodeList.add(rs.getString(1));
+            }
+            lvCustomerName.setItems(productCodeList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void getCustomerByCustomerName() {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT customer.id,customer.fname,customer.mname,customer.lname,customer.nic,customer.join_date,customer_type.id,customer_type.type, address.id,address.number,address.line_01,address.line_02,address.city,address.country,address.postal_code,contact.id,contact.mobile,contact.land,contact.fax,contact.email,contact.web,ad_status.id,ad_status.status FROM customer INNER JOIN customer_type ON customer.customer_type_id = customer_type.id INNER JOIN address ON customer.address_id = address.id INNER JOIN contact ON customer.contact_id = contact.id INNER JOIN ad_status ON customer.ad_status_id = ad_status.id WHERE customer.fname = ?");
+            pst.setString(1, customer.getFirstName());
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                customer.resetAll();
+            }
+            while (rs.next()) {
+                customer.setId(rs.getInt(1));
+                customer.setFirstName(rs.getString(2));
+                customer.setMiddleName(rs.getString(3));
+                customer.setLastName(rs.getString(4));
+                customer.setNic(rs.getString(5));
+                customer.setJoinDate(rs.getString(6));
+
+                customerType.setId(rs.getInt(7));
+                customerType.setType(rs.getString(8));
+
+                address.setId(rs.getInt(9));
+                address.setNumber(rs.getString(10));
+                address.setLine01(rs.getString(11));
+                address.setLine02(rs.getString(12));
+                address.setCity(rs.getString(13));
+                address.setCountry(rs.getString(14));
+                address.setPostalCode(rs.getString(15));
+
+                contact.setId(rs.getInt(16));
+                contact.setMobile(rs.getString(17));
+                contact.setLand(rs.getString(18));
+                contact.setFax(rs.getString(19));
+                contact.setEmail(rs.getString(20));
+                contact.setWeb(rs.getString(21));
+
+                adStatus.setId(rs.getInt(22));
+                adStatus.setStatus(rs.getString(23));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

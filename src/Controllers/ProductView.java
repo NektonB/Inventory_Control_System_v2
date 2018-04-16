@@ -13,6 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -103,6 +106,37 @@ public class ProductView implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
+        }
+    }
+
+    public void selectProduct() {
+        try {
+            if (!tblProducts.getSelectionModel().isEmpty()) {
+
+                interConnector.setProductCode(tblProducts.getSelectionModel().getSelectedItem().code.get());
+                interConnector.setSalePrice(tblProducts.getSelectionModel().getSelectedItem().salePrice.get());
+                interConnector.setQuantity(tblProducts.getSelectionModel().getSelectedItem().aveQuantity.get());
+                interConnector.getTxtSalePrice().setText(Double.toString(interConnector.getSalePrice()));
+
+                closeMe();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void closeMe() {
+        try {
+            Stage stage = (Stage) tblProducts.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void selectProductKey(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            selectProduct();
         }
     }
 

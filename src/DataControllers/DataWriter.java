@@ -1117,4 +1117,45 @@ public class DataWriter {
         }
         return saveDone;
     }
+
+    public int decreaseProductQuantity(int stockId, double quantity) {
+        int updateDone = 0;
+        try {
+            pst = conn.prepareStatement("UPDATE stock SET quantity = (quantity - ?) WHERE id = ?");
+            pst.setDouble(1, quantity);
+            pst.setInt(2, stockId);
+
+            updateDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return updateDone;
+    }
+
+    public int increaseProductQuantity(int stockId, double quantity) {
+        int updateDone = 0;
+        try {
+            pst = conn.prepareStatement("UPDATE stock SET quantity = ? WHERE id = ?");
+            pst.setDouble(1, quantity);
+            pst.setInt(2, stockId);
+
+            updateDone = pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return updateDone;
+    }
 }
