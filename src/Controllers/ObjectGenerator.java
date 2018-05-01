@@ -45,6 +45,7 @@ public class ObjectGenerator {
     private static InvoiceInterConnector interConnector;
     private static Invoice invoice;
     private static InvoiceItems invoiceItems;
+    private static ReportViewer reportViewer;
 
     public static synchronized void readyAll() {
         try {
@@ -333,5 +334,12 @@ public class ObjectGenerator {
             invoiceItems = new InvoiceItems();
         }
         return invoiceItems;
+    }
+
+    public static ReportViewer getReportViewer() {
+        if (reportViewer == null) {
+            reportViewer = new ReportViewer();
+        }
+        return reportViewer;
     }
 }

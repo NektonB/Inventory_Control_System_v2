@@ -43,6 +43,7 @@ public class InvoiceBuyController implements Initializable {
     TableView tblItems;
     Invoice invoice;
     InvoiceItems invoiceItems;
+    ReportViewer reportViewer;
 
     @FXML
     private JFXDatePicker dpGRNDate;
@@ -121,6 +122,7 @@ public class InvoiceBuyController implements Initializable {
             product = ObjectGenerator.getProduct();
             invoice = ObjectGenerator.getInvoice();
             invoiceItems = ObjectGenerator.getInvoiceItems();
+            reportViewer = ObjectGenerator.getReportViewer();
 
             dateFormatConverter.convert(dpGRNDate, "yyyy-MM-dd");
             //timeFormatConverter.convert(tpGRNTime, "hh:mm");
@@ -611,6 +613,8 @@ public class InvoiceBuyController implements Initializable {
             }
 
             if (saveGrnItems > 0) {
+                String invoiceId = Integer.toString(invoice.getId());
+                double deuAmount = Double.parseDouble(txtDeuAmount.getText());
                 product.resetAll();
                 invoice.resetAll();
                 invoiceItems.resetAll();
@@ -624,6 +628,12 @@ public class InvoiceBuyController implements Initializable {
                 interConnector.getTblItem().getItems().clear();
                 alerts.getInformationAlert("Information", "Sale", "Congratulation Chief..!\n Invoice  Purchase successful");
                 ((Stage) btnPurchaseNow.getScene().getWindow()).close();
+
+                if (deuAmount > 0) {
+                    reportViewer.getCreditInvoice(invoiceId, "PRINT");
+                }else if (deuAmount <= 0) {
+                    reportViewer.getPaidInvoice(invoiceId, "PRINT");
+                }
             }
 
         } catch (Exception e) {
