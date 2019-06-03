@@ -29,75 +29,6 @@ import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
 
-    @FXML
-    private JFXTextField txt_Employee_Id;
-
-    @FXML
-    private JFXTextField txt_First_Name;
-
-    @FXML
-    private JFXTextField txt_Middle_Name;
-
-    @FXML
-    private JFXTextField txt_Last_Name;
-
-    @FXML
-    private JFXTextField txt_NIC_No;
-
-    @FXML
-    private JFXTextField txt_Contact_Id;
-
-    @FXML
-    private JFXButton btn_Save;
-
-    @FXML
-    private JFXButton btn_Update;
-
-    @FXML
-    private JFXDatePicker dp_date_of_birth;
-
-    @FXML
-    private JFXComboBox<String> cmb_Activation_status;
-
-    @FXML
-    private TableView<EmployeeList> tbl_employee;
-
-    @FXML
-    private TableColumn<EmployeeList, Integer> tc_id;
-
-    @FXML
-    private TableColumn<EmployeeList, String> tc_name;
-
-    @FXML
-    private TableColumn<EmployeeList, String> tc_dob;
-
-    @FXML
-    private TableColumn<EmployeeList, String> tc_nic;
-
-    @FXML
-    private TableColumn<EmployeeList, String> tc_join_date;
-
-    @FXML
-    private TableColumn<EmployeeList, String> tc_status;
-
-    @FXML
-    private JFXDatePicker dp_join_date;
-
-    @FXML
-    private JFXTextArea ta_address;
-
-    @FXML
-    private JFXTextField txt_AddressId;
-
-    @FXML
-    private JFXTextArea ta_Contact;
-
-    @FXML
-    private JFXTextField txt_type_nic;
-
-    @FXML
-    private JFXTextField txt_type_name;
-
     DataWriter dataWriter;
     DataReader dataReader;
     Alerts alerts;
@@ -107,7 +38,52 @@ public class EmployeeController implements Initializable {
     Modules.Contact contact;
     ADStatus adStatus;
     Employee employee;
-
+    @FXML
+    private JFXTextField txt_Employee_Id;
+    @FXML
+    private JFXTextField txt_First_Name;
+    @FXML
+    private JFXTextField txt_Middle_Name;
+    @FXML
+    private JFXTextField txt_Last_Name;
+    @FXML
+    private JFXTextField txt_NIC_No;
+    @FXML
+    private JFXTextField txt_Contact_Id;
+    @FXML
+    private JFXButton btn_Save;
+    @FXML
+    private JFXButton btn_Update;
+    @FXML
+    private JFXDatePicker dp_date_of_birth;
+    @FXML
+    private JFXComboBox<String> cmb_Activation_status;
+    @FXML
+    private TableView<EmployeeList> tbl_employee;
+    @FXML
+    private TableColumn<EmployeeList, Integer> tc_id;
+    @FXML
+    private TableColumn<EmployeeList, String> tc_name;
+    @FXML
+    private TableColumn<EmployeeList, String> tc_dob;
+    @FXML
+    private TableColumn<EmployeeList, String> tc_nic;
+    @FXML
+    private TableColumn<EmployeeList, String> tc_join_date;
+    @FXML
+    private TableColumn<EmployeeList, String> tc_status;
+    @FXML
+    private JFXDatePicker dp_join_date;
+    @FXML
+    private JFXTextArea ta_address;
+    @FXML
+    private JFXTextField txt_AddressId;
+    @FXML
+    private JFXTextArea ta_Contact;
+    @FXML
+    private JFXTextField txt_type_nic;
+    @FXML
+    private JFXTextField txt_type_name;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -118,20 +94,20 @@ public class EmployeeController implements Initializable {
              * All supporting classes load in the thread
              * */
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                address = ObjectGenerator.getAddress();
-                switcher = ObjectGenerator.getComponentSwitcher();
-                dateFormatConverter = ObjectGenerator.getDateFormatConverter();
-                contact = ObjectGenerator.getContact();
-                adStatus = ObjectGenerator.getAdStatus();
-                employee = ObjectGenerator.getEmployee();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            address = ObjectGenerator.getAddress();
+            switcher = ObjectGenerator.getComponentSwitcher();
+            dateFormatConverter = ObjectGenerator.getDateFormatConverter();
+            contact = ObjectGenerator.getContact();
+            adStatus = ObjectGenerator.getAdStatus();
+            employee = ObjectGenerator.getEmployee();
 
-                dateFormatConverter.convert(dp_date_of_birth, "yyyy-MM-dd");
-                dateFormatConverter.convert(dp_join_date, "yyyy-MM-dd");
-                dataReader.fillStatusCombo(cmb_Activation_status);
-                dataReader.fillEmployeeTable(tbl_employee);
+            dateFormatConverter.convert(dp_date_of_birth, "yyyy-MM-dd");
+            dateFormatConverter.convert(dp_join_date, "yyyy-MM-dd");
+            dataReader.fillStatusCombo(cmb_Activation_status);
+            dataReader.fillEmployeeTable(tbl_employee);
             //});
             //readyData.setName("Employee Controller");
             //readyData.start();
@@ -389,72 +365,72 @@ public class EmployeeController implements Initializable {
             return id.get();
         }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
         public void setId(int id) {
             this.id.set(id);
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
         }
 
         public String getName() {
             return name.get();
         }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name.set(name);
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
         }
 
         public String getDob() {
             return dob.get();
         }
 
-        public SimpleStringProperty dobProperty() {
-            return dob;
-        }
-
         public void setDob(String dob) {
             this.dob.set(dob);
+        }
+
+        public SimpleStringProperty dobProperty() {
+            return dob;
         }
 
         public String getNic() {
             return nic.get();
         }
 
-        public SimpleStringProperty nicProperty() {
-            return nic;
-        }
-
         public void setNic(String nic) {
             this.nic.set(nic);
+        }
+
+        public SimpleStringProperty nicProperty() {
+            return nic;
         }
 
         public String getJoin_date() {
             return join_date.get();
         }
 
-        public SimpleStringProperty join_dateProperty() {
-            return join_date;
-        }
-
         public void setJoin_date(String join_date) {
             this.join_date.set(join_date);
+        }
+
+        public SimpleStringProperty join_dateProperty() {
+            return join_date;
         }
 
         public String getStatus() {
             return status.get();
         }
 
-        public SimpleStringProperty statusProperty() {
-            return status;
-        }
-
         public void setStatus(String status) {
             this.status.set(status);
+        }
+
+        public SimpleStringProperty statusProperty() {
+            return status;
         }
     }
 

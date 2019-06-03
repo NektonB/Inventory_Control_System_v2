@@ -22,56 +22,41 @@ import java.util.ResourceBundle;
 
 public class ContactController implements Initializable {
 
-    @FXML
-    private JFXTextField txtId;
-
-    @FXML
-    private JFXTextField txtMobile;
-
-    @FXML
-    private JFXTextField txtLand;
-
-    @FXML
-    private JFXTextField txtFax;
-
-    @FXML
-    private JFXTextField txtEmail;
-
-    @FXML
-    private JFXTextField txtWeb;
-
-    @FXML
-    private JFXButton btnSave;
-
-    @FXML
-    private JFXButton btnUpdate;
-
-    @FXML
-    private TableView<ContactList> tblContacts;
-
-    @FXML
-    private TableColumn<ContactList, Integer> tcId;
-
-    @FXML
-    private TableColumn<ContactList, String> tcMobile;
-
-    @FXML
-    private TableColumn<ContactList, String> tcLand;
-
-    @FXML
-    private TableColumn<ContactList, String> tcFax;
-
-    @FXML
-    private TableColumn<ContactList, String> tcEmail;
-
-    @FXML
-    private TableColumn<ContactList, String> tcWeb;
-
     DataWriter dataWriter;
     DataReader dataReader;
     Alerts alerts;
     Contact contact;
     ComponentSwitcher switcher;
+    @FXML
+    private JFXTextField txtId;
+    @FXML
+    private JFXTextField txtMobile;
+    @FXML
+    private JFXTextField txtLand;
+    @FXML
+    private JFXTextField txtFax;
+    @FXML
+    private JFXTextField txtEmail;
+    @FXML
+    private JFXTextField txtWeb;
+    @FXML
+    private JFXButton btnSave;
+    @FXML
+    private JFXButton btnUpdate;
+    @FXML
+    private TableView<ContactList> tblContacts;
+    @FXML
+    private TableColumn<ContactList, Integer> tcId;
+    @FXML
+    private TableColumn<ContactList, String> tcMobile;
+    @FXML
+    private TableColumn<ContactList, String> tcLand;
+    @FXML
+    private TableColumn<ContactList, String> tcFax;
+    @FXML
+    private TableColumn<ContactList, String> tcEmail;
+    @FXML
+    private TableColumn<ContactList, String> tcWeb;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,13 +67,13 @@ public class ContactController implements Initializable {
              * call the table ready method outside of the thread
              * */
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                contact = ObjectGenerator.getContact();
-                switcher = ObjectGenerator.getComponentSwitcher();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            contact = ObjectGenerator.getContact();
+            switcher = ObjectGenerator.getComponentSwitcher();
 
-                dataReader.fillContactTable(tblContacts);
+            dataReader.fillContactTable(tblContacts);
             //});
             //readyData.setName("Contact Controller");
             //readyData.start();
@@ -268,72 +253,72 @@ public class ContactController implements Initializable {
             return id.get();
         }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
         public void setId(int id) {
             this.id.set(id);
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
         }
 
         public String getMobile() {
             return mobile.get();
         }
 
-        public SimpleStringProperty mobileProperty() {
-            return mobile;
-        }
-
         public void setMobile(String mobile) {
             this.mobile.set(mobile);
+        }
+
+        public SimpleStringProperty mobileProperty() {
+            return mobile;
         }
 
         public String getLand() {
             return land.get();
         }
 
-        public SimpleStringProperty landProperty() {
-            return land;
-        }
-
         public void setLand(String land) {
             this.land.set(land);
+        }
+
+        public SimpleStringProperty landProperty() {
+            return land;
         }
 
         public String getFax() {
             return fax.get();
         }
 
-        public SimpleStringProperty faxProperty() {
-            return fax;
-        }
-
         public void setFax(String fax) {
             this.fax.set(fax);
+        }
+
+        public SimpleStringProperty faxProperty() {
+            return fax;
         }
 
         public String getEmail() {
             return email.get();
         }
 
-        public SimpleStringProperty emailProperty() {
-            return email;
-        }
-
         public void setEmail(String email) {
             this.email.set(email);
+        }
+
+        public SimpleStringProperty emailProperty() {
+            return email;
         }
 
         public String getWeb() {
             return web.get();
         }
 
-        public SimpleStringProperty webProperty() {
-            return web;
-        }
-
         public void setWeb(String web) {
             this.web.set(web);
+        }
+
+        public SimpleStringProperty webProperty() {
+            return web;
         }
     }
 }

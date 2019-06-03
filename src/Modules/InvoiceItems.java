@@ -10,15 +10,17 @@ public class InvoiceItems {
     private double discRate;
     private double netAmount;
     private String itemStatus;
+    private String stockIdList;
 
-    public void resetAll(){
+    public void resetAll() {
         id = 0;
         salePrice = 0;
         quantity = 0;
         discValue = 0;
-        discRate= 0;
+        discRate = 0;
         netAmount = 0;
         itemStatus = "IN STOCK";
+        stockIdList = "";
     }
 
     public int getId() {
@@ -83,5 +85,13 @@ public class InvoiceItems {
 
     public void setItemStatus(String itemStatus) {
         this.itemStatus = itemStatus;
+    }
+
+    public String getStockIdList() {
+        return stockIdList;
+    }
+
+    public void setStockIdList(String stockIdList) {
+        this.stockIdList = stockIdList;
     }
 }

@@ -12,13 +12,13 @@ public class GrnItems {
     private double netAmount;
     private String itemStatus;
 
-    public void resetAll(){
+    public void resetAll() {
         id = 0;
         purchasePrice = 0;
         salePrice = 0;
         quantity = 0;
         discValue = 0;
-        discRate= 0;
+        discRate = 0;
         netAmount = 0;
         itemStatus = "IN STOCK";
     }

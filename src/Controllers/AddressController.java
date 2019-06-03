@@ -22,62 +22,45 @@ import java.util.ResourceBundle;
 
 public class AddressController implements Initializable {
 
-    @FXML
-    private JFXTextField txtId;
-
-    @FXML
-    private JFXTextField txtNumber;
-
-    @FXML
-    private JFXTextField txtLine01;
-
-    @FXML
-    private JFXTextField txtLine02;
-
-    @FXML
-    private JFXTextField txtCity;
-
-    @FXML
-    private JFXTextField txtCountry;
-
-    @FXML
-    private JFXTextField txtPostalCode;
-
-    @FXML
-    private JFXButton btnSave;
-
-    @FXML
-    private JFXButton btnUpdate;
-
-    @FXML
-    private TableView<AddressList> tblAddress;
-
-    @FXML
-    private TableColumn<AddressList, Integer> tcId;
-
-    @FXML
-    private TableColumn<AddressList, String> tcNumber;
-
-    @FXML
-    private TableColumn<AddressList, String> tcLine01;
-
-    @FXML
-    private TableColumn<AddressList, String> tcLine02;
-
-    @FXML
-    private TableColumn<AddressList, String> tcCity;
-
-    @FXML
-    private TableColumn<AddressList, String> tcCountry;
-
-    @FXML
-    private TableColumn<AddressList, String> tcPostalCode;
-
     DataWriter dataWriter;
     DataReader dataReader;
     Alerts alerts;
     Address address;
     ComponentSwitcher switcher;
+    @FXML
+    private JFXTextField txtId;
+    @FXML
+    private JFXTextField txtNumber;
+    @FXML
+    private JFXTextField txtLine01;
+    @FXML
+    private JFXTextField txtLine02;
+    @FXML
+    private JFXTextField txtCity;
+    @FXML
+    private JFXTextField txtCountry;
+    @FXML
+    private JFXTextField txtPostalCode;
+    @FXML
+    private JFXButton btnSave;
+    @FXML
+    private JFXButton btnUpdate;
+    @FXML
+    private TableView<AddressList> tblAddress;
+    @FXML
+    private TableColumn<AddressList, Integer> tcId;
+    @FXML
+    private TableColumn<AddressList, String> tcNumber;
+    @FXML
+    private TableColumn<AddressList, String> tcLine01;
+    @FXML
+    private TableColumn<AddressList, String> tcLine02;
+    @FXML
+    private TableColumn<AddressList, String> tcCity;
+    @FXML
+    private TableColumn<AddressList, String> tcCountry;
+    @FXML
+    private TableColumn<AddressList, String> tcPostalCode;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -88,16 +71,16 @@ public class AddressController implements Initializable {
              * call the table ready method outside of the thread
              * */
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                address = ObjectGenerator.getAddress();
-                switcher = ObjectGenerator.getComponentSwitcher();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            address = ObjectGenerator.getAddress();
+            switcher = ObjectGenerator.getComponentSwitcher();
 
-                dataReader.fillAddressTable(tblAddress);
-                //dataReader.fillUserTypeCombo(cmbUserType);
-                //dataReader.fillStatusCombo(cmbUserStatus);
-                //dataReader.fillUserTable(tblUser);
+            dataReader.fillAddressTable(tblAddress);
+            //dataReader.fillUserTypeCombo(cmbUserType);
+            //dataReader.fillStatusCombo(cmbUserStatus);
+            //dataReader.fillUserTable(tblUser);
             //});
             //readyData.setName("Address Controller");
             //readyData.start();
@@ -246,7 +229,7 @@ public class AddressController implements Initializable {
      * Set data to address module and save after using enter key
      * Update finish reset all modules and textfield
      */
-    public void updateAddressKey(KeyEvent event){
+    public void updateAddressKey(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             updateAddress();
             txtId.requestFocus();
@@ -286,84 +269,84 @@ public class AddressController implements Initializable {
             return id.get();
         }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
         public void setId(int id) {
             this.id.set(id);
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
         }
 
         public String getNumber() {
             return number.get();
         }
 
-        public SimpleStringProperty numberProperty() {
-            return number;
-        }
-
         public void setNumber(String number) {
             this.number.set(number);
+        }
+
+        public SimpleStringProperty numberProperty() {
+            return number;
         }
 
         public String getLine01() {
             return line01.get();
         }
 
-        public SimpleStringProperty line01Property() {
-            return line01;
-        }
-
         public void setLine01(String line01) {
             this.line01.set(line01);
+        }
+
+        public SimpleStringProperty line01Property() {
+            return line01;
         }
 
         public String getLine02() {
             return line02.get();
         }
 
-        public SimpleStringProperty line02Property() {
-            return line02;
-        }
-
         public void setLine02(String line02) {
             this.line02.set(line02);
+        }
+
+        public SimpleStringProperty line02Property() {
+            return line02;
         }
 
         public String getCity() {
             return city.get();
         }
 
-        public SimpleStringProperty cityProperty() {
-            return city;
-        }
-
         public void setCity(String city) {
             this.city.set(city);
+        }
+
+        public SimpleStringProperty cityProperty() {
+            return city;
         }
 
         public String getCountry() {
             return country.get();
         }
 
-        public SimpleStringProperty countryProperty() {
-            return country;
-        }
-
         public void setCountry(String country) {
             this.country.set(country);
+        }
+
+        public SimpleStringProperty countryProperty() {
+            return country;
         }
 
         public String getPostalCode() {
             return postalCode.get();
         }
 
-        public SimpleStringProperty postalCodeProperty() {
-            return postalCode;
-        }
-
         public void setPostalCode(String postalCode) {
             this.postalCode.set(postalCode);
+        }
+
+        public SimpleStringProperty postalCodeProperty() {
+            return postalCode;
         }
     }
 }

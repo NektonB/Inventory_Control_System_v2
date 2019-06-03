@@ -22,33 +22,26 @@ import java.util.ResourceBundle;
 
 public class ProductView implements Initializable {
 
-    @FXML
-    private TableView<StockView.Products> tblProducts;
-
-    @FXML
-    private TableColumn<Product, String> tcCode;
-
-    @FXML
-    private TableColumn<Product, String> tcProductName;
-
-    @FXML
-    private TableColumn<Product, String> tcCategory;
-
-    @FXML
-    private TableColumn<Product, Double> tcPurchasePrice;
-
-    @FXML
-    private TableColumn<Product, Double> tcSalePrice;
-
-    @FXML
-    private TableColumn<Product, Double> tcQuantity;
-
     DataReader dataReader;
     Alerts alerts;
     Product product;
     Category category;
     ObservableList productList;
     InvoiceInterConnector interConnector;
+    @FXML
+    private TableView<StockView.Products> tblProducts;
+    @FXML
+    private TableColumn<Product, String> tcCode;
+    @FXML
+    private TableColumn<Product, String> tcProductName;
+    @FXML
+    private TableColumn<Product, String> tcCategory;
+    @FXML
+    private TableColumn<Product, Double> tcPurchasePrice;
+    @FXML
+    private TableColumn<Product, Double> tcSalePrice;
+    @FXML
+    private TableColumn<Product, Double> tcQuantity;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -161,72 +154,72 @@ public class ProductView implements Initializable {
             return code.get();
         }
 
-        public SimpleStringProperty codeProperty() {
-            return code;
-        }
-
         public void setCode(String code) {
             this.code.set(code);
+        }
+
+        public SimpleStringProperty codeProperty() {
+            return code;
         }
 
         public String getName() {
             return name.get();
         }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name.set(name);
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
         }
 
         public String getCategory() {
             return category.get();
         }
 
-        public SimpleStringProperty categoryProperty() {
-            return category;
-        }
-
         public void setCategory(String category) {
             this.category.set(category);
+        }
+
+        public SimpleStringProperty categoryProperty() {
+            return category;
         }
 
         public double getPurchasePrice() {
             return purchasePrice.get();
         }
 
-        public SimpleDoubleProperty purchasePriceProperty() {
-            return purchasePrice;
-        }
-
         public void setPurchasePrice(double purchasePrice) {
             this.purchasePrice.set(purchasePrice);
+        }
+
+        public SimpleDoubleProperty purchasePriceProperty() {
+            return purchasePrice;
         }
 
         public double getSalePrice() {
             return salePrice.get();
         }
 
-        public SimpleDoubleProperty salePriceProperty() {
-            return salePrice;
-        }
-
         public void setSalePrice(double salePrice) {
             this.salePrice.set(salePrice);
+        }
+
+        public SimpleDoubleProperty salePriceProperty() {
+            return salePrice;
         }
 
         public double getAveQuantity() {
             return aveQuantity.get();
         }
 
-        public SimpleDoubleProperty aveQuantityProperty() {
-            return aveQuantity;
-        }
-
         public void setAveQuantity(double aveQuantity) {
             this.aveQuantity.set(aveQuantity);
+        }
+
+        public SimpleDoubleProperty aveQuantityProperty() {
+            return aveQuantity;
         }
     }
 }

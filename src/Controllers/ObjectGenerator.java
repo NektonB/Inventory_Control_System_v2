@@ -103,133 +103,133 @@ public class ObjectGenerator {
         return autoBackup;
     }
 
-    public static User getUser() {
+    public static synchronized User getUser() {
         if (user == null) {
             user = new User();
         }
         return user;
     }
 
-    public static UserType getUserType() {
+    public static synchronized UserType getUserType() {
         if (userType == null) {
             userType = new UserType();
         }
         return userType;
     }
 
-    public static ADStatus getAdStatus() {
+    public static synchronized ADStatus getAdStatus() {
         if (adStatus == null) {
             adStatus = new ADStatus();
         }
         return adStatus;
     }
 
-    public static ComponentSwitcher getComponentSwitcher() {
+    public static synchronized ComponentSwitcher getComponentSwitcher() {
         if (componentSwitcher == null) {
             componentSwitcher = new ComponentSwitcher();
         }
         return componentSwitcher;
     }
 
-    public static Address getAddress() {
+    public static synchronized Address getAddress() {
         if (address == null) {
             address = new Address();
         }
         return address;
     }
 
-    public static Contact getContact() {
+    public static synchronized Contact getContact() {
         if (contact == null) {
             contact = new Contact();
         }
         return contact;
     }
 
-    public static DateFormatConverter getDateFormatConverter() {
+    public static synchronized DateFormatConverter getDateFormatConverter() {
         if (dateFormatConverter == null) {
             dateFormatConverter = new DateFormatConverter();
         }
         return dateFormatConverter;
     }
 
-    public static Company getCompany() {
+    public static synchronized Company getCompany() {
         if (company == null) {
             company = new Company();
         }
         return company;
     }
 
-    public static Supplier getSupplier() {
+    public static synchronized Supplier getSupplier() {
         if (supplier == null) {
             supplier = new Supplier();
         }
         return supplier;
     }
 
-    public static CompanyPartner getCompanyPartner() {
+    public static synchronized CompanyPartner getCompanyPartner() {
         if (companyPartner == null) {
             companyPartner = new CompanyPartner();
         }
         return companyPartner;
     }
 
-    public static Partnership getPartnership() {
+    public static synchronized Partnership getPartnership() {
         if (partnership == null) {
             partnership = new Partnership();
         }
         return partnership;
     }
 
-    public static SupplierType getSupplierType() {
+    public static synchronized SupplierType getSupplierType() {
         if (supplierType == null) {
             supplierType = new SupplierType();
         }
         return supplierType;
     }
 
-    public static CompanyList getCompanyList() {
+    public static synchronized CompanyList getCompanyList() {
         if (companyList == null) {
             companyList = new CompanyList();
         }
         return companyList;
     }
 
-    public static Employee getEmployee() {
+    public static synchronized Employee getEmployee() {
         if (employee == null) {
             employee = new Employee();
         }
         return employee;
     }
 
-    public static Category getCategory() {
+    public static synchronized Category getCategory() {
         if (category == null) {
             category = new Category();
         }
         return category;
     }
 
-    public static Unit getUnit() {
+    public static synchronized Unit getUnit() {
         if (unit == null) {
             unit = new Unit();
         }
         return unit;
     }
 
-    public static Customer getCustomer() {
+    public static synchronized Customer getCustomer() {
         if (customer == null) {
             customer = new Customer();
         }
         return customer;
     }
 
-    public static SupplierPartner getSupplierPartner() {
+    public static synchronized SupplierPartner getSupplierPartner() {
         if (supplierPartner == null) {
             supplierPartner = new SupplierPartner();
         }
         return supplierPartner;
     }
 
-    public static CustomerType getCustomerType() {
+    public static synchronized CustomerType getCustomerType() {
         if (customerType == null) {
             customerType = new CustomerType();
         }
@@ -237,7 +237,7 @@ public class ObjectGenerator {
         return customerType;
     }
 
-    public static Product getProduct() {
+    public static synchronized Product getProduct() {
         if (product == null) {
             product = new Product();
         }
@@ -245,98 +245,98 @@ public class ObjectGenerator {
 
     }
 
-    public static TextValidator getTextValidator() {
+    public static synchronized TextValidator getTextValidator() {
         if (textValidator == null) {
             textValidator = new TextValidator();
         }
         return textValidator;
     }
 
-    public static TimeFormatConverter getTimeFormatConverter() {
+    public static synchronized TimeFormatConverter getTimeFormatConverter() {
         if (timeFormatConverter == null) {
             timeFormatConverter = new TimeFormatConverter();
         }
         return timeFormatConverter;
     }
 
-    public static PaymentType getPaymentType() {
+    public static synchronized PaymentType getPaymentType() {
         if (paymentType == null) {
             paymentType = new PaymentType();
         }
         return paymentType;
     }
 
-    public static PaymentMethod getPaymentMethod() {
+    public static synchronized PaymentMethod getPaymentMethod() {
         if (paymentMethod == null) {
             paymentMethod = new PaymentMethod();
         }
         return paymentMethod;
     }
 
-    public static GRN getGrn() {
+    public static synchronized GRN getGrn() {
         if (grn == null) {
             grn = new GRN();
         }
         return grn;
     }
 
-    public static MethodList getMethodList() {
+    public static synchronized MethodList getMethodList() {
         if (methodList == null) {
             methodList = new MethodList();
         }
         return methodList;
     }
 
-    public static PayStatus getPayStatus() {
+    public static synchronized PayStatus getPayStatus() {
         if (payStatus == null) {
             payStatus = new PayStatus();
         }
         return payStatus;
     }
 
-    public static Approve getApprove() {
+    public static synchronized Approve getApprove() {
         if (approve == null) {
             approve = new Approve();
         }
         return approve;
     }
 
-    public static GrnItems getGrnItems() {
+    public static synchronized GrnItems getGrnItems() {
         if (grnItems == null) {
             grnItems = new GrnItems();
         }
         return grnItems;
     }
 
-    public static Stock getStock() {
+    public static synchronized Stock getStock() {
         if (stock == null) {
             stock = new Stock();
         }
         return stock;
     }
 
-    public static InvoiceInterConnector getInterConnector() {
+    public static synchronized InvoiceInterConnector getInterConnector() {
         if (interConnector == null) {
             interConnector = new InvoiceInterConnector();
         }
         return interConnector;
     }
 
-    public static Invoice getInvoice() {
+    public static synchronized Invoice getInvoice() {
         if (invoice == null) {
             invoice = new Invoice();
         }
         return invoice;
     }
 
-    public static InvoiceItems getInvoiceItems() {
+    public static synchronized InvoiceItems getInvoiceItems() {
         if (invoiceItems == null) {
             invoiceItems = new InvoiceItems();
         }
         return invoiceItems;
     }
 
-    public static ReportViewer getReportViewer() {
+    public static synchronized ReportViewer getReportViewer() {
         if (reportViewer == null) {
             reportViewer = new ReportViewer();
         }

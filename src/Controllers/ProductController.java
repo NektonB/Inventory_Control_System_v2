@@ -29,78 +29,6 @@ import java.util.ResourceBundle;
 
 public class ProductController implements Initializable {
 
-    @FXML
-    private JFXTextField txtCode;
-
-    @FXML
-    private JFXTextField txtBarCode;
-
-    @FXML
-    private JFXTextField txtName;
-
-    @FXML
-    private JFXComboBox<String> cmbCategory;
-
-    @FXML
-    private JFXComboBox<String> cmbUnit;
-
-    @FXML
-    private JFXComboBox<String> cmbCompany;
-
-    @FXML
-    private JFXComboBox<String> cmbStatus;
-
-    @FXML
-    private JFXTextField txtRefillQty;
-
-    @FXML
-    private JFXComboBox<String> cmbSupplier;
-
-    @FXML
-    private TableView<SupplierList> tblSupplier;
-
-    @FXML
-    private TableColumn<SupplierList, Integer> tcSupplierId;
-
-    @FXML
-    private TableColumn<SupplierList, String> tcSupplierName;
-
-    @FXML
-    private TableColumn<SupplierList, JFXCheckBox> tcPartner;
-
-    @FXML
-    private JFXButton btnSave;
-
-    @FXML
-    private JFXButton btnUpdate;
-
-    @FXML
-    private TableView<ProductList> tblProducts;
-
-    @FXML
-    private TableColumn<ProductList, String> tcCode;
-
-    @FXML
-    private TableColumn<ProductList, String> tcName;
-
-    @FXML
-    private TableColumn<ProductList, String> tcCategory;
-
-    @FXML
-    private TableColumn<ProductList, String> tcUnit;
-
-    @FXML
-    private TableColumn<ProductList, String> tcStatus;
-
-    @FXML
-    private JFXTextField txtSearcProducts;
-
-    @FXML
-    private JFXTextField txtCodeSearch;
-
-    @FXML
-    private JFXComboBox<String> cmbCategorySearch;
-
     DataWriter dataWriter;
     DataReader dataReader;
     Alerts alerts;
@@ -115,6 +43,54 @@ public class ProductController implements Initializable {
     Partnership partnership;
     Product product;
     ADStatus adStatus;
+    @FXML
+    private JFXTextField txtCode;
+    @FXML
+    private JFXTextField txtBarCode;
+    @FXML
+    private JFXTextField txtName;
+    @FXML
+    private JFXComboBox<String> cmbCategory;
+    @FXML
+    private JFXComboBox<String> cmbUnit;
+    @FXML
+    private JFXComboBox<String> cmbCompany;
+    @FXML
+    private JFXComboBox<String> cmbStatus;
+    @FXML
+    private JFXTextField txtRefillQty;
+    @FXML
+    private JFXComboBox<String> cmbSupplier;
+    @FXML
+    private TableView<SupplierList> tblSupplier;
+    @FXML
+    private TableColumn<SupplierList, Integer> tcSupplierId;
+    @FXML
+    private TableColumn<SupplierList, String> tcSupplierName;
+    @FXML
+    private TableColumn<SupplierList, JFXCheckBox> tcPartner;
+    @FXML
+    private JFXButton btnSave;
+    @FXML
+    private JFXButton btnUpdate;
+    @FXML
+    private TableView<ProductList> tblProducts;
+    @FXML
+    private TableColumn<ProductList, String> tcCode;
+    @FXML
+    private TableColumn<ProductList, String> tcName;
+    @FXML
+    private TableColumn<ProductList, String> tcCategory;
+    @FXML
+    private TableColumn<ProductList, String> tcUnit;
+    @FXML
+    private TableColumn<ProductList, String> tcStatus;
+    @FXML
+    private JFXTextField txtSearcProducts;
+    @FXML
+    private JFXTextField txtCodeSearch;
+    @FXML
+    private JFXComboBox<String> cmbCategorySearch;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -689,24 +665,24 @@ public class ProductController implements Initializable {
             return id.get();
         }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
         public void setId(int id) {
             this.id.set(id);
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
         }
 
         public String getName() {
             return name.get();
         }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name.set(name);
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
         }
 
         public JFXCheckBox getCbSelect() {
@@ -737,60 +713,60 @@ public class ProductController implements Initializable {
             return code.get();
         }
 
-        public SimpleStringProperty codeProperty() {
-            return code;
-        }
-
         public void setCode(String code) {
             this.code.set(code);
+        }
+
+        public SimpleStringProperty codeProperty() {
+            return code;
         }
 
         public String getName() {
             return name.get();
         }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name.set(name);
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
         }
 
         public String getCategory() {
             return category.get();
         }
 
-        public SimpleStringProperty categoryProperty() {
-            return category;
-        }
-
         public void setCategory(String category) {
             this.category.set(category);
+        }
+
+        public SimpleStringProperty categoryProperty() {
+            return category;
         }
 
         public String getUnit() {
             return unit.get();
         }
 
-        public SimpleStringProperty unitProperty() {
-            return unit;
-        }
-
         public void setUnit(String unit) {
             this.unit.set(unit);
+        }
+
+        public SimpleStringProperty unitProperty() {
+            return unit;
         }
 
         public String getStatus() {
             return status.get();
         }
 
-        public SimpleStringProperty statusProperty() {
-            return status;
-        }
-
         public void setStatus(String status) {
             this.status.set(status);
+        }
+
+        public SimpleStringProperty statusProperty() {
+            return status;
         }
     }
 }

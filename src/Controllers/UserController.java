@@ -17,56 +17,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Font;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UserController implements Initializable {
-
-    @FXML
-    private JFXTextField txtUserId;
-
-    @FXML
-    private JFXTextField txtUserName;
-
-    @FXML
-    private JFXTextField txtPassword;
-    @FXML
-    private JFXTextField txtEmail;
-
-    @FXML
-    private JFXComboBox<String> cmbUserType;
-
-    @FXML
-    private JFXTextField txtMobile;
-
-    @FXML
-    private JFXComboBox<String> cmbUserStatus;
-
-    @FXML
-    private JFXButton btnAdd;
-
-    @FXML
-    private JFXButton btnUpdate;
-
-    @FXML
-    private TableView<UserList> tblUser;
-
-    @FXML
-    private TableColumn<UserList, Integer> tcUserId;
-
-    @FXML
-    private TableColumn<UserList, String> tcUserName;
-
-    @FXML
-    private TableColumn<UserList, String> tcEmail;
-
-    @FXML
-    private TableColumn<UserList, String> tcType;
-
-    @FXML
-    private TableColumn<UserList, String> tcStatus;
 
     DataWriter dataWriter;
     DataReader dataReader;
@@ -74,22 +29,52 @@ public class UserController implements Initializable {
     User user;
     UserType userType;
     ADStatus adStatus;
+    @FXML
+    private JFXTextField txtUserId;
+    @FXML
+    private JFXTextField txtUserName;
+    @FXML
+    private JFXTextField txtPassword;
+    @FXML
+    private JFXTextField txtEmail;
+    @FXML
+    private JFXComboBox<String> cmbUserType;
+    @FXML
+    private JFXTextField txtMobile;
+    @FXML
+    private JFXComboBox<String> cmbUserStatus;
+    @FXML
+    private JFXButton btnAdd;
+    @FXML
+    private JFXButton btnUpdate;
+    @FXML
+    private TableView<UserList> tblUser;
+    @FXML
+    private TableColumn<UserList, Integer> tcUserId;
+    @FXML
+    private TableColumn<UserList, String> tcUserName;
+    @FXML
+    private TableColumn<UserList, String> tcEmail;
+    @FXML
+    private TableColumn<UserList, String> tcType;
+    @FXML
+    private TableColumn<UserList, String> tcStatus;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                user = ObjectGenerator.getUser();
-                userType = ObjectGenerator.getUserType();
-                adStatus = ObjectGenerator.getAdStatus();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            user = ObjectGenerator.getUser();
+            userType = ObjectGenerator.getUserType();
+            adStatus = ObjectGenerator.getAdStatus();
 
-                dataReader.fillUserTypeCombo(cmbUserType);
-                dataReader.fillStatusCombo(cmbUserStatus);
+            dataReader.fillUserTypeCombo(cmbUserType);
+            dataReader.fillStatusCombo(cmbUserStatus);
 
-                dataReader.fillUserTable(tblUser);
+            dataReader.fillUserTable(tblUser);
             //});
             //readyData.setName("User Controller");
             //readyData.start();
@@ -285,60 +270,60 @@ public class UserController implements Initializable {
             return userName.get();
         }
 
-        public SimpleStringProperty userNameProperty() {
-            return userName;
-        }
-
         public void setUserName(String userName) {
             this.userName.set(userName);
+        }
+
+        public SimpleStringProperty userNameProperty() {
+            return userName;
         }
 
         public String getEmail() {
             return email.get();
         }
 
-        public SimpleStringProperty emailProperty() {
-            return email;
-        }
-
         public void setEmail(String email) {
             this.email.set(email);
+        }
+
+        public SimpleStringProperty emailProperty() {
+            return email;
         }
 
         public String getType() {
             return type.get();
         }
 
-        public SimpleStringProperty typeProperty() {
-            return type;
-        }
-
         public void setType(String type) {
             this.type.set(type);
+        }
+
+        public SimpleStringProperty typeProperty() {
+            return type;
         }
 
         public String getStatus() {
             return status.get();
         }
 
-        public SimpleStringProperty statusProperty() {
-            return status;
-        }
-
         public void setStatus(String status) {
             this.status.set(status);
+        }
+
+        public SimpleStringProperty statusProperty() {
+            return status;
         }
 
         public int getId() {
             return id.get();
         }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
         public void setId(int id) {
             this.id.set(id);
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
         }
     }
 }

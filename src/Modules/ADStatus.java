@@ -5,7 +5,7 @@ public class ADStatus {
     private int id;
     private String status;
 
-    public void resetAll(){
+    public void resetAll() {
         id = 0;
         status = "";
     }

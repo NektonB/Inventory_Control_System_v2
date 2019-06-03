@@ -1,5 +1,6 @@
 package Controllers;
 
+import Modules.User;
 import eu.hansolo.enzo.notification.Notification;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,37 +22,40 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    @FXML
-    private AnchorPane apParent;
-
-    @FXML
-    private AnchorPane apStatus;
-
-    @FXML
-    private MenuItem miRetail;
-
-    @FXML
-    private MenuItem miProductRegistration;
-
-    @FXML
-    private MenuItem mi_employee_manegment;
-
-    @FXML
-    private MenuItem mi_customer_manegment;
-
-    @FXML
-    private MenuItem mi_full_screen;
-
-    @FXML
-    private BorderPane rootpane;
-
     AnchorPane pnlGRN;
     AnchorPane pnlInvoice;
+    @FXML
+    private AnchorPane apParent;
+    @FXML
+    private AnchorPane apStatus;
+    @FXML
+    private MenuItem miRetail;
+    ReportViewer reportViewer;
+    @FXML
+    private MenuItem miProductRegistration;
+    @FXML
+    private MenuItem mi_employee_manegment;
+    @FXML
+    private MenuItem mi_customer_manegment;
+    Alerts alerts;
+    User user;
+    @FXML
+    private MenuItem miInvoiceView;
+    @FXML
+    private BorderPane rootpane;
+    @FXML
+    private MenuItem miCurrentStock;
+    @FXML
+    private MenuItem miStockLog;
+    @FXML
+    private MenuItem miDISummary;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,6 +65,9 @@ public class MainController implements Initializable {
             });
             readyData.setName("Main Controller");
             readyData.start();
+            reportViewer = ObjectGenerator.getReportViewer();
+            alerts = ObjectGenerator.getAlerts();
+            user = ObjectGenerator.getUser();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -199,6 +206,22 @@ public class MainController implements Initializable {
         }
     }
 
+    public void loadInvoiceView() {
+        try {
+            Stage stockViewStage = new Stage();
+            Parent frmStockView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmInvoiceViewer.fxml"));
+            stockViewStage.setTitle("Invoice Viewer");
+            Scene scene = new Scene(frmStockView);
+            stockViewStage.setScene(scene);
+            stockViewStage.initStyle(StageStyle.UTILITY);
+            stockViewStage.setResizable(false);
+            stockViewStage.initModality(Modality.APPLICATION_MODAL);
+            stockViewStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void fullscreen() {
         Stage stage = ((Stage) rootpane.getScene().getWindow());
         stage.setFullScreen(!stage.isFullScreen());
@@ -216,5 +239,50 @@ public class MainController implements Initializable {
         notifications.show();
     }
 
+    public void loadStockLogReportViewer() {
+        try {
+            Stage stockViewStage = new Stage();
+            Parent frmStockView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmStockLogReports.fxml"));
+            stockViewStage.setTitle("Stock Log Report Viewer");
+            Scene scene = new Scene(frmStockView);
+            stockViewStage.setScene(scene);
+            stockViewStage.initStyle(StageStyle.UTILITY);
+            stockViewStage.setResizable(false);
+            stockViewStage.initModality(Modality.APPLICATION_MODAL);
+            stockViewStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getDailyInvoiceSummary() {
+        try {
+            DateTimeFormatter dateFormatter =
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            reportViewer.getDailyInvoiceSummary(LocalDate.now().format(dateFormatter).toString(), "VIEW");
+        } catch (Exception e) {
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void getDailyUserInvoiceSummary() {
+        try {
+            DateTimeFormatter dateFormatter =
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            reportViewer.getDailyUserInvoiceSummary(LocalDate.now().format(dateFormatter).toString(), user.getUserName(), "VIEW");
+        } catch (Exception e) {
+            alerts.getErrorAlert(e);
+        }
+    }
+
+    public void getDailySaleSummary() {
+        try {
+            DateTimeFormatter dateFormatter =
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            reportViewer.getDailySaleSummary(LocalDate.now().format(dateFormatter).toString(), "VIEW");
+        } catch (Exception e) {
+            alerts.getErrorAlert(e);
+        }
+    }
 
 }

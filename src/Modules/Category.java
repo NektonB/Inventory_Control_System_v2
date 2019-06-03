@@ -5,7 +5,7 @@ public class Category {
     int id;
     String name;
 
-    public void resetAll(){
+    public void resetAll() {
         id = 0;
         name = "";
     }

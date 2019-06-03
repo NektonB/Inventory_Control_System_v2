@@ -1,7 +1,6 @@
 package Modules;
 
 /**
- *
  * @author Buddhika Prasanna
  */
 public class ConnectionInfo {

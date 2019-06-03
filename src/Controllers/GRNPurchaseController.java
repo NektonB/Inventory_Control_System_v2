@@ -24,78 +24,6 @@ import java.util.ResourceBundle;
 
 public class GRNPurchaseController implements Initializable {
 
-    @FXML
-    private JFXDatePicker dpGRNDate;
-
-    @FXML
-    private JFXTimePicker tpGRNTime;
-
-    @FXML
-    private JFXTextField txtItemCount;
-
-    @FXML
-    private JFXTextField txtTotalAmount;
-
-    @FXML
-    private JFXTextField txtDisValue;
-
-    @FXML
-    private JFXTextField txtDisPercentage;
-
-    @FXML
-    private JFXTextField txtGrossAmount;
-
-    @FXML
-    private JFXTextField txtManualDisValue;
-
-    @FXML
-    private JFXTextField txtManualDisPercentage;
-
-    @FXML
-    private JFXTextField txtTotalDisValue;
-
-    @FXML
-    private JFXTextField txtTotalDisPercentage;
-
-    @FXML
-    private JFXTextField txtNetAmount;
-
-    @FXML
-    private JFXTextField txtPayedAmount;
-
-    @FXML
-    private JFXTextField txtDeuAmount;
-
-    @FXML
-    private JFXComboBox<String> cmbType;
-
-    @FXML
-    private JFXTextField txtPayedAmountPart;
-
-    @FXML
-    private TableView<PaymentMethodList> tblPayment;
-
-    @FXML
-    private TableColumn<PaymentMethodList, Integer> tcTypeId;
-
-    @FXML
-    private TableColumn<PaymentMethodList, String> tcMethode;
-
-    @FXML
-    private TableColumn<PaymentMethodList, Double> tcAmount;
-
-    @FXML
-    private JFXButton btnGoBack;
-
-    @FXML
-    private JFXButton btnPurchaseNow;
-
-    @FXML
-    private JFXListView<String> lvSupplierName;
-
-    @FXML
-    private JFXTextField txtSupplierName;
-
     TextValidator validator;
     DataWriter dataWriter;
     DataReader dataReader;
@@ -113,8 +41,55 @@ public class GRNPurchaseController implements Initializable {
     User user;
     GrnItems grnItems;
     Product product;
-
     TableView tblItems;
+    @FXML
+    private JFXDatePicker dpGRNDate;
+    @FXML
+    private JFXTimePicker tpGRNTime;
+    @FXML
+    private JFXTextField txtItemCount;
+    @FXML
+    private JFXTextField txtTotalAmount;
+    @FXML
+    private JFXTextField txtDisValue;
+    @FXML
+    private JFXTextField txtDisPercentage;
+    @FXML
+    private JFXTextField txtGrossAmount;
+    @FXML
+    private JFXTextField txtManualDisValue;
+    @FXML
+    private JFXTextField txtManualDisPercentage;
+    @FXML
+    private JFXTextField txtTotalDisValue;
+    @FXML
+    private JFXTextField txtTotalDisPercentage;
+    @FXML
+    private JFXTextField txtNetAmount;
+    @FXML
+    private JFXTextField txtPayedAmount;
+    @FXML
+    private JFXTextField txtDeuAmount;
+    @FXML
+    private JFXComboBox<String> cmbType;
+    @FXML
+    private JFXTextField txtPayedAmountPart;
+    @FXML
+    private TableView<PaymentMethodList> tblPayment;
+    @FXML
+    private TableColumn<PaymentMethodList, Integer> tcTypeId;
+    @FXML
+    private TableColumn<PaymentMethodList, String> tcMethode;
+    @FXML
+    private TableColumn<PaymentMethodList, Double> tcAmount;
+    @FXML
+    private JFXButton btnGoBack;
+    @FXML
+    private JFXButton btnPurchaseNow;
+    @FXML
+    private JFXListView<String> lvSupplierName;
+    @FXML
+    private JFXTextField txtSupplierName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -125,40 +100,42 @@ public class GRNPurchaseController implements Initializable {
              * call the table ready method outside of the thread
              * */
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                validator = ObjectGenerator.getTextValidator();
-                dateFormatConverter = ObjectGenerator.getDateFormatConverter();
-                timeFormatConverter = ObjectGenerator.getTimeFormatConverter();
-                paymentType = ObjectGenerator.getPaymentType();
-                switcher = ObjectGenerator.getComponentSwitcher();
-                paymentMethod = ObjectGenerator.getPaymentMethod();
-                grn = ObjectGenerator.getGrn();
-                methodList = ObjectGenerator.getMethodList();
-                supplier = ObjectGenerator.getSupplier();
-                payStatus = ObjectGenerator.getPayStatus();
-                approve = ObjectGenerator.getApprove();
-                user = ObjectGenerator.getUser();
-                grnItems = ObjectGenerator.getGrnItems();
-                product = ObjectGenerator.getProduct();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            validator = ObjectGenerator.getTextValidator();
+            dateFormatConverter = ObjectGenerator.getDateFormatConverter();
+            timeFormatConverter = ObjectGenerator.getTimeFormatConverter();
+            paymentType = ObjectGenerator.getPaymentType();
+            switcher = ObjectGenerator.getComponentSwitcher();
+            paymentMethod = ObjectGenerator.getPaymentMethod();
+            grn = ObjectGenerator.getGrn();
+            methodList = ObjectGenerator.getMethodList();
+            supplier = ObjectGenerator.getSupplier();
+            payStatus = ObjectGenerator.getPayStatus();
+            approve = ObjectGenerator.getApprove();
+            user = ObjectGenerator.getUser();
+            grnItems = ObjectGenerator.getGrnItems();
+            product = ObjectGenerator.getProduct();
 
-                dateFormatConverter.convert(dpGRNDate, "yyyy-MM-dd");
-                //timeFormatConverter.convert(tpGRNTime, "hh:mm");
-                tpGRNTime.setValue(LocalTime.now());
-                validator.validateDigit(txtManualDisValue, 10, 2);
-                validator.validateDigit(txtManualDisPercentage, 3, 2);
-                validator.validateDigit(txtPayedAmountPart, 10, 2);
-                dataReader.fillPaymentTypeCombo(cmbType);
-                cmbType.setValue("CASH");
+            dateFormatConverter.convert(dpGRNDate, "yyyy-MM-dd");
+            //timeFormatConverter.convert(tpGRNTime, "hh:mm");
+            tpGRNTime.setValue(LocalTime.now());
+            validator.validateDigit(txtManualDisValue, 10, 2);
+            validator.validateDigit(txtManualDisPercentage, 3, 2);
+            validator.validateDigit(txtPayedAmountPart, 10, 2);
+            dataReader.fillPaymentTypeCombo(cmbType);
+            cmbType.setValue("CASH");
 
-                calculateItemCount();
-                calculateTotalAmount();
-                calculateDiscValue();
-                calculateDiscPercentage();
-                calculateGrossAmount();
-                calculateNetAmount();
-                calculateDeuAmount();
+            calculateItemCount();
+            calculateTotalAmount();
+            calculateDiscValue();
+            calculateDiscPercentage();
+            calculateGrossAmount();
+            calculateNetDiscPercentage();
+            calculateNetDiscValue();
+            calculateNetAmount();
+            calculateDeuAmount();
             //});
             //readyData.setName("GRN Purchase Controller");
             //readyData.start();
@@ -546,12 +523,13 @@ public class GRNPurchaseController implements Initializable {
     public int savePaymentMethod() {
         int savePaymentMethodList = 0;
         try {
-            int savePaymentMethod = dataWriter.savePaymentMethod();
+            int savePaymentMethod = dataWriter.savePaymentMethod(supplier.getId(), "SUPPLIER");
 
             if (savePaymentMethod > 0) {
                 ObservableList<? extends TableColumn<?, ?>> columns = tblPayment.getColumns();
                 for (int i = 0; i < tblPayment.getItems().size(); ++i) {
                     paymentType.setId(Integer.parseInt(columns.get(0).getCellObservableValue(i).getValue().toString()));
+                    //System.out.println(paymentType.getId());
                     methodList.setPayedValue(Double.parseDouble(columns.get(2).getCellObservableValue(i).getValue().toString()));
 
                     savePaymentMethodList = dataWriter.savePaymentMethodList();
@@ -583,7 +561,7 @@ public class GRNPurchaseController implements Initializable {
                 grn.setDeuAmount(Double.parseDouble(txtDeuAmount.getText()));
 
 
-                if (grn.getDeuAmount() == 0) {
+                if (grn.getDeuAmount() == 0 || grn.getDeuAmount() < 0) {
                     payStatus.setId(1);
                 } else if (grn.getDeuAmount() > 0) {
                     payStatus.setId(2);
@@ -592,8 +570,9 @@ public class GRNPurchaseController implements Initializable {
                 }
 
                 approve.setId(1);
-                user.setId(1);
-
+                //user.setId(1);
+                System.out.println("Deu Amount " + grn.getDeuAmount());
+                System.out.println("Pay Status Id " + payStatus.getId());
                 int saveGRN = dataWriter.saveGRN();
 
                 if (saveGRN > 0) {
@@ -668,7 +647,7 @@ public class GRNPurchaseController implements Initializable {
                 grn.resetAll();
                 payStatus.resetAll();
                 approve.resetAll();
-                user.resetAll();
+                //user.resetAll();
                 paymentType.resetAll();
                 paymentMethod.resetAll();
                 methodList.resetAll();
@@ -789,36 +768,36 @@ public class GRNPurchaseController implements Initializable {
             return typeId.get();
         }
 
-        public SimpleIntegerProperty typeIdProperty() {
-            return typeId;
-        }
-
         public void setTypeId(int typeId) {
             this.typeId.set(typeId);
+        }
+
+        public SimpleIntegerProperty typeIdProperty() {
+            return typeId;
         }
 
         public String getType() {
             return type.get();
         }
 
-        public SimpleStringProperty typeProperty() {
-            return type;
-        }
-
         public void setType(String type) {
             this.type.set(type);
+        }
+
+        public SimpleStringProperty typeProperty() {
+            return type;
         }
 
         public double getAmount() {
             return amount.get();
         }
 
-        public SimpleDoubleProperty amountProperty() {
-            return amount;
-        }
-
         public void setAmount(double amount) {
             this.amount.set(amount);
+        }
+
+        public SimpleDoubleProperty amountProperty() {
+            return amount;
         }
     }
 }

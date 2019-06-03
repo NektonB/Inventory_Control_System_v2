@@ -7,7 +7,7 @@ public class Product {
     String name;
     double refillingQty;
 
-    public void resetAll(){
+    public void resetAll() {
         code = "";
         barCode = "";
         name = "";

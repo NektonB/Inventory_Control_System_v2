@@ -25,75 +25,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
-    @FXML
-    private JFXTextField txt_customer_id;
-
-    @FXML
-    private JFXTextField txt_fname;
-
-    @FXML
-    private JFXTextField txt_mname;
-
-    @FXML
-    private JFXTextField txt_lname;
-
-    @FXML
-    private JFXTextField txt_nic;
-
-    @FXML
-    private JFXTextField txt_address_id;
-
-    @FXML
-    private JFXTextArea ta_address;
-
-    @FXML
-    private JFXTextField txt_contact_id;
-
-    @FXML
-    private JFXTextArea ta_contact;
-
-    @FXML
-    private JFXDatePicker dp_join_date;
-
-    @FXML
-    private JFXComboBox<String> cmb_customer_type;
-
-    @FXML
-    private JFXComboBox<String> cmb_activation_status;
-
-    @FXML
-    private JFXButton btn_Save;
-
-    @FXML
-    private JFXButton btn_Update;
-
-    @FXML
-    private TableView<CustomerList> tbl_customer;
-
-    @FXML
-    private TableColumn<CustomerList, Integer> tc_id;
-
-    @FXML
-    private TableColumn<CustomerList, String> tc_name;
-
-    @FXML
-    private TableColumn<CustomerList, String> tc_nic;
-
-    @FXML
-    private TableColumn<CustomerList, String> tc_joindate;
-
-    @FXML
-    private TableColumn<CustomerList, String> tc_cutomer_type;
-
-    @FXML
-    private TableColumn<CustomerList, String> tc_avtivation_status;
-
-    @FXML
-    private JFXTextField txt_type_nic;
-
-    @FXML
-    private JFXTextField txt_type_name;
-
     DataWriter dataWriter;
     DataReader dataReader;
     Alerts alerts;
@@ -104,6 +35,52 @@ public class CustomerController implements Initializable {
     ADStatus adStatus;
     Customer customer;
     CustomerType customerType;
+    @FXML
+    private JFXTextField txt_customer_id;
+    @FXML
+    private JFXTextField txt_fname;
+    @FXML
+    private JFXTextField txt_mname;
+    @FXML
+    private JFXTextField txt_lname;
+    @FXML
+    private JFXTextField txt_nic;
+    @FXML
+    private JFXTextField txt_address_id;
+    @FXML
+    private JFXTextArea ta_address;
+    @FXML
+    private JFXTextField txt_contact_id;
+    @FXML
+    private JFXTextArea ta_contact;
+    @FXML
+    private JFXDatePicker dp_join_date;
+    @FXML
+    private JFXComboBox<String> cmb_customer_type;
+    @FXML
+    private JFXComboBox<String> cmb_activation_status;
+    @FXML
+    private JFXButton btn_Save;
+    @FXML
+    private JFXButton btn_Update;
+    @FXML
+    private TableView<CustomerList> tbl_customer;
+    @FXML
+    private TableColumn<CustomerList, Integer> tc_id;
+    @FXML
+    private TableColumn<CustomerList, String> tc_name;
+    @FXML
+    private TableColumn<CustomerList, String> tc_nic;
+    @FXML
+    private TableColumn<CustomerList, String> tc_joindate;
+    @FXML
+    private TableColumn<CustomerList, String> tc_cutomer_type;
+    @FXML
+    private TableColumn<CustomerList, String> tc_avtivation_status;
+    @FXML
+    private JFXTextField txt_type_nic;
+    @FXML
+    private JFXTextField txt_type_name;
 
     @Override
 
@@ -116,21 +93,21 @@ public class CustomerController implements Initializable {
              * All supporting classes load in the thread
              * */
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                address = ObjectGenerator.getAddress();
-                switcher = ObjectGenerator.getComponentSwitcher();
-                dateFormatConverter = ObjectGenerator.getDateFormatConverter();
-                contact = ObjectGenerator.getContact();
-                adStatus = ObjectGenerator.getAdStatus();
-                customer = ObjectGenerator.getCustomer();
-                customerType = ObjectGenerator.getCustomerType();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            address = ObjectGenerator.getAddress();
+            switcher = ObjectGenerator.getComponentSwitcher();
+            dateFormatConverter = ObjectGenerator.getDateFormatConverter();
+            contact = ObjectGenerator.getContact();
+            adStatus = ObjectGenerator.getAdStatus();
+            customer = ObjectGenerator.getCustomer();
+            customerType = ObjectGenerator.getCustomerType();
 
-                dateFormatConverter.convert(dp_join_date, "yyyy-MM-dd");
-                dataReader.fillStatusCombo(cmb_activation_status);
-                dataReader.fillCustomerTypeCombo(cmb_customer_type);
-                dataReader.fillCustomerTable(tbl_customer);
+            dateFormatConverter.convert(dp_join_date, "yyyy-MM-dd");
+            dataReader.fillStatusCombo(cmb_activation_status);
+            dataReader.fillCustomerTypeCombo(cmb_customer_type);
+            dataReader.fillCustomerTable(tbl_customer);
 
             //});
             //readyData.setName("Customer Controller");
@@ -401,72 +378,72 @@ public class CustomerController implements Initializable {
             return id.get();
         }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
         public void setId(int id) {
             this.id.set(id);
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
         }
 
         public String getName() {
             return name.get();
         }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name.set(name);
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
         }
 
         public String getNic() {
             return nic.get();
         }
 
-        public SimpleStringProperty nicProperty() {
-            return nic;
-        }
-
         public void setNic(String nic) {
             this.nic.set(nic);
+        }
+
+        public SimpleStringProperty nicProperty() {
+            return nic;
         }
 
         public String getJoinDate() {
             return joinDate.get();
         }
 
-        public SimpleStringProperty joinDateProperty() {
-            return joinDate;
-        }
-
         public void setJoinDate(String joinDate) {
             this.joinDate.set(joinDate);
+        }
+
+        public SimpleStringProperty joinDateProperty() {
+            return joinDate;
         }
 
         public String getCustomerType() {
             return customerType.get();
         }
 
-        public SimpleStringProperty customerTypeProperty() {
-            return customerType;
-        }
-
         public void setCustomerType(String customerType) {
             this.customerType.set(customerType);
+        }
+
+        public SimpleStringProperty customerTypeProperty() {
+            return customerType;
         }
 
         public String getActivationStatus() {
             return activationStatus.get();
         }
 
-        public SimpleStringProperty activationStatusProperty() {
-            return activationStatus;
-        }
-
         public void setActivationStatus(String activationStatus) {
             this.activationStatus.set(activationStatus);
+        }
+
+        public SimpleStringProperty activationStatusProperty() {
+            return activationStatus;
         }
     }
 

@@ -27,20 +27,19 @@ public class AutoBackup {
     ConnectionInfo connectionInfo;
     BackupData backupData;
     Alerts alerts;
-
+    int count, fileCount = 0;
     private String database, username, password;
     private String dumppath;
     private Thread Backuper;
-    int count, fileCount = 0;
 
 
     public AutoBackup() {
         try {
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataReader = ObjectGenerator.getDataReader();
-                connectionInfo = ObjectGenerator.getConnectionInfo();
-                backupData = ObjectGenerator.getBackupData();
+            alerts = ObjectGenerator.getAlerts();
+            dataReader = ObjectGenerator.getDataReader();
+            connectionInfo = ObjectGenerator.getConnectionInfo();
+            backupData = ObjectGenerator.getBackupData();
             //});
             //readyData.setName("AutoBackup");
             //readyData.start();
@@ -115,20 +114,20 @@ public class AutoBackup {
 
             if (processComplete == 0) {
                 if (count > 0) {
-                    //Platform.runLater(() -> {
+                    Platform.runLater(() -> {
                         ///notifications.show();
                         alerts.getSuccessNotify("Database Backup", mgsSucces);
-                    //});
+                    });
                 }
                 count = 1;
                 //fileCount++;
                 fileCount = 0;
             } else {
                 Toolkit.getDefaultToolkit().beep();
-                //Platform.runLater(() -> {
+                Platform.runLater(() -> {
                     ///notifications.show();
                     alerts.getWarningNotify("Database Backup", mgsFailure);
-                //});
+                });
             }
 
         } catch (IOException | InterruptedException | HeadlessException e) {
@@ -142,12 +141,12 @@ public class AutoBackup {
             while (true) {
                 prepareBackup();
                 try {
-                    Thread.sleep(300000);
+                    Thread.sleep(300000);//
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    //Platform.runLater(() -> {
+                    Platform.runLater(() -> {
                         alerts.getErrorNotify("Database Backup", ex.getMessage());
-                    //});
+                    });
                 }
             }
         });

@@ -44,6 +44,7 @@ public class DataWriter {
     GrnItems grnItems;
     Invoice invoice;
     InvoiceItems invoiceItems;
+    Stock stock;
 
 
     /**
@@ -83,7 +84,7 @@ public class DataWriter {
                 grnItems = ObjectGenerator.getGrnItems();
                 invoice = ObjectGenerator.getInvoice();
                 invoiceItems = ObjectGenerator.getInvoiceItems();
-
+                stock = ObjectGenerator.getStock();
             });
             readyData.setName("Data Writer");
             readyData.start();
@@ -949,12 +950,13 @@ public class DataWriter {
      * Return 0 not save any record
      * Return grater than 0 data save ok...
      */
-    public int savePaymentMethod() {
+    public int savePaymentMethod(int ownerId, String owner) {
         ResultSet rs = null;
         int saveDone = 0;
         try {
-            pst = conn.prepareStatement("INSERT INTO pay_methode(owner_id) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
-            pst.setInt(1, supplier.getId());
+            pst = conn.prepareStatement("INSERT INTO pay_methode(owner_id,flag) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, ownerId);
+            pst.setString(2, owner);
 
             saveDone = pst.executeUpdate();
             rs = pst.getGeneratedKeys();
@@ -988,7 +990,7 @@ public class DataWriter {
             pst.setInt(1, paymentMethod.getId());
             pst.setInt(2, paymentType.getId());
             pst.setDouble(3, methodList.getPayedValue());
-
+            //System.out.println(paymentType.getId());
             saveDone = pst.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1143,16 +1145,18 @@ public class DataWriter {
     public int saveInvoiceItems() {
         int saveDone = 0;
         try {
-            pst = conn.prepareStatement("INSERT INTO invoice_items(invoice_id, product_code, sale_price, quantity, total_amount, discount_value, discount_rate, net_amount, item_status) VALUES (?,?,?,?,?,?,?,?,?)");
+            pst = conn.prepareStatement("INSERT INTO invoice_items(invoice_id,stock_id, product_code, sale_price, quantity, total_amount, discount_value, discount_rate, net_amount, item_status,stockIdList) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             pst.setInt(1, invoice.getId());
-            pst.setString(2, product.getCode());
-            pst.setDouble(3, invoiceItems.getSalePrice());
-            pst.setDouble(4, invoiceItems.getQuantity());
-            pst.setDouble(5, invoiceItems.getTotalAmount());
-            pst.setDouble(6, invoiceItems.getDiscValue());
-            pst.setDouble(7, invoiceItems.getDiscRate());
-            pst.setDouble(8, invoiceItems.getNetAmount());
-            pst.setString(9, invoiceItems.getItemStatus());
+            pst.setInt(2, stock.getId());
+            pst.setString(3, product.getCode());
+            pst.setDouble(4, invoiceItems.getSalePrice());
+            pst.setDouble(5, invoiceItems.getQuantity());
+            pst.setDouble(6, invoiceItems.getTotalAmount());
+            pst.setDouble(7, invoiceItems.getDiscValue());
+            pst.setDouble(8, invoiceItems.getDiscRate());
+            pst.setDouble(9, invoiceItems.getNetAmount());
+            pst.setString(10, invoiceItems.getItemStatus());
+            pst.setString(11, invoiceItems.getStockIdList());
 
             saveDone = pst.executeUpdate();
         } catch (Exception e) {

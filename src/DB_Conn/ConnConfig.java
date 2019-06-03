@@ -5,8 +5,6 @@
  */
 package DB_Conn;
 
-import org.sqlite.SQLiteConnection;
-
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;

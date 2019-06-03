@@ -3,10 +3,10 @@ package Modules;
 public class User {
 
     private int id;
-    private String userName;
-    private String password;
-    private String email;
-    private String mobile;
+    private String userName = "";
+    private String password = "";
+    private String email = "";
+    private String mobile = "";
 
     public void resetAll() {
         id = 0;

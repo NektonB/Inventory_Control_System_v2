@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-
+<?import javafx.scene.layout.*?>
 <BorderPane fx:id="rootpane" prefHeight="730.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
     <bottom>
         <AnchorPane fx:id="apStatus" prefHeight="20.0" prefWidth="1366.0" style="-fx-background-color: #b8b8b8;" BorderPane.alignment="CENTER" />
@@ -17,15 +13,18 @@
                 <Menu mnemonicParsing="false" text="Sales Management">
                     <items>
                         <MenuItem fx:id="miRetail" mnemonicParsing="false" onAction="#loadInvoice" text="Retail Invoice" />
-                        <MenuItem mnemonicParsing="false" text="View Invoice" />
+                        <MenuItem fx:id="miInvoiceView" mnemonicParsing="false" onAction="#loadInvoiceView"
+                                  text="View Invoice"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Stocks Management">
                     <items>
                         <MenuItem fx:id="tcStockView" mnemonicParsing="false" onAction="#loadStockView" text="View Current Stock">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
-                     </accelerator></MenuItem>
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="DOWN"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
                         <MenuItem fx:id="tcStockUpdate" mnemonicParsing="false" onAction="#loadGrn" text="Stock Update" />
                         <MenuItem mnemonicParsing="false" text="View GRN" />
                         <MenuItem mnemonicParsing="false" text="Genarate PO" />
@@ -34,31 +33,64 @@
                 <Menu mnemonicParsing="false" text="Products Management">
                     <items>
                         <MenuItem fx:id="miProductRegistration" mnemonicParsing="false" onAction="#loadProductManagement" text="Register Product">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
                         <MenuItem mnemonicParsing="false" text="View Products List" />
                     </items>
                 </Menu>
-            <Menu mnemonicParsing="false" text="Control Panel">
-              <items>
-                <MenuItem fx:id="miUserManagment" mnemonicParsing="false" onAction="#loadUserManagement" text="User Managment">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                  <MenuItem fx:id="miSupplier" mnemonicParsing="false" onAction="#loadSupplierManagement" text="Supplier Managment">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator>
-                  </MenuItem>
-                  <MenuItem fx:id="mi_employee_manegment" mnemonicParsing="false" onAction="#loadEmployeeManagement" text="Employee Managment" />
-                  <MenuItem fx:id="mi_customer_manegment" mnemonicParsing="false" onAction="#loadCustomerManagement" text="Customer Manegment" />
-              </items>
+                <Menu mnemonicParsing="false" text="Control Panel">
+                    <items>
+                        <MenuItem fx:id="miUserManagment" mnemonicParsing="false" onAction="#loadUserManagement"
+                                  text="User Managment">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="miSupplier" mnemonicParsing="false" onAction="#loadSupplierManagement"
+                                  text="Supplier Managment">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP"
+                                                    shortcut="UP"/>
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="mi_employee_manegment" mnemonicParsing="false"
+                                  onAction="#loadEmployeeManagement" text="Employee Managment"/>
+                        <MenuItem fx:id="mi_customer_manegment" mnemonicParsing="false"
+                                  onAction="#loadCustomerManagement" text="Customer Manegment"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Reports">
+                    <items>
+                        <Menu mnemonicParsing="false" text="Stock Reports">
+                            <items>
+                                <MenuItem fx:id="miCurrentStock" mnemonicParsing="false" text="Current Stock"/>
+                                <MenuItem fx:id="miStockLog" mnemonicParsing="false"
+                                          onAction="#loadStockLogReportViewer" text="Stock Log"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Invoice Reports">
+                            <items>
+                                <MenuItem fx:id="miDISummary" mnemonicParsing="false" onAction="#getDailyInvoiceSummary"
+                                          text="Daily Invoice Summary"/>
+                                <MenuItem mnemonicParsing="false" text="Daily User Summary"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Sale Report">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#getDailySaleSummary" text="Daily Sale"/>
+                            </items>
+                        </Menu>
+                    </items>
             </Menu>
             </menus>
         </MenuBar>
     </top>
-   <center>
-      <AnchorPane prefHeight="658.0" prefWidth="1366.0" style="-fx-background-color: #6c8f8e;" BorderPane.alignment="CENTER" />
-   </center>
+    <center>
+        <AnchorPane prefHeight="658.0" prefWidth="1366.0" style="-fx-background-color: #6c8f8e;"
+                    BorderPane.alignment="CENTER"/>
+    </center>
 </BorderPane>

@@ -5,7 +5,7 @@ public class MethodList {
     private int id;
     private double payedValue;
 
-    public void resetAll(){
+    public void resetAll() {
         id = 0;
         payedValue = 0;
     }

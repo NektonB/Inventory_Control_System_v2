@@ -5,7 +5,7 @@ public class SupplierType {
     private int id;
     private String type;
 
-    public void resetAll(){
+    public void resetAll() {
         id = 0;
         type = "";
     }

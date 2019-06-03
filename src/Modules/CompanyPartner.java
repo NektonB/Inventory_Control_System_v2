@@ -5,7 +5,7 @@ public class CompanyPartner {
     private int id;
     private String partner;
 
-    public void resetAll(){
+    public void resetAll() {
         id = 0;
         partner = "";
     }

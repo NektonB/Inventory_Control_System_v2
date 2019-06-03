@@ -1,152 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #6c8f8e;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProductController">
-   <children>
-      <Pane layoutX="4.0" layoutY="4.0" prefHeight="336.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
-         <children>
-            <VBox layoutX="7.0" layoutY="7.0" prefHeight="320.0" prefWidth="310.0">
-               <children>
-                  <JFXTextField fx:id="txtCode" labelFloat="true" promptText="Code">
-                     <VBox.margin>
-                        <Insets bottom="10.0" right="150.0" top="10.0" />
-                     </VBox.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="txtBarCode" labelFloat="true" promptText="Bar Code">
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </JFXTextField>
-                  <JFXTextField id="txtProductName" fx:id="txtName" labelFloat="true" promptText="Name" stylesheets="@../CSS/Decorator.css">
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin>
-                  </JFXTextField>
-                  <JFXComboBox fx:id="cmbCategory" editable="true" labelFloat="true" onHidden="#getCategoryByName" onKeyReleased="#cmbCategoryKey" prefHeight="31.0" prefWidth="250.0" promptText="Category">
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXComboBox>
-               </children>
-            </VBox>
-            <VBox layoutX="342.0" layoutY="7.0" prefHeight="320.0" prefWidth="293.0">
-               <children>
-                  <JFXComboBox fx:id="cmbUnit" editable="true" labelFloat="true" onHidden="#getUnitByName" onKeyReleased="#cmbUnitKey" prefHeight="31.0" prefWidth="180.0" promptText="Unit">
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXComboBox>
-                  <JFXComboBox fx:id="cmbCompany" editable="true" labelFloat="true" onHidden="#getCompanyByName" onKeyReleased="#companyComboKey" prefHeight="31.0" prefWidth="285.0" promptText="Company">
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXComboBox>
-                  <JFXComboBox fx:id="cmbStatus" labelFloat="true" prefHeight="28.0" prefWidth="180.0" promptText="Status">
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="20.0" />
-                     </VBox.margin>
-                  </JFXComboBox>
-               </children>
-            </VBox>
-            <VBox layoutX="644.0" layoutY="14.0" prefHeight="251.0" prefWidth="346.0">
-               <children>
-                  <JFXTextField fx:id="txtRefillQty" labelFloat="true" promptText="Refilling Qty" text="0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" right="150.0" top="10.0" />
-                     </VBox.margin>
-                  </JFXTextField>
-                  <HBox prefHeight="41.0" prefWidth="270.0">
-                     <children>
-                        <JFXComboBox fx:id="cmbSupplier" editable="true" labelFloat="true" onHidden="#searchCompanyDetailByName" onKeyReleased="#cmbSupplierKey" prefHeight="29.0" prefWidth="285.0" promptText="Supplier">
-                           <HBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </HBox.margin>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #6c8f8e;"
+            xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Controllers.ProductController">
+    <children>
+        <Pane layoutX="4.0" layoutY="4.0" prefHeight="336.0" prefWidth="992.0"
+              style="-fx-background-color: rgba(164,204,187,0.94);">
+            <children>
+                <VBox layoutX="7.0" layoutY="7.0" prefHeight="320.0" prefWidth="310.0">
+                    <children>
+                        <JFXTextField fx:id="txtCode" labelFloat="true" promptText="Code">
+                            <VBox.margin>
+                                <Insets bottom="10.0" right="150.0" top="10.0"/>
+                            </VBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="txtBarCode" labelFloat="true" promptText="Bar Code">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="10.0"/>
+                            </VBox.margin>
+                        </JFXTextField>
+                        <JFXTextField id="txtProductName" fx:id="txtName" labelFloat="true" promptText="Name"
+                                      stylesheets="@../CSS/Decorator.css">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="10.0"/>
+                            </VBox.margin>
+                        </JFXTextField>
+                        <JFXComboBox fx:id="cmbCategory" editable="true" labelFloat="true" onHidden="#getCategoryByName"
+                                     onKeyReleased="#cmbCategoryKey" prefHeight="31.0" prefWidth="250.0"
+                                     promptText="Category">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="20.0"/>
+                            </VBox.margin>
                         </JFXComboBox>
-                     </children>
-                  </HBox>
-                  <TableView fx:id="tblSupplier" prefHeight="167.0" prefWidth="346.0">
-                     <columns>
-                        <TableColumn fx:id="tcSupplierId" prefWidth="70.0" resizable="false" text="Id" />
-                        <TableColumn fx:id="tcSupplierName" editable="false" prefWidth="235.0" resizable="false" text="Supplier" />
-                        <TableColumn fx:id="tcPartner" prefWidth="40.0" text="#" />
-                     </columns>
-                  </TableView>
-               </children>
-            </VBox>
-            <Pane layoutX="733.0" layoutY="276.0">
-               <children>
-                  <JFXButton fx:id="btnSave" alignment="CENTER_RIGHT" onAction="#saveProduct" onKeyReleased="#saveProductKey" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save" textAlignment="RIGHT">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="130.0" onAction="#updateProduct" onKeyReleased="#updateProductKey" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update" textAlignment="RIGHT">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Graphics/Save_04.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="137.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Graphics/Update_01.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane layoutX="4.0" layoutY="344.0" prefHeight="352.0" prefWidth="992.0" style="-fx-background-color: rgba(164,204,187,0.94);">
-         <children>
-            <TableView id="tblProducts" fx:id="tblProducts" layoutY="66.0" onKeyReleased="#selectProductByNameKey" onMouseClicked="#selectProductByName" prefHeight="286.0" prefWidth="992.0" stylesheets="@../CSS/Decorator.css">
-               <columns>
-                  <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code" />
-                  <TableColumn id="tcProductName" fx:id="tcName" editable="false" prefWidth="421.0" resizable="false" text="Name" />
-                  <TableColumn fx:id="tcCategory" editable="false" prefWidth="200.0" resizable="false" text="Category" />
-                  <TableColumn fx:id="tcUnit" editable="false" prefWidth="121.0" resizable="false" text="Unit" />
-                  <TableColumn fx:id="tcStatus" editable="false" prefWidth="100.0" resizable="false" text="Status" />
-               </columns>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </TableView>
-            <HBox layoutX="214.0" layoutY="14.0">
-               <children>
-                  <JFXTextField fx:id="txtCodeSearch" onKeyReleased="#filterProductTableByCode" prefHeight="31.0" prefWidth="200.0" promptText="Search by Code">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="txtSearcProducts" labelFloat="true" onKeyReleased="#filterProductTableByName" prefHeight="31.0" prefWidth="318.0" promptText="Search by Name">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXTextField>
-                  <JFXComboBox fx:id="cmbCategorySearch" labelFloat="true" onHidden="#filterProductTableByCategory" prefHeight="31.0" prefWidth="200.0" promptText="Category">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXComboBox>
-               </children>
-            </HBox>
-         </children>
-      </Pane>
-   </children>
+                    </children>
+                </VBox>
+                <VBox layoutX="342.0" layoutY="7.0" prefHeight="320.0" prefWidth="293.0">
+                    <children>
+                        <JFXComboBox fx:id="cmbUnit" editable="true" labelFloat="true" onHidden="#getUnitByName"
+                                     onKeyReleased="#cmbUnitKey" prefHeight="31.0" prefWidth="180.0" promptText="Unit">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="20.0"/>
+                            </VBox.margin>
+                        </JFXComboBox>
+                        <JFXComboBox fx:id="cmbCompany" editable="true" labelFloat="true" onHidden="#getCompanyByName"
+                                     onKeyReleased="#companyComboKey" prefHeight="31.0" prefWidth="285.0"
+                                     promptText="Company">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="20.0"/>
+                            </VBox.margin>
+                        </JFXComboBox>
+                        <JFXComboBox fx:id="cmbStatus" labelFloat="true" prefHeight="28.0" prefWidth="180.0"
+                                     promptText="Status">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="20.0"/>
+                            </VBox.margin>
+                        </JFXComboBox>
+                    </children>
+                </VBox>
+                <VBox layoutX="644.0" layoutY="14.0" prefHeight="251.0" prefWidth="346.0">
+                    <children>
+                        <JFXTextField fx:id="txtRefillQty" labelFloat="true" promptText="Refilling Qty" text="0">
+                            <VBox.margin>
+                                <Insets bottom="10.0" right="150.0" top="10.0"/>
+                            </VBox.margin>
+                        </JFXTextField>
+                        <HBox prefHeight="41.0" prefWidth="270.0">
+                            <children>
+                                <JFXComboBox fx:id="cmbSupplier" editable="true" labelFloat="true"
+                                             onHidden="#searchCompanyDetailByName" onKeyReleased="#cmbSupplierKey"
+                                             prefHeight="29.0" prefWidth="285.0" promptText="Supplier">
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" top="10.0"/>
+                                    </HBox.margin>
+                                </JFXComboBox>
+                            </children>
+                        </HBox>
+                        <TableView fx:id="tblSupplier" prefHeight="167.0" prefWidth="346.0">
+                            <columns>
+                                <TableColumn fx:id="tcSupplierId" prefWidth="70.0" resizable="false" text="Id"/>
+                                <TableColumn fx:id="tcSupplierName" editable="false" prefWidth="235.0" resizable="false"
+                                             text="Supplier"/>
+                                <TableColumn fx:id="tcPartner" prefWidth="40.0" text="#"/>
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+                <Pane layoutX="733.0" layoutY="276.0">
+                    <children>
+                        <JFXButton fx:id="btnSave" alignment="CENTER_RIGHT" onAction="#saveProduct"
+                                   onKeyReleased="#saveProductKey" prefHeight="50.0" prefWidth="120.0"
+                                   style="-fx-background-color: rgba(10,170,16,0.58);" text="Save"
+                                   textAlignment="RIGHT">
+                            <font>
+                                <Font name="System Bold Italic" size="16.0"/>
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="btnUpdate" alignment="CENTER_RIGHT" layoutX="130.0" onAction="#updateProduct"
+                                   onKeyReleased="#updateProductKey" prefHeight="50.0" prefWidth="120.0"
+                                   style="-fx-background-color: rgba(10,170,16,0.58);" text="Update"
+                                   textAlignment="RIGHT">
+                            <font>
+                                <Font name="System Bold Italic" size="16.0"/>
+                            </font>
+                        </JFXButton>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../Graphics/Save_04.png"/>
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="137.0" layoutY="10.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../Graphics/Update_01.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+        <Pane layoutX="4.0" layoutY="344.0" prefHeight="352.0" prefWidth="992.0"
+              style="-fx-background-color: rgba(164,204,187,0.94);">
+            <children>
+                <TableView id="tblProducts" fx:id="tblProducts" layoutY="66.0" onKeyReleased="#selectProductByNameKey"
+                           onMouseClicked="#selectProductByName" prefHeight="286.0" prefWidth="992.0"
+                           stylesheets="@../CSS/Decorator.css">
+                    <columns>
+                        <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code"/>
+                        <TableColumn id="tcProductName" fx:id="tcName" editable="false" prefWidth="421.0"
+                                     resizable="false" text="Name"/>
+                        <TableColumn fx:id="tcCategory" editable="false" prefWidth="200.0" resizable="false"
+                                     text="Category"/>
+                        <TableColumn fx:id="tcUnit" editable="false" prefWidth="121.0" resizable="false" text="Unit"/>
+                        <TableColumn fx:id="tcStatus" editable="false" prefWidth="100.0" resizable="false"
+                                     text="Status"/>
+                    </columns>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </TableView>
+                <HBox layoutX="214.0" layoutY="14.0">
+                    <children>
+                        <JFXTextField fx:id="txtCodeSearch" onKeyReleased="#filterProductTableByCode" prefHeight="31.0"
+                                      prefWidth="200.0" promptText="Search by Code">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </HBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="txtSearcProducts" labelFloat="true"
+                                      onKeyReleased="#filterProductTableByName" prefHeight="31.0" prefWidth="318.0"
+                                      promptText="Search by Name">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </HBox.margin>
+                        </JFXTextField>
+                        <JFXComboBox fx:id="cmbCategorySearch" labelFloat="true"
+                                     onHidden="#filterProductTableByCategory" prefHeight="31.0" prefWidth="200.0"
+                                     promptText="Category">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </HBox.margin>
+                        </JFXComboBox>
+                    </children>
+                </HBox>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

@@ -27,75 +27,6 @@ import java.util.ResourceBundle;
 
 public class SupplierController implements Initializable {
 
-    @FXML
-    private JFXTextField txtSupplierId;
-
-    @FXML
-    private JFXTextField txtName;
-
-    @FXML
-    private JFXDatePicker dpJoinDate;
-
-    @FXML
-    private JFXTextField txtAddressId;
-
-    @FXML
-    private JFXTextArea tfAddress;
-
-    @FXML
-    private JFXTextField txtContactId;
-
-    @FXML
-    private JFXTextArea txtContact;
-
-    @FXML
-    private JFXComboBox<String> cmbStatus;
-
-    @FXML
-    private JFXComboBox<String> cmbType;
-
-    @FXML
-    private JFXComboBox<String> cmbCompany;
-
-    @FXML
-    private TableView<CompanyList> tblCompany;
-
-    @FXML
-    private TableColumn<CompanyList, Integer> tcCompanyId;
-
-    @FXML
-    private TableColumn<CompanyList, String> tcCompanyName;
-
-    @FXML
-    private TableColumn<CompanyList, JFXCheckBox> tcPartner;
-
-    @FXML
-    private JFXButton btnSave;
-
-    @FXML
-    private JFXButton btnUpdate;
-
-    @FXML
-    private TableView<SupplierList> tblSupplier;
-
-    @FXML
-    private TableColumn<SupplierList, Integer> tcId;
-
-    @FXML
-    private TableColumn<SupplierList, String> tcName;
-
-    @FXML
-    private TableColumn<SupplierList, String> tcAddress;
-
-    @FXML
-    private TableColumn<SupplierList, String> tcType;
-
-    @FXML
-    private TableColumn<SupplierList, String> tcStatus;
-
-    @FXML
-    private JFXTextField txtSearcSupplier;
-
     DataWriter dataWriter;
     DataReader dataReader;
     Alerts alerts;
@@ -110,6 +41,52 @@ public class SupplierController implements Initializable {
     Contact contact;
     ADStatus adStatus;
     Modules.CompanyList companyList;
+    @FXML
+    private JFXTextField txtSupplierId;
+    @FXML
+    private JFXTextField txtName;
+    @FXML
+    private JFXDatePicker dpJoinDate;
+    @FXML
+    private JFXTextField txtAddressId;
+    @FXML
+    private JFXTextArea tfAddress;
+    @FXML
+    private JFXTextField txtContactId;
+    @FXML
+    private JFXTextArea txtContact;
+    @FXML
+    private JFXComboBox<String> cmbStatus;
+    @FXML
+    private JFXComboBox<String> cmbType;
+    @FXML
+    private JFXComboBox<String> cmbCompany;
+    @FXML
+    private TableView<CompanyList> tblCompany;
+    @FXML
+    private TableColumn<CompanyList, Integer> tcCompanyId;
+    @FXML
+    private TableColumn<CompanyList, String> tcCompanyName;
+    @FXML
+    private TableColumn<CompanyList, JFXCheckBox> tcPartner;
+    @FXML
+    private JFXButton btnSave;
+    @FXML
+    private JFXButton btnUpdate;
+    @FXML
+    private TableView<SupplierList> tblSupplier;
+    @FXML
+    private TableColumn<SupplierList, Integer> tcId;
+    @FXML
+    private TableColumn<SupplierList, String> tcName;
+    @FXML
+    private TableColumn<SupplierList, String> tcAddress;
+    @FXML
+    private TableColumn<SupplierList, String> tcType;
+    @FXML
+    private TableColumn<SupplierList, String> tcStatus;
+    @FXML
+    private JFXTextField txtSearcSupplier;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -119,26 +96,26 @@ public class SupplierController implements Initializable {
              * All supporting classes load in the thread
              * */
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                address = ObjectGenerator.getAddress();
-                switcher = ObjectGenerator.getComponentSwitcher();
-                company = ObjectGenerator.getCompany();
-                dateFormatConverter = ObjectGenerator.getDateFormatConverter();
-                companyPartner = ObjectGenerator.getCompanyPartner();
-                partnership = ObjectGenerator.getPartnership();
-                contact = ObjectGenerator.getContact();
-                adStatus = ObjectGenerator.getAdStatus();
-                supplier = ObjectGenerator.getSupplier();
-                supplierType = ObjectGenerator.getSupplierType();
-                companyList = ObjectGenerator.getCompanyList();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            address = ObjectGenerator.getAddress();
+            switcher = ObjectGenerator.getComponentSwitcher();
+            company = ObjectGenerator.getCompany();
+            dateFormatConverter = ObjectGenerator.getDateFormatConverter();
+            companyPartner = ObjectGenerator.getCompanyPartner();
+            partnership = ObjectGenerator.getPartnership();
+            contact = ObjectGenerator.getContact();
+            adStatus = ObjectGenerator.getAdStatus();
+            supplier = ObjectGenerator.getSupplier();
+            supplierType = ObjectGenerator.getSupplierType();
+            companyList = ObjectGenerator.getCompanyList();
 
-                dateFormatConverter.convert(dpJoinDate, "yyyy-MM-dd");
-                dataReader.fillCompanyCombo(cmbCompany);
-                dataReader.fillStatusCombo(cmbStatus);
-                dataReader.fillSupplierTypeCombo(cmbType);
-                dataReader.fillSupplierTable(tblSupplier);
+            dateFormatConverter.convert(dpJoinDate, "yyyy-MM-dd");
+            dataReader.fillCompanyCombo(cmbCompany);
+            dataReader.fillStatusCombo(cmbStatus);
+            dataReader.fillSupplierTypeCombo(cmbType);
+            dataReader.fillSupplierTable(tblSupplier);
             //});
             //readyData.setName("Supplier Controller");
             //readyData.start();
@@ -625,24 +602,24 @@ public class SupplierController implements Initializable {
             return id.get();
         }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
         public void setId(int id) {
             this.id.set(id);
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
         }
 
         public String getName() {
             return name.get();
         }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name.set(name);
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
         }
 
         public JFXCheckBox getCbSelect() {
@@ -674,60 +651,60 @@ public class SupplierController implements Initializable {
             return id.get();
         }
 
-        public SimpleIntegerProperty idProperty() {
-            return id;
-        }
-
         public void setId(int id) {
             this.id.set(id);
+        }
+
+        public SimpleIntegerProperty idProperty() {
+            return id;
         }
 
         public String getName() {
             return name.get();
         }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name.set(name);
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
         }
 
         public String getAddress() {
             return address.get();
         }
 
-        public SimpleStringProperty addressProperty() {
-            return address;
-        }
-
         public void setAddress(String address) {
             this.address.set(address);
+        }
+
+        public SimpleStringProperty addressProperty() {
+            return address;
         }
 
         public String getType() {
             return type.get();
         }
 
-        public SimpleStringProperty typeProperty() {
-            return type;
-        }
-
         public void setType(String type) {
             this.type.set(type);
+        }
+
+        public SimpleStringProperty typeProperty() {
+            return type;
         }
 
         public String getStatus() {
             return status.get();
         }
 
-        public SimpleStringProperty statusProperty() {
-            return status;
-        }
-
         public void setStatus(String status) {
             this.status.set(status);
+        }
+
+        public SimpleStringProperty statusProperty() {
+            return status;
         }
     }
 }

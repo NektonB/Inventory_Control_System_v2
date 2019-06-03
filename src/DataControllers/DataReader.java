@@ -407,6 +407,38 @@ public class DataReader {
         }
     }
 
+    public void getUserByUNandPW(String userName, String password) {
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement("SELECT user.id,user_name,password,email,mobile,user_type.type,ad_status.status FROM user INNER JOIN user_type ON user.type_id = user_type.id INNER JOIN ad_status ON user.status_id = ad_status.id WHERE  user.user_name = ? AND user.password = ?");
+            pst.setString(1, userName);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                user.resetAll();
+            }
+            while (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setUserName(rs.getString("user_name"));
+                user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setMobile(rs.getString("mobile"));
+                userType.setType(rs.getString("user_type.type"));
+                adStatus.setStatus(rs.getString("ad_status.status"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /**
      * Filling the Address table using DB
      */
@@ -1979,7 +2011,7 @@ public class DataReader {
             rs = pst.executeQuery();
 
             if (!rs.isBeforeFirst()) {
-                paymentType.resetAll();
+                //paymentType.resetAll();
                 already = false;
             }
             if (rs.next()) {
@@ -2036,7 +2068,7 @@ public class DataReader {
             rs = pst.executeQuery();
 
             if (!rs.isBeforeFirst()) {
-                paymentType.resetAll();
+                //paymentType.resetAll();
             }
             while (rs.next()) {
                 paymentType.setId(rs.getInt(1));
@@ -2088,7 +2120,7 @@ public class DataReader {
         ResultSet rs = null;
         ObservableList<StockView.Products> productList = FXCollections.observableArrayList();
         try {
-            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,st.purchasing_price,st.sale_price,SUM(st.quantity) FROM product INNER JOIN category ct ON product.category_id = ct.id LEFT OUTER JOIN stock st ON product.code = st.product_code GROUP BY product.code,st.purchasing_price,st.sale_price");
+            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,st.purchasing_price,st.sale_price,SUM(st.quantity) FROM product INNER JOIN category ct ON product.category_id = ct.id LEFT OUTER JOIN stock st ON product.code = st.product_code WHERE st.quantity > 0 GROUP BY product.code,st.purchasing_price,st.sale_price");
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
                 //userType.resetAll();
@@ -2277,4 +2309,43 @@ public class DataReader {
             }
         }
     }
+
+    /**
+     * Get Invoice Payment type Details using Invoice Id.
+     * return Payed or Credit...
+     */
+    public String getInvoiceTypeById(int invoiceId) {
+        ResultSet rs = null;
+        String payStatus = "";
+        try {
+            pst = conn.prepareStatement("SELECT pay_status_id FROM invoice WHERE id = ?");
+            pst.setInt(1, invoiceId);
+            rs = pst.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                payStatus = "";
+            }
+            while (rs.next()) {
+                int result = rs.getInt(1);
+                if (result == 1) {
+                    payStatus = "PAYED";
+                } else if (result == 2) {
+                    payStatus = "HALF OD PAYED";
+                } else if (result == 3) {
+                    payStatus = "NOT PAYED";
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pst.close();
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return payStatus;
+    }
+
 }

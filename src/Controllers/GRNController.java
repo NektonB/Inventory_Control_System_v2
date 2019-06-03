@@ -32,88 +32,6 @@ import java.util.ResourceBundle;
 
 public class GRNController implements Initializable {
 
-    @FXML
-    private JFXTextField txtCode;
-
-    @FXML
-    private JFXTextField txtBarCode;
-
-    @FXML
-    private JFXTextField txtName;
-
-    @FXML
-    private JFXTextField txtCategory;
-
-    @FXML
-    private JFXTextField txtQuantity;
-
-    @FXML
-    private JFXTextField txtPPrice;
-
-    @FXML
-    private JFXTextField txtSalePrice;
-
-    @FXML
-    private JFXTextField txtCost;
-
-    @FXML
-    private JFXTextField txtDisValue;
-
-    @FXML
-    private JFXTextField txtDisPrecentage;
-
-    @FXML
-    private JFXButton btnAddToList;
-
-    @FXML
-    private JFXButton btnGoToPurchase;
-
-    @FXML
-    private TableView<Items> tblItems;
-
-    @FXML
-    private TableColumn<Items, String> tcCode;
-
-    @FXML
-    private TableColumn<Items, String> tcName;
-
-    @FXML
-    private TableColumn<Items, Double> tcQuantity;
-
-    @FXML
-    private TableColumn<Items, Double> tcPPrice;
-
-    @FXML
-    private TableColumn<Items, Double> tcSalePrice;
-
-    @FXML
-    private TableColumn<Items, Double> txTotalCost;
-
-    @FXML
-    private TableColumn<Items, Double> tcDiscValue;
-
-    @FXML
-    private TableColumn<Items, Double> tcDiscPrecentage;
-
-    @FXML
-    private JFXButton btnRemveItem;
-
-    @FXML
-    private JFXButton txtRemveAll;
-
-    @FXML
-    private Layer lyCode;
-
-    @FXML
-    private JFXListView<String> lvCode;
-
-    @FXML
-    private Layer lyName;
-
-    @FXML
-    private JFXListView<String> lvName;
-
-
     TextValidator validator;
     DataWriter dataWriter;
     DataReader dataReader;
@@ -121,6 +39,60 @@ public class GRNController implements Initializable {
     Product product;
     Category category;
     ComponentSwitcher switcher;
+    @FXML
+    private JFXTextField txtCode;
+    @FXML
+    private JFXTextField txtBarCode;
+    @FXML
+    private JFXTextField txtName;
+    @FXML
+    private JFXTextField txtCategory;
+    @FXML
+    private JFXTextField txtQuantity;
+    @FXML
+    private JFXTextField txtPPrice;
+    @FXML
+    private JFXTextField txtSalePrice;
+    @FXML
+    private JFXTextField txtCost;
+    @FXML
+    private JFXTextField txtDisValue;
+    @FXML
+    private JFXTextField txtDisPrecentage;
+    @FXML
+    private JFXButton btnAddToList;
+    @FXML
+    private JFXButton btnGoToPurchase;
+    @FXML
+    private TableView<Items> tblItems;
+    @FXML
+    private TableColumn<Items, String> tcCode;
+    @FXML
+    private TableColumn<Items, String> tcName;
+    @FXML
+    private TableColumn<Items, Double> tcQuantity;
+    @FXML
+    private TableColumn<Items, Double> tcPPrice;
+    @FXML
+    private TableColumn<Items, Double> tcSalePrice;
+    @FXML
+    private TableColumn<Items, Double> txTotalCost;
+    @FXML
+    private TableColumn<Items, Double> tcDiscValue;
+    @FXML
+    private TableColumn<Items, Double> tcDiscPrecentage;
+    @FXML
+    private JFXButton btnRemveItem;
+    @FXML
+    private JFXButton txtRemveAll;
+    @FXML
+    private Layer lyCode;
+    @FXML
+    private JFXListView<String> lvCode;
+    @FXML
+    private Layer lyName;
+    @FXML
+    private JFXListView<String> lvName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -131,19 +103,19 @@ public class GRNController implements Initializable {
              * call the table ready method outside of the thread
              * */
             //Thread readyData = new Thread(() -> {
-                alerts = ObjectGenerator.getAlerts();
-                dataWriter = ObjectGenerator.getDataWriter();
-                dataReader = ObjectGenerator.getDataReader();
-                validator = ObjectGenerator.getTextValidator();
-                product = ObjectGenerator.getProduct();
-                category = ObjectGenerator.getCategory();
-                switcher = ObjectGenerator.getComponentSwitcher();
+            alerts = ObjectGenerator.getAlerts();
+            dataWriter = ObjectGenerator.getDataWriter();
+            dataReader = ObjectGenerator.getDataReader();
+            validator = ObjectGenerator.getTextValidator();
+            product = ObjectGenerator.getProduct();
+            category = ObjectGenerator.getCategory();
+            switcher = ObjectGenerator.getComponentSwitcher();
 
-                validator.validateDigit(txtQuantity, 10, 2);
-                validator.validateDigit(txtPPrice, 10, 2);
-                validator.validateDigit(txtSalePrice, 10, 2);
-                validator.validateDigit(txtDisValue, 10, 2);
-                validator.validateDigit(txtDisPrecentage, 3, 2);
+            validator.validateDigit(txtQuantity, 10, 2);
+            validator.validateDigit(txtPPrice, 10, 2);
+            validator.validateDigit(txtSalePrice, 10, 2);
+            validator.validateDigit(txtDisValue, 10, 2);
+            validator.validateDigit(txtDisPrecentage, 3, 2);
 
 
             //});
@@ -575,96 +547,96 @@ public class GRNController implements Initializable {
             return code.get();
         }
 
-        public SimpleStringProperty codeProperty() {
-            return code;
-        }
-
         public void setCode(String code) {
             this.code.set(code);
+        }
+
+        public SimpleStringProperty codeProperty() {
+            return code;
         }
 
         public String getName() {
             return name.get();
         }
 
-        public SimpleStringProperty nameProperty() {
-            return name;
-        }
-
         public void setName(String name) {
             this.name.set(name);
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return name;
         }
 
         public double getQuantity() {
             return quantity.get();
         }
 
-        public SimpleDoubleProperty quantityProperty() {
-            return quantity;
-        }
-
         public void setQuantity(double quantity) {
             this.quantity.set(quantity);
+        }
+
+        public SimpleDoubleProperty quantityProperty() {
+            return quantity;
         }
 
         public double getPurchasePrice() {
             return purchasePrice.get();
         }
 
-        public SimpleDoubleProperty purchasePriceProperty() {
-            return purchasePrice;
-        }
-
         public void setPurchasePrice(double purchasePrice) {
             this.purchasePrice.set(purchasePrice);
+        }
+
+        public SimpleDoubleProperty purchasePriceProperty() {
+            return purchasePrice;
         }
 
         public double getSalePrice() {
             return salePrice.get();
         }
 
-        public SimpleDoubleProperty salePriceProperty() {
-            return salePrice;
-        }
-
         public void setSalePrice(double salePrice) {
             this.salePrice.set(salePrice);
+        }
+
+        public SimpleDoubleProperty salePriceProperty() {
+            return salePrice;
         }
 
         public double getTotalCost() {
             return totalCost.get();
         }
 
-        public SimpleDoubleProperty totalCostProperty() {
-            return totalCost;
-        }
-
         public void setTotalCost(double totalCost) {
             this.totalCost.set(totalCost);
+        }
+
+        public SimpleDoubleProperty totalCostProperty() {
+            return totalCost;
         }
 
         public double getDiscValue() {
             return discValue.get();
         }
 
-        public SimpleDoubleProperty discValueProperty() {
-            return discValue;
-        }
-
         public void setDiscValue(double discValue) {
             this.discValue.set(discValue);
+        }
+
+        public SimpleDoubleProperty discValueProperty() {
+            return discValue;
         }
 
         public double getDiscPercentage() {
             return discPercentage.get();
         }
 
-        public SimpleDoubleProperty discPercentageProperty() {
-            return discPercentage;
-        }
-
         public void setDiscPercentage(double discPercentage) {
             this.discPercentage.set(discPercentage);
+        }
+
+        public SimpleDoubleProperty discPercentageProperty() {
+            return discPercentage;
         }
     }
 }

@@ -1,158 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="1000.0" style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerController">
-   <children>
-      <VBox layoutX="14.0" layoutY="13.0" prefHeight="273.0" prefWidth="254.0" AnchorPane.topAnchor="13.0">
-         <children>
-            <JFXTextField fx:id="txt_customer_id" editable="false" labelFloat="true" prefHeight="27.0" prefWidth="218.0" promptText="ID">
-               <VBox.margin>
-                  <Insets bottom="10.0" right="100.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField fx:id="txt_fname" labelFloat="true" prefWidth="218.0" promptText="First Name">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField fx:id="txt_mname" labelFloat="true" prefWidth="218.0" promptText="Middle Name">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField fx:id="txt_lname" labelFloat="true" prefWidth="218.0" promptText="Last Name">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField fx:id="txt_nic" labelFloat="true" prefWidth="218.0" promptText="NIC No">
-               <VBox.margin>
-                  <Insets bottom="10.0" right="70.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-         </children>
-      </VBox>
-      <VBox layoutX="328.0" layoutY="13.0" prefHeight="306.0" prefWidth="303.0" AnchorPane.topAnchor="13.0">
-         <children>
-            <JFXTextField fx:id="txt_address_id" editable="false" labelFloat="true" onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="218.0" promptText="Address ID">
-               <VBox.margin>
-                  <Insets bottom="10.0" right="150.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextArea fx:id="ta_address" editable="false" labelFloat="true" prefHeight="148.0" prefWidth="249.0" promptText="Address">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextArea>
-            <JFXTextField fx:id="txt_contact_id" editable="false" labelFloat="true" onKeyReleased="#loadContactManager" prefHeight="25.0" prefWidth="218.0" promptText="Contact ID">
-               <VBox.margin>
-                  <Insets bottom="10.0" right="150.0" top="20.0" />
-               </VBox.margin>
-            </JFXTextField>
-         </children>
-      </VBox>
-      <VBox layoutX="678.0" layoutY="13.0" prefHeight="306.0" prefWidth="303.0">
-         <children>
-            <JFXTextArea fx:id="ta_contact" editable="false" labelFloat="true" prefHeight="133.0" prefWidth="249.0" promptText="Contact">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-            </JFXTextArea>
-            <JFXDatePicker fx:id="dp_join_date" prefHeight="25.0" prefWidth="218.0" promptText="Join Date">
-               <VBox.margin>
-                  <Insets bottom="10.0" right="80.0" top="10.0" />
-               </VBox.margin>
-            </JFXDatePicker>
-            <JFXComboBox fx:id="cmb_customer_type" labelFloat="true" prefHeight="25.0" prefWidth="218.0" promptText="Type">
-               <VBox.margin>
-                  <Insets bottom="10.0" right="150.0" top="10.0" />
-               </VBox.margin>
-            </JFXComboBox>
-            <JFXComboBox fx:id="cmb_activation_status" labelFloat="true" prefHeight="25.0" prefWidth="249.0" promptText="Status">
-               <VBox.margin>
-                  <Insets bottom="10.0" right="150.0" top="10.0" />
-               </VBox.margin>
-            </JFXComboBox>
-         </children>
-      </VBox>
-      <Separator layoutY="326.0" prefHeight="0.0" prefWidth="1000.0" />
-      <Pane layoutY="332.0" prefHeight="300.0" prefWidth="1000.0">
-         <children>
-            <HBox layoutX="14.0" layoutY="4.0" onKeyReleased="#filterCustomerTableByName">
-               <children>
-                  <JFXTextField fx:id="txt_type_nic" labelFloat="true" onKeyReleased="#filterCustomerTableByNic" prefHeight="31.0" prefWidth="239.0" promptText="Enter Your NIC">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="txt_type_name" prefHeight="25.0" prefWidth="218.0" promptText="Enter your name">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXTextField>
-               </children>
-            </HBox>
-            <HBox layoutX="657.0" layoutY="-2.0">
-               <children>
-                  <JFXButton fx:id="btn_Save" alignment="CENTER_RIGHT" onAction="#saveCustomer" onKeyReleased="#saveCustomerKey" prefHeight="42.0" prefWidth="150.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Graphics/AddUser32.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="btn_Update" alignment="CENTER_RIGHT" onAction="#updateCustomer" onKeyReleased="#updateCustomerKey" prefHeight="42.0" prefWidth="163.0" style="-fx-background-color: rgba(10,170,16,0.58);" text="Update">
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Graphics/UpdateUser32.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXButton>
-               </children>
-            </HBox>
-            <TableView fx:id="tbl_customer" layoutY="57.0" onKeyReleased="#selectCustomerKey" onMouseClicked="#selectCustomer" prefHeight="241.0" prefWidth="1000.0">
-              <columns>
-                <TableColumn fx:id="tc_id" editable="false" prefWidth="90.0" resizable="false" text="Id" />
-                <TableColumn fx:id="tc_name" editable="false" prefWidth="450.0" resizable="false" text="Name" />
-                  <TableColumn fx:id="tc_nic" editable="false" minWidth="4.0" prefWidth="140.0" resizable="false" text="NIC" />
-                  <TableColumn fx:id="tc_joindate" editable="false" prefWidth="120.0" resizable="false" text="Join date" />
-                  <TableColumn fx:id="tc_cutomer_type" editable="false" prefWidth="100.0" resizable="false" text="Type" />
-                  <TableColumn fx:id="tc_avtivation_status" editable="false" prefWidth="100.0" resizable="false" text="Status" />
-              </columns>
-            </TableView>
-         </children>
-      </Pane>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="629.0" prefWidth="1000.0"
+            style="-fx-background-color: rgba(164,204,187,0.94);" xmlns="http://javafx.com/javafx/8.0.141"
+            fx:controller="Controllers.CustomerController">
+    <children>
+        <VBox layoutX="14.0" layoutY="13.0" prefHeight="273.0" prefWidth="254.0" AnchorPane.topAnchor="13.0">
+            <children>
+                <JFXTextField fx:id="txt_customer_id" editable="false" labelFloat="true" prefHeight="27.0"
+                              prefWidth="218.0" promptText="ID">
+                    <VBox.margin>
+                        <Insets bottom="10.0" right="100.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="txt_fname" labelFloat="true" prefWidth="218.0" promptText="First Name">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="txt_mname" labelFloat="true" prefWidth="218.0" promptText="Middle Name">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="txt_lname" labelFloat="true" prefWidth="218.0" promptText="Last Name">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="txt_nic" labelFloat="true" prefWidth="218.0" promptText="NIC No">
+                    <VBox.margin>
+                        <Insets bottom="10.0" right="70.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+            </children>
+        </VBox>
+        <VBox layoutX="328.0" layoutY="13.0" prefHeight="306.0" prefWidth="303.0" AnchorPane.topAnchor="13.0">
+            <children>
+                <JFXTextField fx:id="txt_address_id" editable="false" labelFloat="true"
+                              onKeyReleased="#loadAddressManager" prefHeight="25.0" prefWidth="218.0"
+                              promptText="Address ID">
+                    <VBox.margin>
+                        <Insets bottom="10.0" right="150.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextArea fx:id="ta_address" editable="false" labelFloat="true" prefHeight="148.0" prefWidth="249.0"
+                             promptText="Address">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextArea>
+                <JFXTextField fx:id="txt_contact_id" editable="false" labelFloat="true"
+                              onKeyReleased="#loadContactManager" prefHeight="25.0" prefWidth="218.0"
+                              promptText="Contact ID">
+                    <VBox.margin>
+                        <Insets bottom="10.0" right="150.0" top="20.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+            </children>
+        </VBox>
+        <VBox layoutX="678.0" layoutY="13.0" prefHeight="306.0" prefWidth="303.0">
+            <children>
+                <JFXTextArea fx:id="ta_contact" editable="false" labelFloat="true" prefHeight="133.0" prefWidth="249.0"
+                             promptText="Contact">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextArea>
+                <JFXDatePicker fx:id="dp_join_date" prefHeight="25.0" prefWidth="218.0" promptText="Join Date">
+                    <VBox.margin>
+                        <Insets bottom="10.0" right="80.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXDatePicker>
+                <JFXComboBox fx:id="cmb_customer_type" labelFloat="true" prefHeight="25.0" prefWidth="218.0"
+                             promptText="Type">
+                    <VBox.margin>
+                        <Insets bottom="10.0" right="150.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXComboBox>
+                <JFXComboBox fx:id="cmb_activation_status" labelFloat="true" prefHeight="25.0" prefWidth="249.0"
+                             promptText="Status">
+                    <VBox.margin>
+                        <Insets bottom="10.0" right="150.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXComboBox>
+            </children>
+        </VBox>
+        <Separator layoutY="326.0" prefHeight="0.0" prefWidth="1000.0"/>
+        <Pane layoutY="332.0" prefHeight="300.0" prefWidth="1000.0">
+            <children>
+                <HBox layoutX="14.0" layoutY="4.0" onKeyReleased="#filterCustomerTableByName">
+                    <children>
+                        <JFXTextField fx:id="txt_type_nic" labelFloat="true" onKeyReleased="#filterCustomerTableByNic"
+                                      prefHeight="31.0" prefWidth="239.0" promptText="Enter Your NIC">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </HBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="txt_type_name" prefHeight="25.0" prefWidth="218.0"
+                                      promptText="Enter your name">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </HBox.margin>
+                        </JFXTextField>
+                    </children>
+                </HBox>
+                <HBox layoutX="657.0" layoutY="-2.0">
+                    <children>
+                        <JFXButton fx:id="btn_Save" alignment="CENTER_RIGHT" onAction="#saveCustomer"
+                                   onKeyReleased="#saveCustomerKey" prefHeight="42.0" prefWidth="150.0"
+                                   style="-fx-background-color: rgba(10,170,16,0.58);" text="Save">
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Graphics/AddUser32.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="13.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="5.0" top="10.0"/>
+                            </HBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="btn_Update" alignment="CENTER_RIGHT" onAction="#updateCustomer"
+                                   onKeyReleased="#updateCustomerKey" prefHeight="42.0" prefWidth="163.0"
+                                   style="-fx-background-color: rgba(10,170,16,0.58);" text="Update">
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Graphics/UpdateUser32.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="13.0"/>
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="5.0" right="10.0" top="10.0"/>
+                            </HBox.margin>
+                        </JFXButton>
+                    </children>
+                </HBox>
+                <TableView fx:id="tbl_customer" layoutY="57.0" onKeyReleased="#selectCustomerKey"
+                           onMouseClicked="#selectCustomer" prefHeight="241.0" prefWidth="1000.0">
+                    <columns>
+                        <TableColumn fx:id="tc_id" editable="false" prefWidth="90.0" resizable="false" text="Id"/>
+                        <TableColumn fx:id="tc_name" editable="false" prefWidth="450.0" resizable="false" text="Name"/>
+                        <TableColumn fx:id="tc_nic" editable="false" minWidth="4.0" prefWidth="140.0" resizable="false"
+                                     text="NIC"/>
+                        <TableColumn fx:id="tc_joindate" editable="false" prefWidth="120.0" resizable="false"
+                                     text="Join date"/>
+                        <TableColumn fx:id="tc_cutomer_type" editable="false" prefWidth="100.0" resizable="false"
+                                     text="Type"/>
+                        <TableColumn fx:id="tc_avtivation_status" editable="false" prefWidth="100.0" resizable="false"
+                                     text="Status"/>
+                    </columns>
+                </TableView>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

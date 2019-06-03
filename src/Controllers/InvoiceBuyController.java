@@ -44,6 +44,7 @@ public class InvoiceBuyController implements Initializable {
     Invoice invoice;
     InvoiceItems invoiceItems;
     ReportViewer reportViewer;
+    Stock stock;
 
     @FXML
     private JFXDatePicker dpGRNDate;
@@ -123,6 +124,7 @@ public class InvoiceBuyController implements Initializable {
             invoice = ObjectGenerator.getInvoice();
             invoiceItems = ObjectGenerator.getInvoiceItems();
             reportViewer = ObjectGenerator.getReportViewer();
+            stock = ObjectGenerator.getStock();
 
             dateFormatConverter.convert(dpGRNDate, "yyyy-MM-dd");
             //timeFormatConverter.convert(tpGRNTime, "hh:mm");
@@ -138,8 +140,11 @@ public class InvoiceBuyController implements Initializable {
             calculateDiscValue();
             calculateDiscPercentage();
             calculateGrossAmount();
+            calculateNetDiscPercentage();
+            calculateNetDiscValue();
             calculateNetAmount();
             calculateDeuAmount();
+
             //});
             //readyData.setName("GRN Purchase Controller");
             //readyData.start();
@@ -188,14 +193,13 @@ public class InvoiceBuyController implements Initializable {
 
     public void calculateItemCount() {
         try {
-            double quantity = 0;
+            int itemCount = 0;
 
             ObservableList<? extends TableColumn<?, ?>> columns = interConnector.getTblItem().getColumns();
             for (int i = 0; i < interConnector.getTblItem().getItems().size(); ++i) {
-                quantity += Double.parseDouble(columns.get(2).getCellObservableValue(i).getValue().toString());
+                ++itemCount;
             }
-            quantity = roundValue(quantity);
-            txtItemCount.setText(Double.toString(quantity));
+            txtItemCount.setText(Integer.toString(itemCount));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -527,7 +531,7 @@ public class InvoiceBuyController implements Initializable {
     public int savePaymentMethod() {
         int savePaymentMethodList = 0;
         try {
-            int savePaymentMethod = dataWriter.savePaymentMethod();
+            int savePaymentMethod = dataWriter.savePaymentMethod(customer.getId(), "CUSTOMER");
 
             if (savePaymentMethod > 0) {
                 ObservableList<? extends TableColumn<?, ?>> columns = tblPayment.getColumns();
@@ -573,7 +577,7 @@ public class InvoiceBuyController implements Initializable {
                 }
 
                 approve.setId(1);
-                user.setId(1);
+                //user.setId(1);
 
                 int saveInvoice = dataWriter.saveInvoice();
 
@@ -605,6 +609,21 @@ public class InvoiceBuyController implements Initializable {
                 invoiceItems.setTotalAmount(Double.parseDouble(columns.get(4).getCellObservableValue(i).getValue().toString()));
                 invoiceItems.setDiscValue(Double.parseDouble(columns.get(5).getCellObservableValue(i).getValue().toString()));
                 invoiceItems.setDiscRate(Double.parseDouble(columns.get(6).getCellObservableValue(i).getValue().toString()));
+                invoiceItems.setNetAmount(invoiceItems.getTotalAmount() - invoiceItems.getDiscValue());
+                invoiceItems.setStockIdList(columns.get(7).getCellObservableValue(i).getValue().toString());
+
+                String stockIdList[] = columns.get(7).getCellObservableValue(i).getValue().toString().split(",");
+
+                for (int j = 0; j < stockIdList.length; j++) {
+                    if (stockIdList[j].equals("")) {
+                        int index = j;
+                        --index;
+                        stock.setId(Integer.parseInt(stockIdList[index]));
+                    } else {
+                        stock.setId(Integer.parseInt(stockIdList[j]));
+                    }
+                }
+
                 invoiceItems.setItemStatus("SALE");
 
                 saveGrnItems = dataWriter.saveInvoiceItems();
@@ -620,7 +639,7 @@ public class InvoiceBuyController implements Initializable {
                 invoiceItems.resetAll();
                 payStatus.resetAll();
                 approve.resetAll();
-                user.resetAll();
+                //user.resetAll();
                 paymentType.resetAll();
                 paymentMethod.resetAll();
                 methodList.resetAll();
@@ -631,7 +650,7 @@ public class InvoiceBuyController implements Initializable {
 
                 if (deuAmount > 0) {
                     reportViewer.getCreditInvoice(invoiceId, "PRINT");
-                }else if (deuAmount <= 0) {
+                } else if (deuAmount <= 0) {
                     reportViewer.getPaidInvoice(invoiceId, "PRINT");
                 }
             }

@@ -3,9 +3,9 @@ package Modules;
 public class CustomerType {
 
     private int id;
-    private  String type;
+    private String type;
 
-    public void resetAll(){
+    public void resetAll() {
         id = 0;
         type = "";
     }
