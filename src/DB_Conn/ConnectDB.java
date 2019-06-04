@@ -34,6 +34,7 @@ public class ConnectDB {
                 JOptionPane.showMessageDialog(null, "No Database Driver found", "Database Driver Error", JOptionPane.ERROR_MESSAGE);
             } catch (SQLException e) {
                 Toolkit.getDefaultToolkit().beep();
+                //e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Connection fail", "SQL Error", JOptionPane.ERROR_MESSAGE);
             }
         }

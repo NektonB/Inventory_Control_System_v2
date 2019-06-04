@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
 
     public void getLoginKey(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            loadMain();
+            getLogin();
         }
     }
 
@@ -114,6 +114,7 @@ public class LoginController implements Initializable {
                 System.exit(0);
             });
             primaryStage.show();
+            closeMe(btnLogin);
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);

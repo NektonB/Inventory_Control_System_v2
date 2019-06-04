@@ -22,9 +22,9 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        //Thread readyAll = new Thread(() -> initialing());
-        //readyAll.setPriority(Thread.MAX_PRIORITY);
-        initialing();
+        Thread readyAll = new Thread(() -> initialing());
+        readyAll.setPriority(Thread.MAX_PRIORITY);
+        //initialing();
         dbConn = ConnectDB.getConn();
         if (dbConn != null) {
             //System.out.println("Connection success...!");
@@ -33,7 +33,7 @@ public class Main extends Application {
                 ///notifications.show();
                 ObjectGenerator.getAlerts().getSuccessNotify("Connection", "Database connection success...!");
             });*/
-            //readyAll.start();
+            readyAll.start();
             //initialing();
         }
         try {

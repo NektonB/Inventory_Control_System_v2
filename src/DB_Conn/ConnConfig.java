@@ -46,8 +46,9 @@ public class ConnConfig {
             Toolkit.getDefaultToolkit().beep();
         } finally {
             try {
-                serverConfig.close();
+                //serverConfig.close();
             } catch (Exception e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -61,12 +62,14 @@ public class ConnConfig {
                 port = serverConfig.getString("server_port");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             Toolkit.getDefaultToolkit().beep();
         } finally {
             try {
-                serverConfig.close();
+                //serverConfig.close();
             } catch (Exception e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -84,8 +87,9 @@ public class ConnConfig {
             Toolkit.getDefaultToolkit().beep();
         } finally {
             try {
-                serverConfig.close();
+                //serverConfig.close();
             } catch (Exception e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -103,8 +107,9 @@ public class ConnConfig {
             Toolkit.getDefaultToolkit().beep();
         } finally {
             try {
-                serverConfig.close();
+                //serverConfig.close();
             } catch (Exception e) {
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -125,6 +130,7 @@ public class ConnConfig {
                 serverConfig.close();
             } catch (Exception e) {
                 Toolkit.getDefaultToolkit().beep();
+                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
