@@ -150,6 +150,11 @@ public class InvoiceBuyController implements Initializable {
             //readyData.start();
             readyTable();
             lvCustomerName.setVisible(false);
+
+            txtCustomerName.setText("CASH");
+            customer.setFirstName(txtCustomerName.getText());
+            dataReader.getCustomerByCustomerName();
+
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
@@ -499,7 +504,8 @@ public class InvoiceBuyController implements Initializable {
                     paymentType.resetAll();
                     cmbType.setValue("CASH");
                     txtPayedAmountPart.setText("0");
-                    txtPayedAmountPart.requestFocus();
+                    //txtPayedAmountPart.requestFocus();
+                    btnPurchaseNow.requestFocus();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -743,6 +749,17 @@ public class InvoiceBuyController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             try {
                 txtCustomerName.requestFocus();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    public void goToPayAmount(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            try {
+                txtPayedAmountPart.requestFocus();
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);

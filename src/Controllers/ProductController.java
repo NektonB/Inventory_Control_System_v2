@@ -225,7 +225,8 @@ public class ProductController implements Initializable {
     }
 
     /**
-     * */
+     *
+     */
     public void cmbCategoryKey(KeyEvent event) {
         saveCategory(event);
         updateCategory(event);

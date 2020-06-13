@@ -141,6 +141,10 @@ public class GRNPurchaseController implements Initializable {
             //readyData.start();
             readyTable();
             lvSupplierName.setVisible(false);
+
+            txtSupplierName.setText("Default");
+            supplier.setName("Default");
+            dataReader.getSupplierByName();
         } catch (Exception e) {
             e.printStackTrace();
             alerts.getErrorAlert(e);
@@ -491,7 +495,8 @@ public class GRNPurchaseController implements Initializable {
                     paymentType.resetAll();
                     cmbType.setValue("CASH");
                     txtPayedAmountPart.setText("0");
-                    txtPayedAmountPart.requestFocus();
+                    //txtPayedAmountPart.requestFocus();
+                    btnPurchaseNow.requestFocus();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -745,6 +750,17 @@ public class GRNPurchaseController implements Initializable {
         if (event.getCode().equals(KeyCode.ENTER)) {
             try {
                 txtSupplierName.requestFocus();
+            } catch (Exception e) {
+                e.printStackTrace();
+                alerts.getErrorAlert(e);
+            }
+        }
+    }
+
+    public void goToPayAmount(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            try {
+                txtPayedAmountPart.requestFocus();
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);

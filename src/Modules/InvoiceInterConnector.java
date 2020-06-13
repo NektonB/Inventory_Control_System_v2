@@ -8,7 +8,9 @@ public class InvoiceInterConnector {
     String productCode;
     double salePrice;
     double quantity;
-    JFXTextField txtSalePrice;
+    private JFXTextField txtSalePrice;
+    private JFXTextField txtFocus;
+    private JFXTextField txtFocusSearch;
     private TableView<?> tblItem;
 
     public void resetAll() {
@@ -55,5 +57,21 @@ public class InvoiceInterConnector {
 
     public void setTblItem(TableView<?> tblItem) {
         this.tblItem = tblItem;
+    }
+
+    public JFXTextField getTxtFocus() {
+        return txtFocus;
+    }
+
+    public void setTxtFocus(JFXTextField txtFocus) {
+        this.txtFocus = txtFocus;
+    }
+
+    public JFXTextField getTxtFocusSearch() {
+        return txtFocusSearch;
+    }
+
+    public void setTxtFocusSearch(JFXTextField txtFocusSearch) {
+        this.txtFocusSearch = txtFocusSearch;
     }
 }

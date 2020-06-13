@@ -227,7 +227,7 @@ public class MainController implements Initializable {
         stage.setFullScreen(!stage.isFullScreen());
     }
 
-    public void showNotifi() {
+    public void showNotify() {
         Notification.Notifier.INSTANCE.notifySuccess("Database Backup", "Database backup successfully");
         Notifications notifications = Notifications.create().title("Database Backup").text("Ok").graphic(null).hideAfter(Duration.seconds(5)).position(Pos.BOTTOM_RIGHT).onAction(new EventHandler<ActionEvent>() {
             @Override

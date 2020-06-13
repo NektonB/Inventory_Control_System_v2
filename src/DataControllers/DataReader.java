@@ -1511,8 +1511,9 @@ public class DataReader {
         ResultSet rs = null;
         ObservableList<ProductController.ProductList> productList = FXCollections.observableArrayList();
         try {
-            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id WHERE product.code LIKE ?");
+            pst = conn.prepareStatement("SELECT product.code,product.name,ct.name,u.unit,ad.status FROM product INNER JOIN category ct ON product.category_id = ct.id INNER JOIN unit u ON product.unit_id = u.id INNER JOIN ad_status ad ON product.ad_status_id = ad.id WHERE product.code LIKE ? OR product.bar_code LIKE ?");
             pst.setString(1, product.getCode() + "%");
+            pst.setString(2, product.getCode() + "%");
 
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {

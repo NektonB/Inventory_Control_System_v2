@@ -122,8 +122,11 @@ public class ProductView implements Initializable {
         try {
             Stage stage = (Stage) tblProducts.getScene().getWindow();
             stage.close();
+            interConnector.getTxtFocus().requestFocus();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            interConnector.getTxtFocus().requestFocus();
         }
     }
 

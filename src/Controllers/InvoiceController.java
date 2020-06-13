@@ -157,7 +157,8 @@ public class InvoiceController implements Initializable {
         txtCost.setText("0");
         txtDisValue.setText("0");
         txtDisPrecentage.setText("0");
-        txtCode.requestFocus();
+        //txtBarCode.requestFocus();
+        interConnector.getTxtFocusSearch().requestFocus();
         idList = "";
     }
 
@@ -179,6 +180,9 @@ public class InvoiceController implements Initializable {
                 txtBarCode.setText(product.getBarCode());
                 txtName.setText(product.getName());
                 txtCategory.setText(category.getName());
+
+                interConnector.setTxtFocus(txtQuantity);
+                interConnector.setTxtFocusSearch(txtCode);
 
                 loadProductView();
 
@@ -204,6 +208,11 @@ public class InvoiceController implements Initializable {
                 txtName.setText(product.getName());
                 txtCategory.setText(category.getName());
 
+                interConnector.setTxtFocus(txtQuantity);
+                interConnector.setTxtFocusSearch(txtBarCode);
+
+                loadProductView();
+
                 txtQuantity.requestFocus();
 
                 product.resetAll();
@@ -225,6 +234,9 @@ public class InvoiceController implements Initializable {
                 txtCode.setText(product.getCode());
                 txtBarCode.setText(product.getBarCode());
                 txtCategory.setText(category.getName());
+
+                interConnector.setTxtFocus(txtQuantity);
+                interConnector.setTxtFocusSearch(txtName);
 
                 loadProductView();
 
