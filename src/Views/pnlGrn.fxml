@@ -1,165 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.gluonhq.charm.glisten.layout.Layer?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" onMouseMoved="#autoHideListView" prefHeight="658.0"
-            prefWidth="1366.0" style="-fx-background-color: #6c8f8e;"
-            xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Controllers.GRNController">
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#loadGRNPurchaseKey" onMouseMoved="#autoHideListView" prefHeight="658.0" prefWidth="1366.0" style="-fx-background-color: #6c8f8e;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GRNController">
     <children>
         <HBox prefHeight="18.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
             <children>
                 <Label alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="1410.0" text="GRN   " textFill="#8d1717">
                     <font>
-                        <Font name="System Bold Italic" size="15.0"/>
+                        <Font name="System Bold Italic" size="15.0" />
                     </font>
                 </Label>
             </children>
         </HBox>
         <Pane layoutY="21.0" prefHeight="208.0" prefWidth="1366.0" style="-fx-background-color: #8cc49a;">
             <children>
-                <VBox layoutX="4.0" layoutY="14.0" prefHeight="193.0" prefWidth="566.0"
-                      style="-fx-background-color: #8cc49a;">
+                <VBox layoutX="4.0" layoutY="14.0" prefHeight="193.0" prefWidth="566.0" style="-fx-background-color: #8cc49a;">
                     <children>
-                        <JFXTextField fx:id="txtCode" labelFloat="true" onKeyReleased="#txtCodeKeyReleased"
-                                      promptText="Code">
+                        <JFXTextField fx:id="txtCode" labelFloat="true" onKeyReleased="#txtCodeKeyReleased" promptText="Code">
                             <VBox.margin>
-                                <Insets bottom="10.0" left="5.0" right="300.0" top="20.0"/>
+                                <Insets bottom="10.0" left="5.0" right="300.0" top="20.0" />
                             </VBox.margin>
                             <font>
-                                <Font size="12.0"/>
+                                <Font size="12.0" />
                             </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtBarCode" labelFloat="true" onKeyReleased="#getProductByBarCode"
-                                      promptText="Bar Cde">
+                        <JFXTextField fx:id="txtBarCode" labelFloat="true" onKeyReleased="#getProductByBarCode" promptText="Bar Cde">
                             <VBox.margin>
-                                <Insets bottom="10.0" left="5.0" right="200.0" top="10.0"/>
+                                <Insets bottom="10.0" left="5.0" right="200.0" top="10.0" />
                             </VBox.margin>
                             <font>
-                                <Font size="12.0"/>
+                                <Font size="12.0" />
                             </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtName" labelFloat="true" onKeyReleased="#txtNameKeyReleased"
-                                      promptText="Product Name">
+                        <JFXTextField fx:id="txtName" labelFloat="true" onKeyReleased="#txtNameKeyReleased" promptText="Product Name">
                             <VBox.margin>
-                                <Insets bottom="10.0" left="5.0" top="10.0"/>
+                                <Insets bottom="10.0" left="5.0" top="10.0" />
                             </VBox.margin>
                             <font>
-                                <Font name="SriBhashitha" size="12.0"/>
+                                <Font name="SriBhashitha" size="12.0" />
                             </font>
                         </JFXTextField>
                         <JFXTextField fx:id="txtCategory" labelFloat="true" promptText="Category">
                             <font>
-                                <Font size="12.0"/>
+                                <Font size="12.0" />
                             </font>
                             <VBox.margin>
-                                <Insets left="5.0" right="300.0" top="10.0"/>
+                                <Insets left="5.0" right="300.0" top="10.0" />
                             </VBox.margin>
                         </JFXTextField>
                     </children>
                 </VBox>
-                <VBox layoutX="683.0" layoutY="14.0" prefHeight="193.0" prefWidth="250.0"
-                      style="-fx-background-color: #8cc49a;">
+                <VBox layoutX="683.0" layoutY="14.0" prefHeight="193.0" prefWidth="250.0" style="-fx-background-color: #8cc49a;">
                     <children>
-                        <JFXTextField fx:id="txtQuantity" alignment="CENTER_RIGHT" labelFloat="true"
-                                      onKeyReleased="#txtQuantityKeyReleased" promptText="Quantity" text="0">
+                        <JFXTextField fx:id="txtQuantity" alignment="CENTER_RIGHT" labelFloat="true" onKeyReleased="#txtQuantityKeyReleased" promptText="Quantity" text="0">
                             <font>
-                                <Font size="12.0"/>
+                                <Font size="12.0" />
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" left="10.0" top="20.0"/>
+                                <Insets bottom="10.0" left="10.0" top="20.0" />
                             </VBox.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtPPrice" alignment="CENTER_RIGHT" labelFloat="true"
-                                      onKeyReleased="#calculateTotalCost" promptText="Purchase Price" text="0">
+                        <JFXTextField fx:id="txtPPrice" alignment="CENTER_RIGHT" labelFloat="true" onKeyReleased="#calculateTotalCost" promptText="Purchase Price" text="0">
                             <font>
-                                <Font size="12.0"/>
+                                <Font size="12.0" />
                             </font>
                             <VBox.margin>
-                                <Insets bottom="10.0" left="10.0" top="10.0"/>
+                                <Insets bottom="10.0" left="10.0" top="10.0" />
                             </VBox.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtSalePrice" alignment="CENTER_RIGHT" labelFloat="true"
-                                      onKeyReleased="#txtSalePriceKeyReleased" promptText="Sale Price" text="0">
+                        <JFXTextField fx:id="txtSalePrice" alignment="CENTER_RIGHT" labelFloat="true" onKeyReleased="#txtSalePriceKeyReleased" promptText="Sale Price" text="0">
                             <font>
-                                <Font size="12.0"/>
+                                <Font size="12.0" />
                             </font>
                             <VBox.margin>
-                                <Insets left="10.0" top="10.0"/>
+                                <Insets left="10.0" top="10.0" />
                             </VBox.margin>
                         </JFXTextField>
                     </children>
                 </VBox>
-                <VBox layoutX="1051.0" layoutY="14.0" prefHeight="116.0" prefWidth="300.0"
-                      style="-fx-background-color: #8cc49a;">
+                <VBox layoutX="1051.0" layoutY="14.0" prefHeight="116.0" prefWidth="300.0" style="-fx-background-color: #8cc49a;">
                     <children>
-                        <JFXTextField fx:id="txtCost" alignment="CENTER_RIGHT" editable="false" labelFloat="true"
-                                      promptText="Total Cost" text="0">
+                        <JFXTextField fx:id="txtCost" alignment="CENTER_RIGHT" editable="false" labelFloat="true" promptText="Total Cost" text="0">
                             <VBox.margin>
-                                <Insets bottom="10.0" left="10.0" right="50.0" top="20.0"/>
+                                <Insets bottom="10.0" left="10.0" right="50.0" top="20.0" />
                             </VBox.margin>
                             <font>
-                                <Font size="12.0"/>
+                                <Font size="12.0" />
                             </font>
                         </JFXTextField>
                         <HBox prefHeight="52.0" prefWidth="300.0">
                             <VBox.margin>
-                                <Insets top="10.0"/>
+                                <Insets top="10.0" />
                             </VBox.margin>
                             <children>
-                                <JFXTextField fx:id="txtDisValue" alignment="CENTER_RIGHT" labelFloat="true"
-                                              onKeyReleased="#txtDiscValueKeyReleased" prefHeight="31.0"
-                                              prefWidth="130.0" promptText="Disc. Valuve" text="0">
+                                <JFXTextField fx:id="txtDisValue" alignment="CENTER_RIGHT" labelFloat="true" onKeyReleased="#txtDiscValueKeyReleased" prefHeight="31.0" prefWidth="130.0" promptText="Disc. Valuve" text="0">
                                     <HBox.margin>
-                                        <Insets left="10.0" right="10.0" top="5.0"/>
+                                        <Insets left="10.0" right="10.0" top="5.0" />
                                     </HBox.margin>
                                     <font>
-                                        <Font size="12.0"/>
+                                        <Font size="12.0" />
                                     </font>
                                 </JFXTextField>
-                                <JFXTextField fx:id="txtDisPrecentage" alignment="CENTER_RIGHT" labelFloat="true"
-                                              onKeyReleased="#txtDiscPercentageKeyReleased" prefHeight="31.0"
-                                              prefWidth="130.0" promptText="Disc. Precentage" text="0">
+                                <JFXTextField fx:id="txtDisPrecentage" alignment="CENTER_RIGHT" labelFloat="true" onKeyReleased="#txtDiscPercentageKeyReleased" prefHeight="31.0" prefWidth="130.0" promptText="Disc. Precentage" text="0">
                                     <HBox.margin>
-                                        <Insets top="5.0"/>
+                                        <Insets top="5.0" />
                                     </HBox.margin>
                                     <font>
-                                        <Font size="12.0"/>
+                                        <Font size="12.0" />
                                     </font>
                                 </JFXTextField>
-                                <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="20.0" text="\%"/>
+                                <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="20.0" text="\%" />
                             </children>
                         </HBox>
                     </children>
                 </VBox>
                 <HBox layoutX="1046.0" layoutY="148.0" prefHeight="50.0" prefWidth="310.0">
                     <children>
-                        <JFXButton fx:id="btnAddToList" alignment="CENTER_RIGHT" onAction="#addItemToTable"
-                                   onKeyReleased="#addItemToTableKey" prefHeight="50.0" prefWidth="150.0"
-                                   style="-fx-background-color: rgba(57,144,155,0.73);" text="Add To List">
+                        <JFXButton fx:id="btnAddToList" alignment="CENTER_RIGHT" onAction="#addItemToTable" onKeyReleased="#addItemToTableKey" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Add To List">
                             <HBox.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </HBox.margin>
                             <font>
-                                <Font name="System Bold" size="15.0"/>
+                                <Font name="System Bold" size="15.0" />
                             </font>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </JFXButton>
-                        <JFXButton fx:id="btnGoToPurchase" alignment="CENTER_RIGHT" onAction="#loadGRNPurchase"
-                                   prefHeight="50.0" prefWidth="150.0"
-                                   style="-fx-background-color: rgba(57,144,155,0.73);" text="Purchase Now">
+                        <JFXButton fx:id="btnGoToPurchase" alignment="CENTER_RIGHT" onAction="#loadGRNPurchase" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Purchase Now">
                             <font>
-                                <Font name="System Bold" size="15.0"/>
+                                <Font name="System Bold" size="15.0" />
                             </font>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </JFXButton>
                     </children>
@@ -168,49 +155,37 @@
         </Pane>
         <Pane layoutY="231.0" prefHeight="427.0" prefWidth="1366.0" style="-fx-background-color: #8db4b3;">
             <children>
-                <TableView id="tcGrnItems" fx:id="tblItems" layoutY="1.0" onKeyReleased="#tblItemsKeyReleased"
-                           prefHeight="373.0" prefWidth="1366.0" stylesheets="@../CSS/Decorator.css">
+                <TableView id="tcGrnItems" fx:id="tblItems" layoutY="1.0" onKeyReleased="#tblItemsKeyReleased" prefHeight="373.0" prefWidth="1366.0" stylesheets="@../CSS/Decorator.css">
                     <columns>
-                        <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code"/>
-                        <TableColumn id="tcProductName" fx:id="tcName" editable="false" prefWidth="500.0"
-                                     resizable="false" text="Name"/>
-                        <TableColumn id="tcTextAlignment" fx:id="tcQuantity" editable="false" prefWidth="126.0"
-                                     resizable="false" text="Quantity"/>
-                        <TableColumn id="tcTextAlignment" fx:id="tcPPrice" editable="false" prefWidth="130.0"
-                                     resizable="false" text="Purchase Price"/>
-                        <TableColumn id="tcTextAlignment" fx:id="tcSalePrice" editable="false" prefWidth="130.0"
-                                     resizable="false" text="Sale Price"/>
-                        <TableColumn id="tcTextAlignment" fx:id="txTotalCost" editable="false" prefWidth="130.0"
-                                     resizable="false" text="Total Cost"/>
-                        <TableColumn id="tcTextAlignment" fx:id="tcDiscValue" editable="false" prefWidth="100.0"
-                                     resizable="false" text="Discount Value"/>
-                        <TableColumn id="tcTextAlignment" fx:id="tcDiscPrecentage" editable="false" prefWidth="85.0"
-                                     resizable="false" text="Disc. Pre. %"/>
+                        <TableColumn fx:id="tcCode" editable="false" prefWidth="150.0" resizable="false" text="Code" />
+                        <TableColumn id="tcProductName" fx:id="tcName" editable="false" prefWidth="500.0" resizable="false" text="Name" />
+                        <TableColumn id="tcTextAlignment" fx:id="tcQuantity" editable="false" prefWidth="126.0" resizable="false" text="Quantity" />
+                        <TableColumn id="tcTextAlignment" fx:id="tcPPrice" editable="false" prefWidth="130.0" resizable="false" text="Purchase Price" />
+                        <TableColumn id="tcTextAlignment" fx:id="tcSalePrice" editable="false" prefWidth="130.0" resizable="false" text="Sale Price" />
+                        <TableColumn id="tcTextAlignment" fx:id="txTotalCost" editable="false" prefWidth="130.0" resizable="false" text="Total Cost" />
+                        <TableColumn id="tcTextAlignment" fx:id="tcDiscValue" editable="false" prefWidth="100.0" resizable="false" text="Discount Value" />
+                        <TableColumn id="tcTextAlignment" fx:id="tcDiscPrecentage" editable="false" prefWidth="85.0" resizable="false" text="Disc. Pre. %" />
                     </columns>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </TableView>
                 <Pane layoutX="1099.0" layoutY="379.0" prefHeight="45.0" prefWidth="273.0">
                     <children>
-                        <JFXButton fx:id="btnRemveItem" alignment="CENTER_RIGHT" layoutX="8.0" layoutY="5.0"
-                                   onAction="#removeRow" prefHeight="35.0" prefWidth="120.0"
-                                   style="-fx-background-color: rgba(57,144,155,0.73);" text="Remove Item">
+                        <JFXButton fx:id="btnRemveItem" alignment="CENTER_RIGHT" layoutX="8.0" layoutY="5.0" onAction="#removeRow" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Remove Item">
                             <font>
-                                <Font name="System Bold Italic" size="13.0"/>
+                                <Font name="System Bold Italic" size="13.0" />
                             </font>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </JFXButton>
-                        <JFXButton fx:id="txtRemveAll" alignment="CENTER_RIGHT" layoutX="139.0" layoutY="5.0"
-                                   onAction="#removeAll" prefHeight="35.0" prefWidth="120.0"
-                                   style="-fx-background-color: rgba(57,144,155,0.73);" text="Remove All">
+                        <JFXButton fx:id="txtRemveAll" alignment="CENTER_RIGHT" layoutX="139.0" layoutY="5.0" onAction="#removeAll" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: rgba(57,144,155,0.73);" text="Remove All">
                             <font>
-                                <Font name="System Bold Italic" size="13.0"/>
+                                <Font name="System Bold Italic" size="13.0" />
                             </font>
                             <cursor>
-                                <Cursor fx:constant="HAND"/>
+                                <Cursor fx:constant="HAND" />
                             </cursor>
                         </JFXButton>
                     </children>
@@ -219,24 +194,22 @@
         </Pane>
         <Layer fx:id="lyCode" layoutX="10.0" layoutY="83.0" prefHeight="430.0" prefWidth="261.0">
             <children>
-                <JFXListView fx:id="lvCode" onKeyReleased="#completeProductCode"
-                             style="-fx-background-color: rgba(54,203,154,0.56);">
+                <JFXListView fx:id="lvCode" onKeyReleased="#completeProductCode" style="-fx-background-color: rgba(54,203,154,0.56);">
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </JFXListView>
             </children>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Layer>
         <Layer fx:id="lyName" layoutX="9.0" layoutY="172.0" prefHeight="430.0" prefWidth="561.0">
             <children>
-                <JFXListView id="lvProductName" fx:id="lvName" onKeyReleased="#completeProductName"
-                             style="-fx-background-color: rgba(54,203,154,0.56);" stylesheets="@../CSS/Decorator.css"/>
+                <JFXListView id="lvProductName" fx:id="lvName" onKeyReleased="#completeProductName" style="-fx-background-color: rgba(54,203,154,0.56);" stylesheets="@../CSS/Decorator.css" />
             </children>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Layer>
     </children>

@@ -181,15 +181,15 @@ public class InvoiceController implements Initializable {
                 txtName.setText(product.getName());
                 txtCategory.setText(category.getName());
 
-                interConnector.setTxtFocus(txtQuantity);
+
                 interConnector.setTxtFocusSearch(txtCode);
 
                 loadProductView();
 
-                txtQuantity.requestFocus();
-
                 product.resetAll();
                 category.resetAll();
+
+                txtQuantity.requestFocus();
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
@@ -208,15 +208,14 @@ public class InvoiceController implements Initializable {
                 txtName.setText(product.getName());
                 txtCategory.setText(category.getName());
 
-                interConnector.setTxtFocus(txtQuantity);
+                //interConnector.setTxtFocus(txtQuantity);
                 interConnector.setTxtFocusSearch(txtBarCode);
 
                 loadProductView();
 
-                txtQuantity.requestFocus();
-
                 product.resetAll();
                 category.resetAll();
+                txtQuantity.requestFocus();
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
@@ -235,15 +234,14 @@ public class InvoiceController implements Initializable {
                 txtBarCode.setText(product.getBarCode());
                 txtCategory.setText(category.getName());
 
-                interConnector.setTxtFocus(txtQuantity);
+                //interConnector.setTxtFocus(txtQuantity);
                 interConnector.setTxtFocusSearch(txtName);
 
                 loadProductView();
 
-                txtQuantity.requestFocus();
-
                 product.resetAll();
                 category.resetAll();
+                txtQuantity.requestFocus();
             } catch (Exception e) {
                 e.printStackTrace();
                 alerts.getErrorAlert(e);
@@ -507,6 +505,7 @@ public class InvoiceController implements Initializable {
 
             interConnector.setProductCode(txtCode.getText());
             interConnector.setTxtSalePrice(txtSalePrice);
+            interConnector.setTxtFocus(txtQuantity);
 
             Stage productViewStage = new Stage();
             Parent frmProductView = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmProductList.fxml"));
@@ -585,7 +584,7 @@ public class InvoiceController implements Initializable {
                 alerts.getWarningNotify("Warning", "Cart is empty.Please add at least one");
             } else {
                 interConnector.setTblItem(tblItems);
-
+                interConnector.setTxtFocus(txtQuantity);
                 Stage GrnStage = new Stage();
                 Parent frmGRNPurchase = FXMLLoader.load(getClass().getClassLoader().getResource("Views/frmInvoiceSummary.fxml"));
                 GrnStage.setTitle("Invoice Summary");
