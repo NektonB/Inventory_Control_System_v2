@@ -27,7 +27,7 @@ public class ConnectDB {
                 database = ConnConfig.getDatabase();
                 username = ConnConfig.getLoggedUser();
                 password = ConnConfig.getLoggedPassword();
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://" + serverIP + ":" + port + "/" + database + "?autoReconnect=true&useSSL=false", "" + username + "", "" + password + "");
             } catch (ClassNotFoundException e) {
                 Toolkit.getDefaultToolkit().beep();
